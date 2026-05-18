@@ -1,0 +1,18 @@
+{
+  "currentFeature": "booklab-renewal",
+  "phase": "do",
+  "features": {
+    "booklab-renewal": {
+      "phase": "do",
+      "startedAt": "2026-05-18T00:00:00+09:00",
+      "prdPath": "docs/00-pm/booklab-renewal.prd.md",
+      "planPath": "docs/01-plan/features/booklab-renewal.plan.md",
+      "designPath": "docs/02-design/features/booklab-renewal.design.md",
+      "doPath": "docs/02-design/do/booklab-renewal.do.md",
+      "prototypePath": "prototype/booklab-renewal/index.html",
+      "scope": "module-1,module-2",
+      "targetSite": "https://www.book.co.kr/",
+      "benchmarkSite": "https://www.g-world.co.kr/"
+    }
+  }
+}

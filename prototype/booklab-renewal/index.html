@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>북랩 홈페이지 리뉴얼 제안 시안</title>
+    <meta
+      name="description"
+      content="북랩 기존 홈페이지 콘텐츠를 기반으로 좋은땅형 상담 전환 구조와 DESIGN.md 정보 밀도 규칙을 반영한 리뉴얼 제안 시안"
+    >
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="notice-bar">
+      <a href="https://www.book.co.kr/essay_ver2/publish/advice.php">간편하게 출판 문의 등록하기</a>
+      <a href="https://www.book.co.kr/essay_ver2/bbs/list.php?code=faq">저자님들이 자주 묻는 질문</a>
+      <a href="https://www.book.co.kr/essay_ver2/mypage/sales_sales_royalty.php">도서 판매량 및 인세 확인</a>
+    </header>
+
+    <header class="site-header">
+      <div class="header-grid">
+        <a class="logo" href="https://www.book.co.kr/" aria-label="북랩 홈">
+          <img src="https://www.book.co.kr/essay_ver2/images/bottom/bottom_logo_121_31.png?v1.1" alt="북랩">
+        </a>
+        <form class="search" role="search" aria-label="북랩 검색">
+          <input type="search" placeholder="출판 가이드, 가격표, 북스토어, 작가 인터뷰 검색">
+          <button type="submit">검색</button>
+        </form>
+        <div class="header-meta" aria-label="회원 및 상담 메뉴">
+          <div class="contract-call"><span>출판 계약상담</span><b>02-2026-5566</b></div>
+          <nav class="member-links" aria-label="회원 메뉴">
+            <a href="https://www.book.co.kr/essay_ver2/member/login.php">로그인</a>
+            <a href="https://www.book.co.kr/essay_ver2/member/join_agree.php">회원가입</a>
+            <a href="https://www.book.co.kr/essay_ver2/mypage/">MY북랩</a>
+            <a href="https://www.book.co.kr/essay_ver2/promote/booktrailer.php">북트레일러</a>
+            <a href="https://www.book.co.kr/essay_ver2/promote/press_list.php">보도자료</a>
+          </nav>
+        </div>
+      </div>
+      <nav class="gnb" aria-label="주요 메뉴">
+        <div class="gnb-item">
+          <a href="https://www.book.co.kr/essay_ver2/company/company.php">회사소개</a>
+          <div class="gnb-sub">
+            <a href="https://www.book.co.kr/essay_ver2/company/company.php">회사소개</a>
+            <a href="https://www.book.co.kr/essay_ver2/essay_board/venera5.php">왜 1위인가</a>
+            <a href="https://www.book.co.kr/essay_ver2/company/intro_bookstore.php">도서유통망</a>
+            <a href="https://www.book.co.kr/essay_ver2/bbs/list.php?code=booklab_news">북랩 News</a>
+            <a href="https://www.book.co.kr/essay_ver2/promote/press_list.php">보도자료</a>
+            <a href="https://www.book.co.kr/essay_ver2/support/helpdesk.php">고객센터</a>
+            <a href="https://www.book.co.kr/essay_ver2/company/recruit.php">인재채용</a>
+          </div>
+        </div>
+        <div class="gnb-item">
+          <a href="https://www.book.co.kr/essay_ver2/guide/print_guide.php">출판가이드</a>
+          <div class="gnb-sub">
+            <a href="https://www.book.co.kr/essay_ver2/guide/print_guide.php">출판가이드</a>
+            <a href="https://www.book.co.kr/essay_ver2/guide/publishing_step.php">출간절차</a>
+            <a href="https://www.book.co.kr/essay_ver2/essay_board/policy.php">인세 및 출판 정책</a>
+            <a href="https://www.book.co.kr/essay_ver2/guide/know.php">출판인세 상식</a>
+            <a href="https://www.book.co.kr/essay_ver2/guide/model.php">원고정서 가이드</a>
+            <a href="https://www.book.co.kr/essay_ver2/guide/data_send.php">원고 전송하기</a>
+            <a href="https://www.book.co.kr/essay_ver2/guide/sell.php">판매 및 인세 조회</a>
+          </div>
+        </div>
+        <div class="gnb-item">
+          <a href="https://www.book.co.kr/essay_ver2/publish/service.php">가격표</a>
+          <div class="gnb-sub">
+            <a href="https://www.book.co.kr/essay_ver2/publish/package_normalcn.php">흑백도서 출판</a>
+            <a href="https://www.book.co.kr/essay_ver2/publish/package_normalcy.php">컬러도서 출판</a>
+            <a href="https://www.book.co.kr/essay_ver2/publish/package_s_a.php">교재 출판</a>
+            <a href="https://www.book.co.kr/essay_ver2/publish/package_s_b.php">청소년 출판</a>
+            <a href="https://www.book.co.kr/essay_ver2/publish/1man_01.php">1인출판사 전용 서비스</a>
+            <a href="https://www.book.co.kr/essay_ver2/publish/1man_03.php">독립출판</a>
+            <a href="https://www.book.co.kr/essay_ver2/publish/ebook_intro.php">전자책 출판 서비스</a>
+          </div>
+        </div>
+        <div class="gnb-item">
+          <a class="active" href="https://www.book.co.kr/essay_ver2/publish/advice.php">출간문의</a>
+          <div class="gnb-sub">
+            <a href="https://www.book.co.kr/essay_ver2/publish/advice.php">출간문의</a>
+            <a href="https://www.book.co.kr/essay_ver2/publish/estimate.php">출판견적 의뢰</a>
+            <a href="https://www.book.co.kr/essay_ver2/publish/apply.php">출간신청</a>
+            <a href="https://www.book.co.kr/essay_ver2/bbs/list.php?code=faq">자주 하시는 질문</a>
+            <a href="https://www.book.co.kr/ebooks/ecatalog.php?Dir=334">출판가이드북</a>
+            <a href="https://www.book.co.kr/essay_ver2/publish/visit.php">방문 예약</a>
+            <a href="https://www.book.co.kr/essay_ver2/support/helpdesk.php">1:1 문의</a>
+          </div>
+        </div>
+        <div class="gnb-item">
+          <a href="https://www.book.co.kr/essay_ver2/shop/nonsalereqest.php">인쇄/제본신청</a>
+          <div class="gnb-sub">
+            <a href="https://www.book.co.kr/essay_ver2/shop/nonsalereqest.php">인쇄/제본 견적 의뢰</a>
+            <a href="https://www.book.co.kr/essay_ver2/shop/nonsalepaystp1.php">인쇄/제본 주문결제</a>
+            <a href="https://www.book.co.kr/essay_ver2/shop/price.php">비매품 편집비용</a>
+            <a href="https://www.book.co.kr/essay_ver2/publish/50books.php">50부 제작 패키지</a>
+            <a href="https://www.book.co.kr/essay_ver2/shop/sample.php?catcode=101100">무료 표지 샘플</a>
+            <a href="https://www.book.co.kr/essay_ver2/shop/guide.php">무료 본문 템플릿</a>
+            <a href="https://www.book.co.kr/essay_ver2/publish/quick_estimate.php">1분 견적</a>
+          </div>
+        </div>
+        <div class="gnb-item">
+          <a href="https://www.book.co.kr/essay_ver2/promote/promote.php">홍보/마케팅</a>
+          <div class="gnb-sub">
+            <a href="https://www.book.co.kr/essay_ver2/promote/display.php">매대광고</a>
+            <a href="https://www.book.co.kr/essay_ver2/promote/bookcard.php">북카드 배포</a>
+            <a href="https://www.book.co.kr/essay_ver2/promote/promt_press.php">보도자료 배포</a>
+            <a href="https://www.book.co.kr/essay_ver2/promote/promt_intro.php">북트레일러</a>
+            <a href="https://www.book.co.kr/essay_ver2/promote/envelope.php">컬러 증정 봉투</a>
+            <a href="https://www.book.co.kr/essay_ver2/promote/promote.php#promote2">도서 홍보물 제작</a>
+            <a href="https://www.book.co.kr/essay_ver2/promote/interview_list.php">작가 셀프 인터뷰</a>
+          </div>
+        </div>
+        <div class="gnb-item">
+          <a href="https://www.book.co.kr/essay_ver2/bshop/index.php">북스토어</a>
+          <div class="gnb-sub">
+            <a href="https://www.book.co.kr/essay_ver2/bshop/index.php">전체도서</a>
+            <a href="https://www.book.co.kr/essay_ver2/bshop/index.php?grp=week">주간 베스트셀러</a>
+            <a href="https://www.book.co.kr/essay_ver2/bshop/index.php?grp=month">월간 베스트셀러</a>
+            <a href="https://www.book.co.kr/essay_ver2/bshop/index.php?grp=steady">스테디셀러</a>
+            <a href="https://www.book.co.kr/essay_ver2/bshop/index.php?grp=reprint">증쇄도서</a>
+            <a href="https://www.book.co.kr/essay_ver2/bshop/index.php?grp=ebook">전자책</a>
+            <a href="https://www.book.co.kr/essay_ver2/bshop/prd_list.php">저자구매</a>
+            <a href="https://www.book.co.kr/essay_ver2/bshop/bookdnldxls.php">도서목록 다운로드</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-renewal hero-slider hero-slide-0" data-hero-slider>
+        <div class="hero-copy">
+          <span class="label">BOOKLAB RENEWAL</span>
+          <h1>
+            <span>책을 내고 싶은 순간부터</span>
+            <span>판매와 인세 확인까지</span>
+            <span>북랩에서 이어지게 합니다.</span>
+          </h1>
+          <p>
+            기존 북랩 메인의 핵심 콘텐츠를 유지하되, 상담 진입과 도서 콘텐츠 탐색이 첫 화면에서 자연스럽게 연결되도록
+            메인 구조를 리뉴얼한 제안 시안입니다.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="https://www.book.co.kr/essay_ver2/publish/advice.php">지금 바로 출판 상담하기</a>
+            <a class="btn secondary" href="https://www.book.co.kr/essay_ver2/publish/service.php">가격표 먼저 보기</a>
+          </div>
+        </div>
+
+        <div class="hero-showcase" aria-label="북랩 리뉴얼 메인 비주얼">
+          <div class="showcase-panel">
+            <div class="showcase-copy">
+              <span>출판 상담</span>
+              <p class="journey-copy">
+                <span>저자의 꿈을 현실로,</span>
+                <span>독자의 손에 전해진 8,000권의 이야기로,</span>
+                <span>북랩이 만들어 온 21년의 여정은 계속됩니다!</span>
+              </p>
+            </div>
+            <div class="showcase-books" aria-hidden="true">
+              <div class="book-stage">
+                <img class="hero-photo-visual" src="./assets/service/main-hero-publishing-journey.png" alt="">
+                <img class="book-cover book-cover-main" src="https://www.book.co.kr/_FILE/book/cover/2026/2603110001/2603110001_S1.jpg?v1.1" alt="">
+                <img class="book-cover book-cover-left" src="https://www.book.co.kr/_FILE/book/cover/2024/2401190001/2401190001_B.png?v1.2" alt="">
+                <img class="book-cover book-cover-right" src="https://www.book.co.kr/_FILE/book/cover/2026/2605130001/2605130001_B.jpg?v1778792145" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="hero-summary">
+            <div class="summary-item">
+              <b>8,000+</b>
+              <span>출간 종수</span>
+            </div>
+            <div class="summary-item">
+              <b>2024</b>
+              <span>세종도서 선정</span>
+            </div>
+            <div class="summary-item">
+              <b>02-2026-5777</b>
+              <span>출판ㆍ인쇄견적</span>
+            </div>
+            <a class="summary-cta" href="https://www.book.co.kr/essay_ver2/publish/advice.php">상담 신청</a>
+          </div>
+        </div>
+        <div class="hero-slider-controls" aria-label="메인 배너 슬라이드 선택">
+          <button type="button" class="is-active" data-hero-slide="0" aria-label="첫 번째 배너"></button>
+          <button type="button" data-hero-slide="1" aria-label="두 번째 배너"></button>
+          <button type="button" data-hero-slide="2" aria-label="세 번째 배너"></button>
+        </div>
+      </section>
+
+      <section class="worry-band">
+        <div>
+          <span class="label">PUBLISHING CONCERN</span>
+          <h2>출판에 대한 고민들, 북랩의 실제 서비스로 바로 해결합니다.</h2>
+        </div>
+        <div class="worry-links">
+          <a href="https://www.book.co.kr/essay_ver2/publish/service.php">비용이 궁금해요</a>
+          <a href="https://www.book.co.kr/essay_ver2/guide/print_guide.php">출판 과정이 궁금해요</a>
+          <a href="https://www.book.co.kr/essay_ver2/mypage/sales_sales_royalty.php">판매와 인세가 궁금해요</a>
+        </div>
+      </section>
+
+      <section class="section service-section">
+        <div class="section-head">
+          <div>
+            <span class="label">SERVICE</span>
+            <h2>북랩은 서점유통에서 비매품 제작까지 모든 출판 서비스를 제공합니다.</h2>
+          </div>
+        </div>
+        <div class="service-grid">
+          <article class="service-card">
+            <img src="https://images.unsplash.com/photo-1526243741027-444d633d7365?auto=format&fit=crop&w=1000&q=80" alt="출판유통 배너 이미지">
+            <div>
+              <b>출판유통</b>
+              <span>서점에 유통하고자 하는 책을 선택하세요</span>
+              <div class="service-actions">
+                <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd01.php">소설</a>
+                <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd02.php">에세이</a>
+                <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd03.php">시집</a>
+                <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd04.php">자기계발</a>
+                <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd05.php">경제경영</a>
+                <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd06.php">여행기</a>
+                <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd07.php">인문사회</a>
+                <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd08.php">교재수험서</a>
+              </div>
+            </div>
+          </article>
+          <article class="service-card">
+            <img src="./assets/service/service-tools-warm.png" alt="출판도구 모음 배너 이미지">
+            <div>
+              <b>출판도구 모음</b>
+              <span>출판도구 모음입니다</span>
+              <div class="service-actions">
+                <a href="#">원고 전송기</a>
+                <a href="https://www.book.co.kr/essay_ver2/publish/self2nd_step1.php">셀프 견적기</a>
+                <a href="https://www.book.co.kr/essay_ver2/mypage/profilewrt.php">프로필 생성기</a>
+                <a href="#">페이지 계산기</a>
+              </div>
+            </div>
+          </article>
+          <article class="service-card">
+            <img src="./assets/service/service-printing-warm.png" alt="인쇄 및 제본 배너 이미지">
+            <div>
+              <b>인쇄 및 제본</b>
+              <span>필요한 수량만큼 주문하세요</span>
+              <div class="service-actions">
+                <a href="https://www.book.co.kr/essay_ver2/shop/nonsalepaystp1.php">맞춤견적</a>
+                <a href="#">1분 견적</a>
+                <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd10.php">학급문집</a>
+                <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd11.php">자서전</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split-section">
+        <div class="section-head decorated title-trust">
+          <div>
+            <h2>명예의 전당</h2>
+            <p>세종도서와 진중문고 선정작을 전면에 배치해 북랩의 출판 성과를 먼저 보여줍니다.</p>
+          </div>
+          <a class="more" href="https://www.book.co.kr/essay_ver2/bshop/index.php?grp=fame">더보기</a>
+          <span class="section-script" aria-hidden="true">Hall of Fame</span>
+        </div>
+        <div class="hall-grid">
+          <article class="feature-book hall-feature">
+            <img class="feature-bg" src="https://www.book.co.kr/essay_ver2/images/index/halloffame_recomm.jpg?v2.2" alt="">
+            <div class="feature-text">
+              <span>2024 세종도서</span>
+              <h3>뉴스의 비유 왜곡</h3>
+              <p>매스미디어의 상투적 비유 표현에 대한 철학적 성찰</p>
+            </div>
+            <img class="feature-cover" src="https://www.book.co.kr/_FILE/book/cover/2023/2310130002/2310130002_S1.jpg?v1.2" alt="뉴스의 비유 왜곡 표지">
+          </article>
+          <div class="book-cards award-books">
+            <article><span>2024 세종도서</span><figure><img src="https://www.book.co.kr/_FILE/book/cover/2024/2401190001/2401190001_B.png?v1.2" alt="의료산책 1"></figure><b>의료산책 1: 광장으로 나온 의료</b><small>저자 정보</small></article>
+            <article><span>2024 세종도서</span><figure><img src="https://www.book.co.kr/_FILE/book/cover/2023/2308220002/2308220002_B.png?v1.2" alt="데이터 분석 AI IT 발전에 대한 적응 방안"></figure><b>데이터 분석, AI, IT 발전에 대한 적응 방안</b><small>저자 정보</small></article>
+            <article><span>2023 세종도서</span><figure><img src="https://www.book.co.kr/_FILE/book/cover/2022/2212260004/2212260004_B.png?v1.2" alt="한성감옥서 연구"></figure><b>1899-1904년 한성감옥서 수감자들의 기독교 입교에 관한 연구</b><small>저자 정보</small></article>
+            <article><span>2022 국방부 진중문고</span><figure><img src="https://www.book.co.kr/_FILE/book/cover/2018/1803080002/1803080002_B.png?v1.2" alt="웨폰 사이언스"></figure><b>웨폰 사이언스</b><small>저자 정보</small></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section bookstore-section">
+        <div class="section-head decorated title-bookstore">
+          <div>
+            <h2>북스토어/신간도서</h2>
+            <p>단순 책 목록이 아니라 신간과 추천 도서를 묶어 서점형 콘텐츠 블록으로 보여줍니다.</p>
+          </div>
+          <a class="more" href="https://www.book.co.kr/essay_ver2/bshop/index.php">북스토어 가기</a>
+          <span class="section-script" aria-hidden="true">Bookstore</span>
+        </div>
+        <div class="bookstore-grid">
+          <article class="feature-book store-feature">
+            <img class="feature-bg" src="https://www.book.co.kr/essay_ver2/images/index/bookstore_recomm.jpg?v2.2" alt="">
+            <div class="feature-text">
+              <span>추천 도서</span>
+              <h3>아키타입 사자성어 경제학</h3>
+              <p>권의종, 이왕로</p>
+            </div>
+            <img class="feature-cover" src="https://www.book.co.kr/_FILE/book/cover/2026/2603110001/2603110001_S1.jpg?v1.1" alt="아키타입 사자성어 경제학 표지">
+          </article>
+          <div class="book-cards new-books">
+            <article><figure><img src="https://www.book.co.kr/_FILE/book/cover/2026/2605180001/2605180001_B.jpg?v1779061282" alt="영광의 길 비천한 삶"></figure><span>신간도서</span><b>영광의 길 비천한 삶</b><small>저자 정보</small></article>
+            <article><figure><img src="https://www.book.co.kr/_FILE/book/cover/2026/2605130001/2605130001_B.jpg?v1778792145" alt="뉴 디지털 패션 일러스트레이션 북"></figure><span>신간도서</span><b>뉴 디지털 패션 일러스트레이션 북</b><small>저자 정보</small></article>
+            <article><figure><img src="https://www.book.co.kr/_FILE/book/cover/2026/2605120002/2605120002_B.jpg?v1778702693" alt="백 년의 바람 5권"></figure><span>신간도서</span><b>백 년의 바람 5권</b><small>저자 정보</small></article>
+            <article><figure><img src="https://www.book.co.kr/_FILE/book/cover/2026/2605120001/2605120001_B.jpg?v1778702693" alt="백 년의 바람 4권"></figure><span>신간도서</span><b>백 년의 바람 4권</b><small>저자 정보</small></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section interview-section">
+        <div class="section-head decorated title-interview">
+          <div>
+            <h2>작가셀프 인터뷰</h2>
+            <p>책 뒤에 있는 저자의 이야기를 보여줘 방문자가 북스토어로 자연스럽게 이어지게 합니다.</p>
+          </div>
+          <a class="more" href="https://www.book.co.kr/essay_ver2/promote/interview_list.php">인터뷰 더보기</a>
+          <span class="section-script" aria-hidden="true">Self Interview</span>
+        </div>
+        <div class="interview-grid">
+          <article>
+            <img src="https://www.book.co.kr/_FILE/interview/2026/I26051201/SI26051201.jpg?v1.1" alt="황일성 작가">
+            <div><span>[황일성]</span><h3>오늘부터 나는 평생현역이다</h3><p>안녕하세요. 4060 중장년 일·활동지원 플랫폼 &lt;소셜학교&gt; 이사장입니다...</p></div>
+          </article>
+          <article>
+            <img src="https://www.book.co.kr/_FILE/interview/2026/I26041701/SI26041701.png?v1.1" alt="최성표 작가">
+            <div><span>[최성표]</span><h3>나는 어머니의 기도 위에 서 있다</h3><p>전자공학을 전공하고 ROTC 장교로 군 복무를 마친 뒤, LG전자 연구개발실에서 ..</p></div>
+          </article>
+          <article>
+            <img src="https://www.book.co.kr/_FILE/interview/2026/I26041201/SI26041201.png?v1.1" alt="서태수 작가">
+            <div><span>[서태수]</span><h3>강마을에 묻힌 서사</h3><p>안정(安定)이란 서서히 죽어가는 안락사라고 믿으며, 늘 새로움을 향해 나아가..</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section board-tools">
+        <div class="board-card news-card">
+          <div class="mini-head"><h2>북랩 NEWS</h2><a href="https://www.book.co.kr/essay_ver2/bbs/list.php?code=booklab_news">더보기</a></div>
+          <ul>
+            <li><a href="https://www.book.co.kr/essay_ver2/bbs/view.php?idx=4896&code=booklab_notice">2026년 5월 무이자 할부</a><span>26-05-06</span></li>
+            <li><a href="https://www.book.co.kr/essay_ver2/bbs/view.php?idx=4892&code=booklab_news">2026년 1사분기 인세지급 안내</a><span>26-04-14</span></li>
+            <li><a href="https://www.book.co.kr/essay_ver2/bbs/view.php?idx=4891&code=booklab_notice">2026년 4월 무이자 할부</a><span>26-04-14</span></li>
+            <li><a href="https://www.book.co.kr/essay_ver2/bbs/view.php?idx=4868&code=booklab_news">2025년 4사분기 인세지급 안내</a><span>26-01-14</span></li>
+          </ul>
+        </div>
+        <div class="board-card story">
+          <div class="mini-head"><h2>북랩 Story</h2><a href="https://www.book.co.kr/essay_ver2/bbs/list.php?code=photo">더보기</a></div>
+          <div class="story-list">
+            <a href="https://www.book.co.kr/essay_ver2/bbs/view.php?idx=4853&code=photo"><img src="https://www.book.co.kr/_FILE/bbs_photo/1761616302/S4853.png" alt="북랩 출간 종수 8천 종 돌파"><span>북랩, 출간 종수 8천 종 돌파!</span></a>
+            <a href="https://www.book.co.kr/essay_ver2/bbs/view.php?idx=4482&code=photo"><img src="https://www.book.co.kr/essay_ver2/data/bbs/photo/S2304111134023_1.jpg" alt="교보문고 진열"><span>교보문고 광화문점 주요 진열대에 오른 북랩 신간들</span></a>
+          </div>
+        </div>
+        <div class="board-card payment-card">
+          <div class="mini-head"><h2>결제 및 상담</h2><a href="https://www.book.co.kr/essay_ver2/support/tel_info.php">문의처</a></div>
+          <div class="pay-primary">
+            <dl>
+              <div><dt>서점유통 출판</dt><dd>02-2026-5566</dd></div>
+              <div><dt>인쇄/제본</dt><dd>02-2026-3334</dd></div>
+              <div><dt>도서주문</dt><dd>02-3159-9638</dd></div>
+            </dl>
+          </div>
+          <div class="pay-grid">
+            <a class="card-pay" href="#"><b>신용카드결제</b><span>카드 결제 바로가기</span></a>
+            <a class="bank-pay" href="https://www.book.co.kr/essay_ver2/support/bankbook.php"><span>무통장입금</span><em>우리은행</em><small>예금주 : (주)북랩</small><b>1005-980-007000</b></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section tool-section">
+        <div class="section-head decorated title-tools">
+          <div><h2>저자가 바로 쓰는 빠른 메뉴</h2></div>
+          <span class="section-script" aria-hidden="true">Author Tools</span>
+        </div>
+        <div class="tool-grid">
+          <a href="#"><span class="tool-icon">UP</span><b>원고전송</b><small>파일을 바로 전달</small></a>
+          <a href="https://www.book.co.kr/essay_ver2/guide/model.php"><span class="tool-icon">GD</span><b>원고정서 가이드</b><small>작성 형식 확인</small></a>
+          <a href="https://www.book.co.kr/essay_ver2/mypage/contract_list.php"><span class="tool-icon">CT</span><b>나의 출판계약서</b><small>계약서 조회</small></a>
+          <a href="https://www.book.co.kr/essay_ver2/mypage/mail_pr_product.php"><span class="tool-icon">PR</span><b>내 책 홍보하기</b><small>홍보 메일 신청</small></a>
+          <a href="https://www.book.co.kr/ebooks/ecatalog.php?Dir=334"><span class="tool-icon">BK</span><b>출판가이드북</b><small>3분 가이드</small></a>
+          <a href="http://blog.naver.com/essaybook" target="_blank" rel="noreferrer"><span class="tool-icon">TM</span><b>무료 본문 템플릿</b><small>블로그 자료실</small></a>
+          <a href="https://www.book.co.kr/essay_ver2/company/intro_bookstore.php"><span class="tool-icon">DT</span><b>도서유통망</b><small>서점 유통 안내</small></a>
+          <a href="https://www.book.co.kr/essay_ver2/mypage/sales_sales_royalty.php"><span class="tool-icon">RS</span><b>판매량 및 인세</b><small>성과 확인</small></a>
+        </div>
+      </section>
+
+    </main>
+
+    <aside class="floating-consult" aria-label="빠른 실행">
+      <a href="https://www.book.co.kr/essay_ver2/publish/advice.php">
+        <span class="floating-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v7A2.5 2.5 0 0 1 17.5 15H10l-5 4v-4.4A2.5 2.5 0 0 1 4 12.5z"/><path d="M8 8h8M8 11h5"/></svg>
+        </span>
+        <span>출간문의</span>
+      </a>
+      <a href="#">
+        <span class="floating-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v5h5M9.5 12h5M9.5 15h5M9.5 18h3"/></svg>
+        </span>
+        <span>원고전송</span>
+      </a>
+      <a href="https://www.book.co.kr/essay_ver2/mypage/sales_sales_royalty.php">
+        <span class="floating-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 6h14v12H5z"/><path d="M8 10h8M8 14h5M16 14h.01"/><path d="M7 6V4h10v2"/></svg>
+        </span>
+        <span>판매/인세</span>
+      </a>
+      <div class="floating-kakao">
+        <b><span class="kakao-icon" aria-hidden="true"></span>카톡상담</b>
+        <span>친구추가: booklab</span>
+        <span>채널추가: 북랩</span>
+      </div>
+    </aside>
+
+    <footer class="site-footer">
+      <div>
+        <img src="https://www.book.co.kr/essay_ver2/images/bottom/bottom_logo_121_31.png?v1.1" alt="북랩">
+        <p>(주)북랩 | 대표이사: 손형국 | 대표전화: 02-2026-5777 | 메일: book@book.co.kr</p>
+        <p>사업자등록번호: 128-81-98572 | 통신판매업신고: 2011-서울금천-0755</p>
+        <p>서울특별시 금천구 가산디지털1로 168(가산동, 우림라이온스밸리) 본사 및 POD센터 B동 B113~115호, 편집부 B동 B111호</p>
+        <p>개인정보관리자: 선일영 | 호스팅제공자: (주)스마일서브</p>
+      </div>
+      <nav>
+        <a href="https://www.book.co.kr/essay_ver2/company/company.php">회사소개</a>
+        <a href="https://www.book.co.kr/essay_ver2/company/map.php">오시는 길</a>
+        <a href="https://www.book.co.kr/essay_ver2/member/join_agree.php">회원가입</a>
+        <a href="https://www.book.co.kr/essay_ver2/bottom/clause.php">회원약관</a>
+        <a href="https://www.book.co.kr/essay_ver2/bottom/privacy.php">개인정보취급방침</a>
+        <a href="https://www.book.co.kr/essay_ver2/bottom/pubethics.php">출판계약 윤리강령</a>
+        <a href="https://www.book.co.kr/essay_ver2/support/helpdesk.php">고객센터</a>
+        <a href="http://blog.naver.com/essaybook" target="_blank" rel="noreferrer">블로그</a>
+      </nav>
+    </footer>
+    <script>
+      (() => {
+        const slider = document.querySelector("[data-hero-slider]");
+        if (!slider) return;
+
+        const slides = [
+          {
+            label: "BOOKLAB RENEWAL",
+            title: ["책을 내고 싶은 순간부터", "판매와 인세 확인까지", "북랩에서 이어지게 합니다."],
+            desc: "기존 북랩 메인의 핵심 콘텐츠를 유지하되, 상담 진입과 도서 콘텐츠 탐색이 첫 화면에서 자연스럽게 연결되도록 메인 구조를 리뉴얼한 제안 시안입니다.",
+            primary: ["지금 바로 출판 상담하기", "https://www.book.co.kr/essay_ver2/publish/advice.php"],
+            secondary: ["가격표 먼저 보기", "https://www.book.co.kr/essay_ver2/publish/service.php"],
+            badge: "출판 상담",
+            journey: ["저자의 꿈을 현실로,", "독자의 손에 전해진 8,000권의 이야기로,", "북랩이 만들어 온 21년의 여정은 계속됩니다!"],
+            covers: [
+              "https://www.book.co.kr/_FILE/book/cover/2026/2603110001/2603110001_S1.jpg?v1.1",
+              "https://www.book.co.kr/_FILE/book/cover/2024/2401190001/2401190001_B.png?v1.2",
+              "https://www.book.co.kr/_FILE/book/cover/2026/2605130001/2605130001_B.jpg?v1778792145"
+            ],
+            visual: "./assets/service/main-hero-publishing-journey.png",
+            summary: [["8,000+", "출간 종수"], ["2024", "세종도서 선정"], ["02-2026-5777", "출판ㆍ인쇄견적"]]
+          },
+          {
+            label: "BOOK DISTRIBUTION",
+            title: ["서점 유통부터", "판매 부수 공개까지", "투명하게 연결합니다."],
+            desc: "북스토어, 서점 유통망, 판매량 및 인세 확인까지 저자가 가장 궁금해하는 정보를 메인에서 빠르게 확인할 수 있게 구성합니다.",
+            primary: ["도서유통망 보기", "https://www.book.co.kr/essay_ver2/company/intro_bookstore.php"],
+            secondary: ["판매·인세 조회", "https://www.book.co.kr/essay_ver2/mypage/sales_sales_royalty.php"],
+            badge: "도서 유통",
+            journey: ["책이 독자에게 닿는 길,", "서점과 온라인 채널을 잇는 유통 경험으로,", "저자의 다음 출간까지 이어지게 합니다."],
+            covers: [
+              "https://www.book.co.kr/_FILE/book/cover/2026/2605180001/2605180001_B.jpg?v1779061282",
+              "https://www.book.co.kr/_FILE/book/cover/2026/2605120001/2605120001_B.jpg?v1778702693",
+              "https://www.book.co.kr/_FILE/book/cover/2023/2310130002/2310130002_S1.jpg?v1.2"
+            ],
+            visual: "./assets/service/main-hero-distribution.png",
+            summary: [["북스토어", "신간도서 연결"], ["인세", "판매량 조회"], ["02-2026-5566", "출판 계약상담"]]
+          },
+          {
+            label: "PRINT & BINDING",
+            title: ["출판 상담과", "인쇄·제본 신청을", "바로 이어줍니다."],
+            desc: "출간문의, 맞춤견적, 1분 견적, 학급문집과 자서전 제작까지 필요한 제작 메뉴를 메인에서 명확하게 안내합니다.",
+            primary: ["인쇄·제본 신청", "https://www.book.co.kr/essay_ver2/shop/nonsalereqest.php"],
+            secondary: ["1분 견적 보기", "https://www.book.co.kr/essay_ver2/publish/quick_estimate.php"],
+            badge: "제작 상담",
+            journey: ["필요한 수량만큼", "견적부터 결제까지", "제작 과정을 한 화면에서"],
+            covers: [
+              "https://www.book.co.kr/_FILE/book/cover/2026/2605120002/2605120002_B.jpg?v1778702693",
+              "https://www.book.co.kr/_FILE/book/cover/2023/2308220002/2308220002_B.png?v1.2",
+              "https://www.book.co.kr/_FILE/book/cover/2022/2212260004/2212260004_B.png?v1.2"
+            ],
+            visual: "./assets/service/main-hero-printing.png",
+            summary: [["맞춤견적", "인쇄·제본"], ["원고전송", "빠른 접수"], ["02-2026-3334", "인쇄·제본 상담"]]
+          }
+        ];
+
+        const nodes = {
+          label: slider.querySelector(".hero-copy .label"),
+          title: slider.querySelector(".hero-copy h1"),
+          desc: slider.querySelector(".hero-copy > p"),
+          primary: slider.querySelector(".hero-actions .primary"),
+          secondary: slider.querySelector(".hero-actions .secondary"),
+          badge: slider.querySelector(".showcase-copy > span"),
+          journey: [...slider.querySelectorAll(".journey-copy span")],
+          covers: [
+            slider.querySelector(".hero-photo-visual"),
+            slider.querySelector(".book-cover-main"),
+            slider.querySelector(".book-cover-left"),
+            slider.querySelector(".book-cover-right")
+          ],
+          summary: [...slider.querySelectorAll(".summary-item")],
+          controls: [...slider.querySelectorAll("[data-hero-slide]")]
+        };
+
+        let current = 0;
+        let timer;
+
+        const render = (index) => {
+          const slide = slides[index];
+          current = index;
+          slider.classList.add("is-changing");
+
+          window.setTimeout(() => {
+            slider.classList.remove("hero-slide-0", "hero-slide-1", "hero-slide-2");
+            slider.classList.add(`hero-slide-${index}`);
+            nodes.label.textContent = slide.label;
+            nodes.title.innerHTML = slide.title.map((line) => `<span>${line}</span>`).join("");
+            nodes.desc.textContent = slide.desc;
+            nodes.desc.hidden = !slide.desc;
+            nodes.primary.textContent = slide.primary[0];
+            nodes.primary.href = slide.primary[1];
+            nodes.secondary.textContent = slide.secondary[0];
+            nodes.secondary.href = slide.secondary[1];
+            nodes.badge.textContent = slide.badge;
+            nodes.journey.forEach((node, i) => {
+              node.textContent = slide.journey[i] || "";
+            });
+            nodes.covers.forEach((node, i) => {
+              if (i === 0) {
+                node.src = slide.visual;
+                return;
+              }
+              node.src = slide.covers[i - 1];
+            });
+            nodes.summary.forEach((item, i) => {
+              const number = item.querySelector("b");
+              const text = item.querySelector("span");
+              number.textContent = slide.summary[i][0];
+              text.textContent = slide.summary[i][1];
+            });
+            nodes.controls.forEach((button, i) => {
+              button.classList.toggle("is-active", i === index);
+            });
+            slider.classList.remove("is-changing");
+          }, 160);
+        };
+
+        const next = () => render((current + 1) % slides.length);
+        const play = () => {
+          timer = window.setInterval(next, 6500);
+        };
+
+        nodes.controls.forEach((button) => {
+          button.addEventListener("click", () => {
+            window.clearInterval(timer);
+            render(Number(button.dataset.heroSlide));
+            play();
+          });
+        });
+
+        slider.addEventListener("mouseenter", () => window.clearInterval(timer));
+        slider.addEventListener("mouseleave", play);
+        play();
+      })();
+    </script>
+  </body>
+</html>
