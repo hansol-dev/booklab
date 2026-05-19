@@ -222,6 +222,10 @@ input:focus-visible {
   color: var(--red);
 }
 
+.mobile-menu-toggle {
+  display: none;
+}
+
 .gnb {
   display: flex;
   justify-content: center;
@@ -2489,30 +2493,96 @@ p {
   .header-grid {
     grid-template-columns: 1fr;
     gap: 10px;
+    padding-right: 58px;
   }
 
   .search {
     grid-template-columns: 1fr 58px;
   }
 
+  .mobile-menu-toggle {
+    position: absolute;
+    top: 58px;
+    right: 14px;
+    z-index: 42;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 18px rgba(17, 17, 17, 0.08);
+    color: var(--black);
+    cursor: pointer;
+  }
+
+  .mobile-menu-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    margin: 2px 0;
+    background: currentColor;
+    border-radius: 999px;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+  }
+
+  .mobile-menu-toggle b {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .site-header.is-menu-open .mobile-menu-toggle span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .site-header.is-menu-open .mobile-menu-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .site-header.is-menu-open .mobile-menu-toggle span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
   .gnb {
-    gap: 6px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: 10px;
-    border: 0;
-    background: transparent;
+    display: none;
+    grid-template-columns: 1fr;
+    gap: 0;
+    overflow: hidden;
+    padding: 8px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 16px 30px rgba(17, 17, 17, 0.1);
+  }
+
+  .site-header.is-menu-open .gnb {
+    display: grid;
   }
 
   .gnb-item {
-    flex: 0 0 132px;
+    flex: none;
+    width: 100%;
   }
 
   .gnb-item > a {
-    min-height: 38px;
-    border: 1px solid var(--line);
-    border-radius: 6px;
+    justify-content: flex-start;
+    min-height: 42px;
+    padding: 0 12px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
     background: var(--white);
+    font-size: 14px;
+  }
+
+  .gnb-item:last-child > a {
+    border-bottom: 0;
   }
 
   .gnb-item > a::before {

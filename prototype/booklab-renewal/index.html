@@ -37,7 +37,13 @@
           </nav>
         </div>
       </div>
-      <nav class="gnb" aria-label="주요 메뉴">
+      <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="gnb">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <b>메뉴</b>
+      </button>
+      <nav class="gnb" id="gnb" aria-label="주요 메뉴">
         <div class="gnb-item">
           <a href="https://www.book.co.kr/essay_ver2/company/company.php">회사소개</a>
           <div class="gnb-sub">
@@ -432,6 +438,34 @@
       </nav>
     </footer>
     <script>
+      (() => {
+        const header = document.querySelector(".site-header");
+        const menuButton = document.querySelector(".mobile-menu-toggle");
+        const menu = document.querySelector("#gnb");
+        if (!header || !menuButton || !menu) return;
+
+        const setOpen = (open) => {
+          header.classList.toggle("is-menu-open", open);
+          menuButton.setAttribute("aria-expanded", String(open));
+        };
+
+        menuButton.addEventListener("click", () => {
+          setOpen(!header.classList.contains("is-menu-open"));
+        });
+
+        menu.addEventListener("click", (event) => {
+          if (event.target.closest("a") && window.matchMedia("(max-width: 760px)").matches) {
+            setOpen(false);
+          }
+        });
+
+        window.addEventListener("resize", () => {
+          if (!window.matchMedia("(max-width: 760px)").matches) {
+            setOpen(false);
+          }
+        });
+      })();
+
       (() => {
         const slider = document.querySelector("[data-hero-slider]");
         if (!slider) return;
