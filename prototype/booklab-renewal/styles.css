@@ -2741,7 +2741,6 @@ p {
   }
 
   .hero-summary,
-  .pay-grid,
   .service-grid,
   .book-cards,
   .interview-grid,
@@ -2749,6 +2748,73 @@ p {
   .worry-band,
   .site-footer {
     grid-template-columns: 1fr;
+  }
+
+  .payment-card {
+    display: grid;
+    grid-template-columns: 94px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .payment-card .mini-head {
+    grid-column: 1 / -1;
+  }
+
+  .payment-card .pay-primary {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 0;
+    padding: 10px;
+  }
+
+  .payment-card .pay-primary dl {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .payment-card .pay-primary div {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .payment-card .pay-primary dt {
+    font-size: 11px;
+  }
+
+  .payment-card .pay-primary dd {
+    font-size: 13px;
+  }
+
+  .payment-card .pay-grid {
+    display: contents;
+  }
+
+  .payment-card .card-pay {
+    grid-column: 1;
+    grid-row: 2;
+    min-height: 100%;
+    padding: 10px 6px;
+  }
+
+  .payment-card .card-pay::before {
+    width: 30px;
+    height: 20px;
+    margin-bottom: 6px;
+  }
+
+  .payment-card .card-pay b {
+    font-size: 13px;
+  }
+
+  .payment-card .card-pay span {
+    font-size: 11px;
+  }
+
+  .payment-card .bank-pay {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    min-height: 78px;
   }
 
   .hero-copy h1 {
