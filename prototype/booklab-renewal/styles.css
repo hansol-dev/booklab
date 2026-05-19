@@ -1516,9 +1516,10 @@ p {
 }
 
 .mini-head {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
+  gap: 12px;
   min-height: 0;
   height: 34px;
   padding-bottom: 10px;
@@ -1533,6 +1534,7 @@ p {
 }
 
 .mini-head a {
+  justify-self: end;
   margin-left: auto;
   color: var(--muted);
   font-size: 12px;
@@ -1595,7 +1597,7 @@ p {
   margin-top: 12px;
 }
 
-.story a {
+.story-list a {
   display: grid;
   grid-template-columns: 72px 1fr;
   gap: 10px;
@@ -2311,7 +2313,7 @@ p {
 
 .service-card:hover img,
 .book-cards article:hover img,
-.story a:hover img,
+.story-list a:hover img,
 .interview-grid article:hover img {
   transform: scale(1.035);
 }
