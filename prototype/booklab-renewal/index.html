@@ -454,14 +454,30 @@
         });
 
         menu.addEventListener("click", (event) => {
-          if (event.target.closest("a") && window.matchMedia("(max-width: 760px)").matches) {
-            setOpen(false);
+          const link = event.target.closest("a");
+          if (!link || !window.matchMedia("(max-width: 760px)").matches) return;
+
+          const item = link.closest(".gnb-item");
+          const isTopLink = link.parentElement === item;
+          const hasSub = item && item.querySelector(".gnb-sub");
+
+          if (isTopLink && hasSub) {
+            event.preventDefault();
+            const willOpen = !item.classList.contains("is-open");
+            menu.querySelectorAll(".gnb-item.is-open").forEach((openItem) => {
+              if (openItem !== item) openItem.classList.remove("is-open");
+            });
+            item.classList.toggle("is-open", willOpen);
+            return;
           }
+
+          setOpen(false);
         });
 
         window.addEventListener("resize", () => {
           if (!window.matchMedia("(max-width: 760px)").matches) {
             setOpen(false);
+            menu.querySelectorAll(".gnb-item.is-open").forEach((item) => item.classList.remove("is-open"));
           }
         });
       })();

@@ -1533,8 +1533,10 @@ p {
 }
 
 .mini-head a {
+  margin-left: auto;
   color: var(--muted);
   font-size: 12px;
+  white-space: nowrap;
 }
 
 .board-card ul {
@@ -2505,8 +2507,9 @@ p {
     top: 58px;
     right: 14px;
     z-index: 42;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 44px;
     height: 44px;
     padding: 0;
@@ -2519,13 +2522,27 @@ p {
   }
 
   .mobile-menu-toggle span {
-    display: block;
+    position: absolute;
+    left: 12px;
     width: 20px;
     height: 2px;
-    margin: 2px 0;
+    margin: 0;
     background: currentColor;
     border-radius: 999px;
-    transition: transform 0.18s ease, opacity 0.18s ease;
+    transition: top 0.18s ease, transform 0.18s ease, opacity 0.18s ease;
+  }
+
+  .mobile-menu-toggle span:nth-child(1) {
+    top: 14px;
+  }
+
+  .mobile-menu-toggle span:nth-child(2) {
+    top: 21px;
+    width: 16px;
+  }
+
+  .mobile-menu-toggle span:nth-child(3) {
+    top: 28px;
   }
 
   .mobile-menu-toggle b {
@@ -2538,7 +2555,8 @@ p {
   }
 
   .site-header.is-menu-open .mobile-menu-toggle span:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
+    top: 21px;
+    transform: rotate(45deg);
   }
 
   .site-header.is-menu-open .mobile-menu-toggle span:nth-child(2) {
@@ -2546,7 +2564,8 @@ p {
   }
 
   .site-header.is-menu-open .mobile-menu-toggle span:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
+    top: 21px;
+    transform: rotate(-45deg);
   }
 
   .gnb {
@@ -2573,12 +2592,29 @@ p {
   .gnb-item > a {
     justify-content: flex-start;
     min-height: 42px;
-    padding: 0 12px;
+    padding: 0 34px 0 12px;
     border: 0;
     border-bottom: 1px solid var(--line);
     border-radius: 0;
     background: var(--white);
     font-size: 14px;
+  }
+
+  .gnb-item:has(.gnb-sub) > a::after {
+    content: "";
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid #9aa4ad;
+    border-bottom: 2px solid #9aa4ad;
+    transform: translateY(-65%) rotate(45deg);
+    transition: transform 0.18s ease;
+  }
+
+  .gnb-item.is-open > a::after {
+    transform: translateY(-35%) rotate(-135deg);
   }
 
   .gnb-item:last-child > a {
@@ -2590,7 +2626,48 @@ p {
   }
 
   .gnb-sub {
+    position: static;
+    display: grid;
+    max-height: 0;
+    width: auto;
+    min-width: 0;
+    overflow: hidden;
+    padding: 0 0 0 14px;
+    background: #f7f9fa;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition: max-height 0.22s ease, padding 0.22s ease;
+  }
+
+  .gnb-item.is-open .gnb-sub {
+    max-height: 420px;
+    padding-top: 6px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .gnb-sub::before {
     display: none;
+  }
+
+  .gnb-sub a {
+    min-height: 34px;
+    padding: 0 10px;
+    background: transparent;
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 13px;
+  }
+
+  .gnb-sub a:hover,
+  .gnb-sub a:focus-visible {
+    padding-left: 10px;
+    background: var(--white);
+    color: var(--red);
   }
 
   .worry-band {
@@ -2679,9 +2756,9 @@ p {
 
   .section-head.decorated {
     align-items: flex-start;
-    flex-direction: column;
+    flex-direction: row;
     min-height: 0;
-    padding: 0 0 14px;
+    padding: 0 0 40px;
   }
 
   .section-head.decorated::before {
@@ -2701,14 +2778,18 @@ p {
   }
 
   .section-head.decorated .more {
-    margin-top: 4px;
+    position: relative;
+    z-index: 2;
+    align-self: center;
+    margin-top: 0;
+    margin-left: auto;
   }
 
   .title-trust,
   .title-bookstore,
   .title-interview,
   .title-tools {
-    padding-bottom: 36px;
+    padding-bottom: 42px;
   }
 
   .title-trust .section-script,
@@ -2716,8 +2797,9 @@ p {
   .title-interview .section-script,
   .title-tools .section-script {
     right: 0;
-    bottom: 0;
-    font-size: 54px;
+    bottom: 2px;
+    font-size: 46px;
+    opacity: 0.12;
   }
 
   .showcase-panel,
