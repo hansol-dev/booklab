@@ -4327,11 +4327,6 @@ body.has-mobile-quick-sheet {
     line-break: strict;
   }
 
-  .hero-copy h1 .no-break-mark {
-    display: inline-block;
-    white-space: nowrap;
-  }
-
   .hero-slide-0 .hero-copy h1 strong {
     display: block;
   }

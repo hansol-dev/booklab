@@ -643,8 +643,6 @@
         let current = 0;
         let timer;
         const autoSlideDelay = 10000;
-        const formatTitleLine = (line) => line.replace(/([^<>\s])([!?])/g, '<span class="no-break-mark">$1$2</span>');
-
         const render = (index) => {
           const slide = slides[index];
           current = index;
@@ -654,7 +652,7 @@
             slider.classList.remove("hero-slide-0", "hero-slide-1", "hero-slide-2", "hero-slide-3");
             slider.classList.add(`hero-slide-${index}`);
             nodes.label.textContent = slide.label;
-            nodes.title.innerHTML = slide.title.map((line) => `<span>${formatTitleLine(line)}</span>`).join("");
+            nodes.title.innerHTML = slide.title.map((line) => `<span>${line}</span>`).join("");
             nodes.note.textContent = slide.note;
             nodes.note.hidden = !slide.note;
             nodes.desc.innerHTML = slide.desc;
