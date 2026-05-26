@@ -1,4 +1,27 @@
 /* origin_index.html renewal body isolation */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+strong,
+em,
+small,
+dt,
+dd,
+li,
+input,
+button,
+textarea,
+select {
+  font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif !important;
+}
+
 #id_top_zone img,
 #id_top_zone table img,
 #divMenu img,
