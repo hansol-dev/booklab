@@ -190,6 +190,82 @@ select {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+/* origin_index.html 900px section grid correction */
+.booklab-origin-renewal .service-grid,
+.booklab-origin-renewal .board-tools {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.booklab-origin-renewal .service-card,
+.booklab-origin-renewal .board-card {
+  min-width: 0 !important;
+}
+
+.booklab-origin-renewal .service-actions {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.booklab-origin-renewal .service-card:first-child .service-actions {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.booklab-origin-renewal .hall-grid,
+.booklab-origin-renewal .bookstore-grid {
+  display: grid !important;
+  grid-template-columns: 260px minmax(0, 1fr) !important;
+  gap: 8px !important;
+  align-items: stretch !important;
+}
+
+.booklab-origin-renewal .hall-grid .book-cards,
+.booklab-origin-renewal .bookstore-grid .book-cards {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.booklab-origin-renewal .feature-book {
+  min-width: 0 !important;
+  min-height: 300px !important;
+}
+
+.booklab-origin-renewal .feature-cover {
+  right: 14px !important;
+  width: 112px !important;
+  height: 166px !important;
+}
+
+.booklab-origin-renewal .feature-text h3,
+.booklab-origin-renewal .feature-text p {
+  width: 118px !important;
+}
+
+.booklab-origin-renewal .book-cards article {
+  min-width: 0 !important;
+  padding: 8px !important;
+}
+
+.booklab-origin-renewal .book-cards span {
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+}
+
+.booklab-origin-renewal .book-cards b {
+  font-size: 13px !important;
+  line-height: 1.32 !important;
+}
+
+.booklab-origin-renewal .section-script {
+  display: block !important;
+  font-family: "Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive !important;
+  font-size: 62px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  line-height: 1 !important;
+}
+
 /* origin_index.html hero 900px correction */
 .booklab-origin-renewal .hero-renewal {
   grid-template-columns: minmax(0, 1fr) !important;
