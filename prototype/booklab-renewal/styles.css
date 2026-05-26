@@ -4323,6 +4323,7 @@ body.has-mobile-quick-sheet {
   }
 
   .hero-note {
+    order: initial;
     margin: -8px 0 18px;
     padding: 0;
     background: transparent;
@@ -4638,6 +4639,7 @@ body.has-mobile-quick-sheet {
   }
 
   .hero-note {
+    order: initial;
     margin: -4px 0 12px;
     font-size: 11px;
   }
