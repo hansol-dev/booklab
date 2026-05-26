@@ -1,1003 +1,1545 @@
-<!doctype html>
-<html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>북랩 원본형 메인 정리 시안</title>
-  <style>
-    @font-face {
-      font-family: "Pretendard Variable";
-      src: url("./prototype/booklab-renewal/assets/fonts/PretendardVariable.woff2") format("woff2-variations");
-      font-weight: 45 920;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    :root {
-      --red: #d82830;
-      --red-dark: #be1f29;
-      --navy: #0f2140;
-      --blue: #17416e;
-      --ink: #1f2937;
-      --text: #4b5563;
-      --muted: #8a94a6;
-      --line: #e8ebf0;
-      --soft: #f7f8fb;
-      --white: #ffffff;
-      --yellow-outline: #e6dd00;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-width: 1160px;
-      background: #ffffff;
-      color: var(--text);
-      font-family: "Pretendard Variable", "Malgun Gothic", Dotum, sans-serif;
-      font-size: 14px;
-      line-height: 1.45;
-      letter-spacing: -0.02em;
-      word-break: keep-all;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    .page {
-      width: 1160px;
-      margin: 0 auto;
-    }
-
-    /* Red reference area: original-style header and navigation */
-    .origin-header {
-      width: 980px;
-      height: 110px;
-      margin: 0 auto;
-      background: #fff;
-      border-top: 2px solid var(--red);
-    }
-
-    .head-main {
-      display: grid;
-      grid-template-columns: 170px 1fr 258px;
-      align-items: center;
-      gap: 18px;
-      height: 70px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      color: var(--red);
-      font-weight: 900;
-      line-height: 1;
-    }
-
-    .logo-mark {
-      display: grid;
-      place-items: center;
-      width: 38px;
-      height: 38px;
-      border: 3px solid var(--red);
-      border-radius: 50%;
-      font-size: 21px;
-    }
-
-    .logo strong {
-      display: block;
-      font-size: 30px;
-      letter-spacing: -0.08em;
-    }
-
-    .logo span {
-      display: block;
-      margin-top: 2px;
-      color: #9a1119;
-      font-size: 13px;
-      letter-spacing: 0;
-    }
-
-    .search {
-      display: grid;
-      grid-template-columns: 80px 1fr 54px;
-      height: 42px;
-      border: 1px solid #d6d9df;
-      background: #fff;
-    }
-
-    .search select,
-    .search input,
-    .search button {
-      border: 0;
-      font: inherit;
-    }
-
-    .search select {
-      padding-left: 15px;
-      background: #f1f2f4;
-      color: #333;
-      font-weight: 700;
-    }
-
-    .search input {
-      min-width: 0;
-      padding: 0 14px;
-      color: #7b8390;
-    }
-
-    .search button {
-      background: var(--red);
-      color: #fff;
-      font-size: 0;
-      cursor: pointer;
-    }
-
-    .search button::before {
-      content: "⌕";
-      font-size: 30px;
-      font-weight: 900;
-      line-height: 1;
-    }
-
-    .head-side {
-      text-align: right;
-    }
-
-    .contract {
-      color: #5a2020;
-      font-size: 12px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .contract b {
-      color: #2b1b1b;
-      font-size: 22px;
-      letter-spacing: -0.04em;
-    }
-
-    .member {
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-      margin-top: 5px;
-      color: #6c7280;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .member a + a::before {
-      content: "|";
-      margin-right: 8px;
-      color: #d0d3d8;
-    }
-
-    .gnb {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      height: 40px;
-      margin-left: 170px;
-      background: var(--red);
-    }
-
-    .gnb a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      border-right: 1px solid rgba(255, 255, 255, 0.22);
-      font-weight: 900;
-    }
-
-    .gnb a:last-child {
-      background: var(--blue);
-      border-right: 0;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 120px 740px 90px;
-      gap: 8px;
-      width: 966px;
-      margin: 0 auto;
-      align-items: start;
-    }
-
-    /* Red reference area: original-style sidebars */
-    .left-rail,
-    .right-rail {
-      background: #fff;
-      border: 1px solid var(--red);
-    }
-
-    .left-rail {
-      padding: 9px;
-    }
-
-    .left-ad {
-      padding: 10px 6px;
-      border-top: 4px solid var(--red);
-      text-align: center;
-    }
-
-    .left-ad h2 {
-      margin: 0 0 10px;
-      color: #222660;
-      font-size: 19px;
-      line-height: 1.25;
-    }
-
-    .left-ad .tower {
-      height: 150px;
-      margin: 0 auto 10px;
-      background:
-        linear-gradient(90deg, rgba(0, 0, 0, 0.25), transparent 50%),
-        linear-gradient(180deg, #d7d7d7, #f5f5f5);
-      border: 1px solid #ddd;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .left-ad .tower::after {
-      content: "북랩";
-      position: absolute;
-      left: 35px;
-      top: 36px;
-      width: 44px;
-      height: 78px;
-      padding-top: 22px;
-      background: var(--red);
-      color: #fff;
-      font-weight: 900;
-      writing-mode: vertical-rl;
-    }
-
-    .left-ad p {
-      margin: 8px 0;
-      color: #6d7280;
-      font-size: 13px;
-      font-weight: 800;
-      line-height: 1.35;
-    }
-
-    .left-ad b {
-      display: block;
-      color: #595f69;
-      font-size: 16px;
-      letter-spacing: -0.04em;
-    }
-
-    .left-red {
-      display: block;
-      margin: 10px 8px 0;
-      padding: 8px 0;
-      border: 1px solid #ffd6d6;
-      color: var(--red);
-      font-weight: 900;
-    }
-
-    .kakao,
-    .award {
-      margin-top: 10px;
-      padding: 10px 7px;
-      border: 1px solid #e2e2e2;
-      text-align: center;
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .kakao b {
-      color: #f0b400;
-      font-size: 17px;
-    }
-
-    .award {
-      background: #151515;
-      color: #fff;
-      line-height: 1.3;
-    }
-
-    .award span {
-      color: #ffd85a;
-    }
-
-    .right-rail {
-      display: grid;
-      border-bottom: 0;
-    }
-
-    .quick-link {
-      display: grid;
-      place-items: center;
-      gap: 4px;
-      min-height: 60px;
-      padding: 8px 4px;
-      border-bottom: 1px solid #e5e5e5;
-      color: #6b7280;
-      font-size: 12px;
-      font-weight: 800;
-      text-align: center;
-      line-height: 1.2;
-    }
-
-    .quick-link i {
-      display: grid;
-      place-items: center;
-      width: 26px;
-      height: 22px;
-      border: 2px solid #777;
-      border-radius: 3px;
-      color: #777;
-      font-style: normal;
-      font-size: 13px;
-    }
-
-    .quick-link.hot {
-      color: var(--red);
-    }
-
-    .quick-banner {
-      padding: 10px 5px;
-      border-bottom: 1px solid #e5e5e5;
-      color: #eb4a22;
-      font-size: 13px;
-      font-weight: 900;
-      text-align: center;
-      line-height: 1.25;
-    }
-
-    .quick-banner small {
-      display: block;
-      margin-top: 6px;
-      color: #555;
-      font-size: 11px;
-    }
-
-    /* Yellow reference area: redesigned main content */
-    .main-area {
-      border-left: 2px solid var(--yellow-outline);
-      border-right: 2px solid var(--yellow-outline);
-      background: #fff;
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      height: 254px;
-      background: #fff7f8;
-      border: 1px solid #f0d9dc;
-    }
-
-    .hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hero-dots {
-      position: absolute;
-      left: 50%;
-      bottom: 16px;
-      display: flex;
-      gap: 9px;
-      transform: translateX(-50%);
-    }
-
-    .hero-dots span {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #d6d8dd;
-    }
-
-    .hero-dots span:nth-child(2) {
-      background: var(--red);
-    }
-
-    .notice-strip {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-height: 36px;
-      padding: 0 14px;
-      background: #0f213d;
-      border-radius: 4px;
-      color: #fff;
-      font-weight: 800;
-    }
-
-    .notice-strip span {
-      display: grid;
-      place-items: center;
-      width: 19px;
-      height: 19px;
-      border: 1px solid #15c2cc;
-      color: #15c2cc;
-      font-size: 13px;
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      padding: 14px 0 20px;
-    }
-
-    .service-card {
-      min-height: 174px;
-      padding: 22px;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-      background: #333;
-    }
-
-    .service-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.18));
-      z-index: 0;
-    }
-
-    .service-card.distribution {
-      background:
-        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-        url("./prototype/booklab-renewal/assets/service/service-distribution.png") center / cover;
-    }
-
-    .service-card.tools {
-      background:
-        linear-gradient(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.18)),
-        url("./prototype/booklab-renewal/assets/service/service-tools-warm.png") center / cover;
-    }
-
-    .service-card.print {
-      background:
-        linear-gradient(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.18)),
-        url("./prototype/booklab-renewal/assets/service/service-printing-warm.png") center / cover;
-    }
-
-    .service-card > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .service-card h3 {
-      margin: 0;
-      font-size: 25px;
-      line-height: 1.15;
-    }
-
-    .service-card p {
-      margin: 9px 0 18px;
-      color: rgba(255, 255, 255, 0.84);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .service-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .service-actions a {
-      min-width: 62px;
-      padding: 7px 9px;
-      background: rgba(17, 17, 17, 0.72);
-      border: 1px solid rgba(255, 255, 255, 0.34);
-      border-radius: 3px;
-      color: #fff;
-      font-size: 12px;
-      font-weight: 800;
-      text-align: center;
-    }
-
-    .content-section {
-      padding: 0 0 22px;
-    }
-
-    .section-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 0 0 12px;
-      padding-top: 2px;
-      border-top: 1px solid var(--line);
-    }
-
-    .section-title h2 {
-      margin: 0;
-      color: #505967;
-      font-size: 19px;
-      font-weight: 700;
-    }
-
-    .section-title h2 span {
-      color: var(--red);
-      font-weight: 900;
-    }
-
-    .section-title a {
-      color: #9ca3af;
-      font-size: 11px;
-      font-weight: 900;
-    }
-
-    .book-row {
-      display: grid;
-      grid-template-columns: 228px repeat(4, 1fr);
-      gap: 20px;
-      align-items: start;
-    }
-
-    .feature-book {
-      display: grid;
-      grid-template-columns: 1fr 104px;
-      min-height: 210px;
-      padding: 18px 14px;
-      background: #14265d;
-      color: #fff;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .feature-book.red {
-      background: #7f0d1b;
-    }
-
-    .feature-book::after {
-      content: "Book Lab";
-      position: absolute;
-      left: 8px;
-      bottom: -18px;
-      color: rgba(255, 255, 255, 0.08);
-      font-size: 50px;
-      font-weight: 900;
-    }
-
-    .feature-book b {
-      display: block;
-      margin-bottom: 15px;
-      font-size: 20px;
-      line-height: 1.28;
-    }
-
-    .feature-book small {
-      color: rgba(255, 255, 255, 0.74);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .cover {
-      width: 96px;
-      height: 140px;
-      background: #fff;
-      box-shadow: 0 14px 22px rgba(0, 0, 0, 0.28);
-    }
-
-    .cover.white {
-      display: grid;
-      place-items: center;
-      padding: 12px;
-      color: #111;
-      font-size: 21px;
-      font-weight: 900;
-      text-align: center;
-      line-height: 1.1;
-    }
-
-    .cover.art {
-      background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.18)),
-        linear-gradient(135deg, #ffe4e9, #6c1f29);
-    }
-
-    .book-card {
-      min-width: 0;
-    }
-
-    .book-cover {
-      height: 148px;
-      margin-bottom: 10px;
-      background: linear-gradient(135deg, #eff5ff, #b9d9e4);
-      box-shadow: 8px 12px 18px rgba(15, 23, 42, 0.16);
-      position: relative;
-    }
-
-    .book-cover::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 10px;
-      background: rgba(0, 0, 0, 0.18);
-    }
-
-    .book-cover::after {
-      content: attr(data-title);
-      position: absolute;
-      inset: 18px 14px;
-      color: #163251;
-      font-size: 17px;
-      font-weight: 900;
-      line-height: 1.24;
-    }
-
-    .book-cover.blue {
-      background: linear-gradient(135deg, #143c9d, #f2c934);
-    }
-
-    .book-cover.blue::after,
-    .book-cover.black::after {
-      color: #fff;
-    }
-
-    .book-cover.black {
-      background: linear-gradient(135deg, #111, #3e3934);
-    }
-
-    .book-cover.green {
-      background: linear-gradient(135deg, #0b201a, #6f8d49);
-    }
-
-    .book-card h3 {
-      margin: 0;
-      color: #111;
-      font-size: 14px;
-      font-weight: 900;
-      line-height: 1.28;
-    }
-
-    .interview-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border: 1px solid var(--line);
-      border-left: 0;
-    }
-
-    .interview-card {
-      display: grid;
-      grid-template-columns: 86px 1fr;
-      gap: 12px;
-      padding: 13px;
-      border-left: 1px solid var(--line);
-      min-height: 122px;
-    }
-
-    .portrait {
-      background: linear-gradient(145deg, #d9c8b2, #6d5b4e);
-    }
-
-    .portrait.two {
-      background: linear-gradient(145deg, #d7dbe5, #5a5b6b);
-    }
-
-    .portrait.three {
-      background: linear-gradient(145deg, #efe1c8, #6c8a68);
-    }
-
-    .interview-card h3 {
-      margin: 0 0 7px;
-      color: #202632;
-      font-size: 14px;
-      font-weight: 900;
-      line-height: 1.28;
-    }
+<html><head><meta http-equiv="X-UA-Compatible" content="IE=Edge"><base href="https://www.book.co.kr/"><!-- top start -->
+
+
+<title>북랩 :: 누구나 쉽게 이용할 수 있는 출판 플랫폼</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta property="og:type" content="website">
+<meta property="og:title" content="북랩 :: 누구나 쉽게 이용할 수 있는 출판 플랫폼">
+<meta property="og:description" content="종이책+전자책 8000종 출판, 전문편집디자인, 품절없는 유통, 1인출판 지원, 보도자료배포">
+<meta property="og:image" content="http://www.book.co.kr/essay_ver2/images/top/top_logo_800_160.jpg?v1.1">
+<meta property="og:url" content="http://www.book.co.kr/essay_ver2/index.php">
+<meta name="description" content="종이책+전자책 8000종 출판, 전문편집디자인, 품절없는 유통, 1인출판 지원, 보도자료배포">
+<meta name="google-site-verification" content="1ROvYm6XwneXPxeRRwAIZB9EZoceKopKFV9LByXn3M8">
+<!-- meta name="naver-site-verification" content="df49b35b7da3ba6c59b9b3832f07b9324860a98c" / --> <!-- 네이버 웹마스터 도구 210928 -->
+<meta name="naver-site-verification" content="c2d89d369ecf562c1e6e7f1d617ae9836490f33a"> <!-- 231129 -->
+<!-- link rel="shortcut icon" href="/essay_ver2/images/favicon.ico" / -->
+<link rel="shortcut icon" href="//www.book.co.kr/favicon_15.ico?v1.2"> <!-- 250423 -->
+<link type="text/css" href="/essay_ver2/config/css/default.css" rel="stylesheet">
+<link type="text/css" href="/essay_ver2/jcs/style.css" rel="stylesheet">
+<link type="text/css" href="/essay_ver2/css/write.css" rel="stylesheet">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all"> <!-- autocomplete -->
+<style type="text/css">
+@import url(//fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap);
+.top_b_t {border-top:1px solid #cccccc;}
+.top_b_r {border-right:1px solid #cccccc;}
+.top_b_b {border-bottom:1px solid #cccccc;}
+.top_b_l {border-left:1px solid #cccccc;}
+.top_u {text-decoration:none !important;}
+
+/* autocomplete */
+/*.top_searchbg1 {position:absolute;top:18px;left:0px;width:5px;height:42px;background-color:#D42931;border-top-left-radius:5px;border-bottom-left-radius:5px;}*/
+.top_searchinp {position:absolute;top:18px;left:83px;width:280px;height:40px;padding:0 10px 0 15px;-webkit-transition:all 0.4s ease;-moz-transition:all 0.4s ease;transition:all 0.4s ease;font-size:14px;letter-spacing:-1px;color:#344760;outline:none;border-right:none;border-left:none;}
+.top_searchbt1 {position:absolute;top:18px;left:375px;width:45px;height:42px;background-color:#D42931;cursor:pointer;} /*버튼 배경*/
+.top_searchbt2 {position:absolute;top:28px;left:388px;width:15px;height:15px;border:3px solid #ffffff;border-radius:50%;background-color:#D42931;z-index:2;cursor:pointer;} /*버튼 돋보기*/
+.top_searchbt3 {position:absolute;top:42px;left:409px;width:3px;height:12px;background-color:#ffffff;-webkit-transform:rotate(130deg);-moz-transform:rotate(130deg);-ms-transform:rotate(130deg);-o-transform:rotate(130deg);transform:rotate(130deg);border-radius:5px;z-index:1;cursor:pointer;} /*버튼 손잡이*/
+.top_searchbg2 {position:absolute;top:18px;left:420px;width:5px;height:42px;background-color:#D42931;border-top-right-radius:5px;border-bottom-right-radius:5px;}
+.ui-autocomplete {width:500px;max-height:400px;overflow-y:auto;overflow-x:hidden;border-top:none;}
+.ui-menu .ui-menu-item a{font-family:'Noto Sans KR',sans-serif;background:#ffffff;line-height:120%;margin:1px 0;padding:3px 0;} /* 기본 */
+.ui-menu .ui-state-hover, .ui-menu .ui-state-hover, ui-menu .ui-state-hover, .ui-state-focus, ui-menu .ui-state-focus, ui-menu .ui-state-focus {background:#ff8a00 !important;color:#ffffff !important;border-radius:0;border:none;} /* 선택중 */
+.ui-menu .ui-menu-item {position:relative;}
+
+.top_f_f_ng {font-family:'나눔고딕', 'Nanum Gothic', sans-serif !important;} /* 240123 */
+</style>
+
+<script type="text/javascript" src="/_ver2js/jquery.min_230216.js?v1.1"></script>
+<script type="text/javascript" src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> <!-- autocomplete -->
+
+<script type="text/javascript" src="/_ver2js/inpopup.js?v3.6.1"></script> <!-- 팝업 -->
+<script type="text/javascript" src="/_ver2js/outpopup.js?v1.2.1"></script> <!-- 외부 팝업 221021 -->
+
+<script type="text/javascript" src="/_ver2js/writehtml.js?v1.1.1"></script> <!-- html 221122 -->
+
+<script type="text/javascript" src="/essay_content/Libs/_js/prototype2nd.js?v2.1.1"></script>
+
+<script type="text/javascript">
+var banner_1_mouseEvent = 1;
+
+// banner_roll("div태그 id", 배너1개넓이, 딜레이, 1칸이동속도, 0);
+function banner_roll1(div_id, banner_width, banner_delay, banner_speed, this_width) {
+    if(eval(div_id + "_mouseEvent")){
+        var div_tag = document.getElementById(div_id);
+        var a_tag, i;
+
+        // banner_width/1 여기서 숫자가 클수록 움직이는 속도가 느려집니다.
+		// 참고로 1은 흐름없이 바뀌는 내용입니다.
+        this_width = this_width + banner_width/10;
+        if(this_width < banner_width){
+            div_tag.style.left = -this_width;
+            setTimeout("banner_roll1('" + div_id + "', " + banner_width + ", " + banner_delay + ", " + banner_speed + ", " + this_width + ");", banner_speed);
+        }
+        else{
+        a_tag = div_tag.getElementsByTagName("TABLE");
+        div_tag.appendChild(a_tag[0]);
+        div_tag.style.left = 0;
+        setTimeout("banner_roll1('" + div_id + "', " + banner_width + ", " + banner_delay + ", " + banner_speed + ", 0);", banner_delay);
+        }
+    }
+    else{
+    	setTimeout("banner_roll1('" + div_id + "', " + banner_width + ", " + banner_delay + ", " + banner_speed + ", " + this_width + ");", banner_speed);
+    }
+    return true;
+}
+
+function login_top() {
+	alert("로그인 후 이용해주세요.");
+	//document.location = "/essay_ver2/mypage/member_login.php?pre_page=/";
+}
+</script>
+<script type="text/javascript" src="/_ver2js/cmmn.2nd.js?v3.1.1"></script>
+<script language="javascript" src="/_ver2js/movepage.js?v1.14.2"></script> <!-- 페이지 이동 -->
 
-    .interview-card p {
-      margin: 0;
-      color: #7a8494;
-      font-size: 12px;
-      line-height: 1.45;
-    }
-
-    .bottom-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 230px;
-      gap: 10px;
-      margin-top: 4px;
-    }
-
-    .mini-panel {
-      min-height: 122px;
-      padding: 15px;
-      border: 1px solid var(--line);
-      background: #fff;
-    }
-
-    .mini-panel h3 {
-      margin: 0 0 10px;
-      color: #4b5563;
-      font-size: 17px;
-    }
-
-    .mini-panel h3 span {
-      color: var(--red);
-    }
-
-    .news-list {
-      display: grid;
-      gap: 5px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      color: #6b7280;
-      font-size: 12px;
-    }
-
-    .news-list li {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
 
-    .consult-mini {
-      display: grid;
-      grid-template-columns: 72px 1fr;
-      gap: 10px;
-      align-items: center;
-      color: var(--red);
-      font-weight: 900;
-    }
-
-    .pay-box {
-      margin-top: 10px;
-      padding: 12px;
-      background: #f7f8fb;
-      border: 1px solid var(--line);
-      color: #111;
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .footer-tools {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      margin-top: 16px;
-      background: #333;
-      border-top: 1px solid #474747;
-    }
-
-    .footer-tools a {
-      display: grid;
-      place-items: center;
-      min-height: 58px;
-      border-right: 1px solid #4b4b4b;
-      color: #d7d7d7;
-      font-weight: 900;
-    }
 
-    .footer-tools a:first-child {
-      color: #f5df22;
-    }
-
-    .footer-info {
-      padding: 16px 26px 22px;
-      border-bottom: 2px solid var(--yellow-outline);
-      color: #7a828e;
-      font-size: 12px;
-      line-height: 1.65;
-    }
-
-    .footer-info .footer-logo {
-      color: var(--red);
-      font-size: 24px;
-      font-weight: 900;
-    }
-
-    .footer-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 13px;
-      margin-bottom: 14px;
-      color: #8c94a0;
-      font-weight: 800;
-    }
-  </style>
 </head>
-<body>
-  <div class="page">
-    <header class="origin-header" aria-label="북랩 원본형 헤더">
-      <div class="head-main">
-        <a class="logo" href="https://www.book.co.kr/">
-          <span class="logo-mark">↗</span>
-          <span><strong>북랩</strong><span>Book Lab</span></span>
-        </a>
-        <form class="search">
-          <select aria-label="검색 범위">
-            <option>도서</option>
-            <option>저자</option>
-          </select>
-          <input type="search" placeholder="도서 제목 또는 저자 이름을 입력하세요.">
-          <button type="submit">검색</button>
-        </form>
-        <div class="head-side">
-          <div class="contract">출판계약상담 <b>02-2026-5566</b></div>
-          <nav class="member" aria-label="회원 메뉴">
-            <a href="#">로그인</a>
-            <a href="#">회원가입</a>
-            <a href="#">MY북랩</a>
-            <a href="#">보도자료</a>
-          </nav>
-        </div>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<!-- script type="text/javascript" src="/essay_ver2/js/GoogleAnalyticsTracking.js?1779791853"></script> <!-- 구글 추적코드 20161014 -->
+<table id="id_top_zone" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="position:fixed;width:100%;left:0px;height:120px;top:0px;z-index:9999;">
+    <tbody><tr>
+        <td align="center" valign="top" background="/essay_ver2/images/sub_01.gif">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="978">
+                <tbody><tr>
+                    <td align="left" style="position:relative;">
+                    	<!-- p style="position:absolute;top:0;left:-90px;"><a href="/essay_ver2/bbs/view.php?idx=2209&code=booklab_notice"><img src="/essay_ver2/new/img/mobile_bn.png" /></a></p -->
+                    	<p style="position:absolute;top:0;left:-135px;z-index:10;"><!-- img src="/essay_ver2/images/top/top_member_128_110.jpg?v1.1" width="128" height="110" alt="북랩사람들" /--></p>
+						<div id="id_left_sidebanner" style="position:absolute;top:120px;left:-135px;z-index:1000;">
+							<img src="/essay_ver2/images/top/left_sidebanner1.jpg?v7.1" width="128" height="446" usemap="#map_left_sidebanner" style="" alt="성공출판의 파트너"><br>
+							<img src="/essay_ver2/images/top/left_sidebanner2.png?v3.2" width="128" height="70" style="margin-top:10px;" alt="카카오톡상담">
+						</div>
+						<map name="map_left_sidebanner" id="map_left_sidebanner">
+						  	<area shape="rect" coords="5,405,125,445" href="javascript:;" onclick="movepage_href('6', '1', '', '')" alt="출간문의">
+						  	<!-- area shape="rect" coords="5,450,125,490" href="javascript:;" onclick="movepage_href('6', '6', '', '')" alt="방문예약" />
+						  	<area shape="rect" coords="5,490,125,530" href="javascript:;" onClick="location_href('/essay_ver2/bshop/fastpickup.php')" alt="빠른픽업" / -->
+						</map>
+						<a href="/essay_ver2/bbs/view.php?idx=4725&amp;code=booklab_news"><img src="/essay_ver2/images/top/top_sejong_128.jpg?v1.3" width="128" height="102" alt="2024 세종도서 3종 선정" style="position:absolute;top:658px;left:-135px;z-index:1000;"></a>
+						<table width="900" border="0" cellpadding="0" cellspacing="0" style="">
+			                <tbody><tr height="77">
+			                    <td width="190" align="left" style="">
+			                    	<a href="/" target="_top"><img src="/essay_ver2/images/top/top_logo_155_40.png?v2.1" width="155" height="40" alt="" border="0" style=""></a>
+			                    	<!-- a href="http://www.book.co.kr" target="_top"><img src="/essay_ver2/images/top/top_logo_16th.gif?v1.1" width="230" height="77" alt="북랩16주년" border="0" style="" /-->
+			                    </td>
+			                    <td width="710" align="left" style="position:relative;">
+			                    	<div id="id_top_loading" style="position:absolute;top:70px;left:100px;z-index:10;width:100px;display:none;">
+										<img src="/essay_ver2/admin/image/loading.gif" border="0" style="width:200px;">
+									</div>
+									<input type="hidden" id="topsearchword_book" value="도서 제목 또는 저자 이름을 입력하세요.">
+									<input type="hidden" id="topsearchword_menu" value="궁금한 점을 검색해 보세요. 예: 출판비">
+									<input type="hidden" id="topsearchkey" value="book">
+									<div id="id_skeybox" style="position:absolute;top:18px;left:0px;padding:0 17px;width:50px;height:42px;z-index:100;background:#dddddd;border-top-left-radius:5px;border-bottom-left-radius:5px;text-align:center;cursor:pointer;" onclick="change_top('skey', '0');">
+			<span id="id_skey_0" class="top_f_f_ng" style="line-height:40px;color:#000000;font-size:14px;">도서</span><img src="/essay_ver2/images/top/skey_16.png?v1.1" alt="v" style="width:12px;margin:17px 0 0 5px;">
+		</div>
+		<div id="id_skeylist" style="position:absolute;top:60px;left:0px;width:82px;height:80px;z-index:100;background:#ffffff;border:1px solid #cccccc;display:none;">
+			<div style="width:82px;height:40px;line-height:40px;text-align:center;cursor:pointer;" onclick="change_top('skey', '2');" onmouseover="this.style.background='#d9d9d9';" onmouseout="this.style.background='#ffffff';">
+				<span id="id_skey_1" class="top_f_f_ng" style="color:#000000;font-size:13px;">도서</span>
+			</div>
+			<div style="width:82px;height:40px;line-height:40px;text-align:center;cursor:pointer;" onclick="change_top('skey', '1');" onmouseover="this.style.background='#d9d9d9';" onmouseout="this.style.background='#ffffff';">
+				<span id="id_skey_2" class="top_f_f_ng" style="color:#000000;font-size:13px;">메뉴</span>
+			</div>
+		</div>									<input type="text" id="topsearchword" class="userInput top_searchinp top_f_f_ng" style="color: rgb(136, 136, 136);" autocomplete="off" maxlength="50" onkeyup="submit_top('search', event);" onfocus="set_top('searchword_focus', this.value);" onblur="set_top('searchword_blur', this.value);">
+			                    	<div class="top_searchbt1" onclick="submit_top('search', 'click')"></div>
+			                    	<div class="top_searchbt2" onclick="submit_top('search', 'click')"></div>
+			                    	<div class="top_searchbt3" onclick="submit_top('search', 'click')"></div>
+			                    	<div class="top_searchbg2"></div>
+			                    	<div id="id_topsearchresult" style="position:absolute;top:58px;width:500px;max-height:400px;overflow-y:auto;overflow-x:hidden;background:#ffffff;border:1px solid #cccccc;z-index:1000;display:none;"></div>
+			                    	<input type="hidden" id="topsearchtrtot" value="0">
+			                    	<div style="position:absolute;right:5px;bottom:40px;">
+			                    		<img src="/essay_ver2/images/top/tel_0220265566.jpg?v3.1" width="210" height="20" alt="출판계약상담">
+			                    	</div>
+			                    	<div style="position:absolute;right:5px;bottom:14px;">
+			                    		<div style="float:left;width:50px;text-align:center;"><a href="javascript:;" onclick="location_href('/essay_ver2/member/login.php')"><img src="/essay_ver2/images/top/btn_login.jpg?v4.1" alt="로그인" class="img_middle" onmouseover="this.src='/essay_ver2/images/top/btn_loginover.jpg?v4.1'" onmouseout="this.src='/essay_ver2/images/top/btn_login.jpg?v4.1'"></a></div><div style="float:left;color:#CCCCCC;">|</div><div style="float:left;width:50px;text-align:center;"><a href="javascript:;" onclick="location_href('/essay_ver2/member/join_agree.php')"><img src="/essay_ver2/images/top/btn_join.jpg?v4.1" alt="회원가입" class="img_middle" onmouseover="this.src='/essay_ver2/images/top/btn_joinover.jpg?v4.1'" onmouseout="this.src='/essay_ver2/images/top/btn_join.jpg?v4.1'"></a></div><div style="float:left;color:#CCCCCC;">|</div><div style="float:left;width:50px;text-align:center;"><a href="javascript:;" onclick="location_href('/essay_ver2/member/login.php')"><img src="/essay_ver2/images/top/btn_mypage.jpg?v4.1" alt="MY북랩" class="img_middle" onmouseover="this.src='/essay_ver2/images/top/btn_mypageover.jpg?v4.1'" onmouseout="this.src='/essay_ver2/images/top/btn_mypage.jpg?v4.1'"></a></div><div style="float:left;color:#CCCCCC;">|</div><div style="float:left;width:52px;text-align:center;"><a href="javascript:;" onclick="location_href('/essay_ver2/promote/trailer_list.php')"><img src="/essay_ver2/images/top/btn_trailer.gif?v1.3" alt="북트레일러" class="img_middle" onmouseover="this.src='/essay_ver2/images/top/btn_trailerover.gif?v1.3'" onmouseout="this.src='/essay_ver2/images/top/btn_trailer.gif?v1.3'"></a></div><div style="float:left;color:#CCCCCC;">|</div><div style="float:left;width:50px;text-align:center;"><a href="javascript:;" onclick="location_href('/essay_ver2/promote/press_list.php')"><img src="/essay_ver2/images/top/btn_press.jpg?v4.1" alt="보도자료" class="img_middle" onmouseover="this.src='/essay_ver2/images/top/btn_pressover.jpg?v4.1'" onmouseout="this.src='/essay_ver2/images/top/btn_press.jpg?v4.1'"></a></div>			                    	</div>
+			                    	<!-- div style="position:absolute;top:42px;right:-117px;">
+										<a href="javascript:;" onClick="popup_ecatalog('http://www.book.co.kr/ebooks/ecatalog.php?Dir=334', 'fixed');"><img src="/essay_ver2/images/top/banner_guide2nd.png" alt="3분에 아는 북랩" /></a>
+									</div -->
+									<!-- div style="position:absolute;top:15px;right:-117px;">
+										<a href="javascript:;" onClick="top.location.replace('http://happisode.book.co.kr');return false;"><img src="/essay_ver2/images/top/btn_happisode_direct.jpg" alt="해피소드 바로가기" /></a>
+									</div -->
+									<!-- div style="position:absolute;top:58px;right:-117px;">
+										<a href="javascript:;" onClick="top.location.replace('http://happisode.book.co.kr');return false;"><img src="/essay_ver2/images/top/btn_happisode_direct_1.png" alt="해피소드 바로가기" /></a>
+									</div -->
+									<!-- div style="position:absolute;top:38px;right:-117px;">
+										<a href="javascript:;" onClick="location.replace('/essay_ver2/bbs/view.php?idx=3175&code=booklab_notice');return false;"><img src="/essay_ver2/images/top/btn_event_card.png" alt="신용카드 무이자할부! 이벤트" /></a>
+									</div -->
+									<!-- div style="position:absolute;top:15px;right:-94px;">
+										<a href="javascript:;" onClick="popup_ecatalog('http://www.book.co.kr/ebooks/ecatalog.php?Dir=334', 'fixed');"><img src="/essay_ver2/images/top/tmp_top_guide.jpg" alt="출판가이드북" /></a>
+									</div -->
+			                    </td>
+			                </tr>
+			            	<tr>
+								<td width="900" height="37" colspan="3" style="position:relative;">
+<div id="wrap">
+<div id="header">
+	<!--wrap-->
+	<div class="wrap" style="height:40px;">
+	   	<!--gnb-->
+		<div class="gnb" id="gnb" style="margin-top:2px;">
+
+		<ul>
+			<!-- 회사소개 -->
+			<li id="gnb1"><a href="/essay_ver2/company/company.php" name="tab1"><img src="/essay_ver2/images/top/tabx1.jpg?v4.2" onmouseover="this.src='/essay_ver2/images/top/tabx1over.jpg?v4.2'" onmouseout="this.src='/essay_ver2/images/top/tabx1.jpg?v4.2'" width="128" height="33"></a></li>
+			<!-- 출판가이드 -->
+			<li id="gnb2"><a href="/essay_ver2/guide/print_guide.php" name="tab2"><img src="/essay_ver2/images/top/tabx2.jpg?v3.2" onmouseover="this.src='/essay_ver2/images/top/tabx2over.jpg?v3.2'" onmouseout="this.src='/essay_ver2/images/top/tabx2.jpg?v3.2'" width="128" height="33"></a></li>
+			<!-- 가격표 -->
+			<li id="gnb3"><a href="/essay_ver2/publish/service.php" name="tab3"><img src="/essay_ver2/images/top/tabx3.jpg?v3.2" onmouseover="this.src='/essay_ver2/images/top/tabx3over.jpg?v3.2'" onmouseout="this.src='/essay_ver2/images/top/tabx3.jpg?v3.2'" width="128" height="33"></a></li>
+			<!-- 출간문의 -->
+			<li id="gnb4"><a href="/essay_ver2/publish/advice.php" name="tab4"><img src="/essay_ver2/images/top/tabx4.jpg?v4.1" onmouseover="this.src='/essay_ver2/images/top/tabx4over.jpg?v4.1'" onmouseout="this.src='/essay_ver2/images/top/tabx4.jpg?v4.1'" width="128" height="33"></a></li>
+			<!-- 인쇄/제본신청 -->
+			<li id="gnb5"><a href="/essay_ver2/shop/nonsalereqest.php" name="tab5"><img src="/essay_ver2/images/top/tabx5.jpg?v6.1" onmouseover="this.src='/essay_ver2/images/top/tabx5over.jpg?v6.1'" onmouseout="this.src='/essay_ver2/images/top/tabx5.jpg?v6.1'" width="128" height="33"></a></li>
+			<!-- 홍보/마케팅 -->
+			<li id="gnb6"><a href="/essay_ver2/promote/promote.php" name="tab6"><img src="/essay_ver2/images/top/tabx6.jpg?v6.1" onmouseover="this.src='/essay_ver2/images/top/tabx6over.jpg?v6.1'" onmouseout="this.src='/essay_ver2/images/top/tabx6.jpg?v6.1'" width="128" height="33"></a></li>
+			<!-- 북스토어 -->
+			<li id="gnb7"><a href="javascript:;" onclick="movepage_href('7', '1', '', '')" name="tab7"><img src="/essay_ver2/images/top/tabx7.jpg?v3.2" onmouseover="this.src='/essay_ver2/images/top/tabx7over.jpg?v3.2'" onmouseout="this.src='/essay_ver2/images/top/tabx7.jpg?v3.2'" width="132" height="33"></a></li>
+		</ul>
+
+		</div>
+	   	<!--//gnb-->
+
+	   	<!--gnb_sub-->
+	   	<div id="id_gnb_sub_content"><div class="gnb_sub" id="gnbsub1" style="position:absolute;top:35px;left:0px;width:126px;height:188px;border-right:1px solid #cccccc;border-bottom:1px solid #cccccc;display:none;z-index:100;" onmouseover="set_top('gnbsub1', 'over')" onmouseout="set_top('gnbsub1', 'out')"><ul style="background:none;">
+				<li><a href="/essay_ver2/company/company.php"><img src="/essay_ver2/images/top/tabx1_01.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx1_01over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx1_01.jpg?v1.6'" alt="회사소개"></a></li>
+		       	<li><a href="/essay_ver2/essay_board/venera5.php"><img src="/essay_ver2/images/top/tabx1_02.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx1_02over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx1_02.jpg?v1.6'" alt="왜 1위인가"></a></li>
+		       	<!--li><a href="/essay_ver2/company/intro_equipment.php"><img
+		       		src="/essay_ver2/images/top/tabx1_03.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx1_03over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx1_03.jpg?v1.6'" alt="보유장비" /></a></li -->
+		       	<li><a href="/essay_ver2/company/intro_bookstore.php"><img src="/essay_ver2/images/top/tabx1_04.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx1_04over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx1_04.jpg?v1.6'" alt="도서유통망"></a></li>
+		       	<li><a href="/essay_ver2/bbs/list.php?code=booklab_news"><img src="/essay_ver2/images/top/tabx1_05.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx1_05over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx1_05.jpg?v1.6'" alt="북랩 News"></a></li>
+		   		<li><a href="javascript:;" onclick="movepage_href('1', '6', '', '')"><img src="/essay_ver2/images/top/tabx1_06.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx1_06over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx1_06.jpg?v1.6'" alt="보도자료"></a></li>
+			   	<li><a href="javascript:;" onclick="movepage_href('1', '7', '', '')"><img src="/essay_ver2/images/top/tabx1_07.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx1_07over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx1_07.jpg?v1.6'" alt="고객센터"></a></li>
+			   	<li><a href="javascript:;" onclick="movepage_href('1', '8', '', '')"><img src="/essay_ver2/images/top/tabx1_08.jpg?v1.1" onmouseover="this.src='/essay_ver2/images/top/tabx1_08over.jpg?v1.1'" onmouseout="this.src='/essay_ver2/images/top/tabx1_08.jpg?v1.1'" alt="인재채용"></a></li>
+		     </ul></div><div class="gnb_sub" id="gnbsub2" style="position:absolute;top:35px;left:128px;width:126px;height:188px;border-right:1px solid #cccccc;border-bottom:1px solid #cccccc;display:none;z-index:100;" onmouseover="set_top('gnbsub2', 'over')" onmouseout="set_top('gnbsub2', 'out')"><ul style="background:none;">
+			   	<li><a href="/essay_ver2/guide/print_guide.php"><img src="/essay_ver2/images/top/tabx2_01.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx2_01over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx2_01.jpg?v1.6'" alt="출판가이드"></a></li>
+		       	<li><a href="/essay_ver2/guide/publishing_step.php"><img src="/essay_ver2/images/top/tabx2_02.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx2_02over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx2_02.jpg?v1.6'" alt="출간절차"></a></li>
+		       	<li><a href="/essay_ver2/essay_board/policy.php"><img src="/essay_ver2/images/top/tabx2_03.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx2_03over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx2_03.jpg?v1.6'" alt="인세 및 출판 정책"></a></li>
+		       	<li><a href="/essay_ver2/guide/know.php"><img src="/essay_ver2/images/top/tabx2_04.jpg?v1.7" onmouseover="this.src='/essay_ver2/images/top/tabx2_04over.jpg?v1.7'" onmouseout="this.src='/essay_ver2/images/top/tabx2_04.jpg?v1.7'" alt="출판인세 상식"></a></li>
+		       	<li><a href="/essay_ver2/guide/model.php"><img src="/essay_ver2/images/top/tabx2_05.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx2_05over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx2_05.jpg?v1.6'" alt="원고정서 가이드"></a></li>
+			   	<li><a href="/essay_ver2/guide/data_send.php"><img src="/essay_ver2/images/top/tabx2_06.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx2_06over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx2_06.jpg?v1.6'" alt="원고 전송하기"></a></li>
+			   	<li><a href="/essay_ver2/guide/sell.php"><img src="/essay_ver2/images/top/tabx2_07.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx2_07over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx2_07.jpg?v1.6'" alt="판매 및 인세 조회"></a></li>
+			</ul></div><div class="gnb_sub" id="gnbsub3" style="position:absolute;top:35px;left:256px;width:126px;height:188px;border-right:1px solid #cccccc;border-bottom:1px solid #cccccc;display:none;z-index:100;" onmouseover="set_top('gnbsub3', 'over')" onmouseout="set_top('gnbsub3', 'out')"><ul style="background:none;">
+			   	<li><a href="/essay_ver2/publish/package_normalcn.php"><img src="/essay_ver2/images/top/tabx3_01.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx3_01over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx3_01.jpg?v1.6'" alt="흑백도서 출판"></a></li>
+			   	<li><a href="/essay_ver2/publish/package_normalcy.php"><img src="/essay_ver2/images/top/tabx3_02.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx3_02over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx3_02.jpg?v1.6'" alt="컬러도서 출판"></a></li>
+			   	<li><a href="/essay_ver2/publish/package_s_a.php"><img src="/essay_ver2/images/top/tabx3_03.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx3_03over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx3_03.jpg?v1.6'" alt="교재 출판"></a></li>
+			   	<li><a href="/essay_ver2/publish/package_s_b.php"><img src="/essay_ver2/images/top/tabx3_04.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx3_04over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx3_04.jpg?v1.6'" alt="청소년 출판"></a></li>
+			   	<li><a href="/essay_ver2/publish/1man_01.php"><img src="/essay_ver2/images/top/tabx3_05.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx3_05over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx3_05.jpg?v1.6'" alt="1인출판사 전용 서비스"></a></li>
+			   	<li><a href="/essay_ver2/publish/1man_03.php"><img src="/essay_ver2/images/top/tabx3_06.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx3_06over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx3_06.jpg?v1.6'" alt="독립출판"></a></li>
+			   	<li><a href="/essay_ver2/publish/ebook_intro.php"><img src="/essay_ver2/images/top/tabx3_07.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx3_07over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx3_07.jpg?v1.6'" alt="전자책 출판 서비스"></a></li>
+			</ul></div><div class="gnb_sub" id="gnbsub4" style="position:absolute;top:35px;left:384px;width:126px;height:188px;border-right:1px solid #cccccc;border-bottom:1px solid #cccccc;display:none;z-index:100;" onmouseover="set_top('gnbsub4', 'over')" onmouseout="set_top('gnbsub4', 'out')"><ul style="background:none;">
+			   	<li><a href="/essay_ver2/publish/advice.php"><img src="/essay_ver2/images/top/tabx6_01.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx6_01over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx6_01.jpg?v1.6'" alt="출간문의"></a></li>
+			   	<li><a href="javascript:;" onclick="movepage_href('6', '2', '', '')"><img src="/essay_ver2/images/top/tabx6_02.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx6_02over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx6_02.jpg?v1.6'" alt="출판견적 의뢰"></a></li>
+			   	<li><a href="/essay_ver2/publish/apply.php"><img src="/essay_ver2/images/top/tabx6_04.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx6_04over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx6_04.jpg?v1.6'" alt="출간신청"></a></li>
+	 	       	<li><a href="/essay_ver2/bbs/list.php?code=faq"><img src="/essay_ver2/images/top/tabx6_05.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx6_05over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx6_05.jpg?v1.6'" alt="자주 하시는 질문"></a></li>
+				<li><a href="javascript:;" onclick="popup_ecatalog('http://www.book.co.kr/ebooks/ecatalog.php?Dir=334', 'fixed');"><img src="/essay_ver2/images/top/tabx6_06.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx6_06over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx6_06.jpg?v1.6'" alt="출판가이드북"></a></li>
+				<li><a href="javascript:;" onclick="movepage_href('6', '6', '', '')"><img src="/essay_ver2/images/top/tabx6_07.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx6_07over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx6_07.jpg?v1.6'" alt="방문 예약"></a></li>
+	 	       	<li><a href="javascript:;" onclick="movepage_href('6', '8', '', '')"><img src="/essay_ver2/images/top/tabx6_08.jpg?v1.1" onmouseover="this.src='/essay_ver2/images/top/tabx6_08over.jpg?v1.1'" onmouseout="this.src='/essay_ver2/images/top/tabx6_08.jpg?v1.1'" alt="1:1 문의"></a></li>
+			</ul></div><div class="gnb_sub" id="gnbsub5" style="position:absolute;top:35px;left:512px;width:126px;height:188px;border-right:1px solid #cccccc;border-bottom:1px solid #cccccc;display:none;z-index:100;" onmouseover="set_top('gnbsub5', 'over')" onmouseout="set_top('gnbsub5', 'out')"><ul style="background:none;">
+			   	<li><a href="javascript:;" onclick="movepage_href('5', '7', '', '')"><img src="/essay_ver2/images/top/tabx5_07.jpg?v2.1" onmouseover="this.src='/essay_ver2/images/top/tabx5_07over.jpg?v2.1'" onmouseout="this.src='/essay_ver2/images/top/tabx5_07.jpg?v2.1'" alt="인쇄/제본 견적 의뢰"></a></li>
+			   	<li><a href="/essay_ver2/shop/nonsalepaystp1.php"><img src="/essay_ver2/images/top/tabx5_01.jpg?v2.2" onmouseover="this.src='/essay_ver2/images/top/tabx5_01over.jpg?v2.2'" onmouseout="this.src='/essay_ver2/images/top/tabx5_01.jpg?v2.2'" alt="인쇄/제본 주문결제"></a></li>
+			   	<li><a href="javascript:;" onclick="movepage_href('5', '2', '', '')"><img src="/essay_ver2/images/top/tabx5_02.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx5_02over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx5_02.jpg?v1.6'" alt="비매품 편집비용"></a></li>
+			   	<li><a href="/essay_ver2/publish/50books.php"><img src="/essay_ver2/images/top/tabx5_03.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx5_03over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx5_03.jpg?v1.6'" alt="50부 제작 패키지"></a></li>
+			   	<li><a href="/essay_ver2/shop/sample.php?catcode=101100"><img src="/essay_ver2/images/top/tabx5_04.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx5_04over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx5_04.jpg?v1.6'" alt="무료 표지 샘플"></a></li>
+			   	<li><a href="/essay_ver2/shop/guide.php"><img src="/essay_ver2/images/top/tabx5_05.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx5_05over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx5_05.jpg?v1.6'" alt="무료 본문 템플릿"></a></li>
+			   	<li><a href="javascript:;" onclick="movepage_href('6', '7', '', '')"><img src="/essay_ver2/images/top/tabx5_06.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx5_06over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx5_06.jpg?v1.6'" alt="1분 견적"></a></li>
+			</ul></div><div class="gnb_sub" id="gnbsub6" style="position: absolute; top: 35px; left: 640px; width: 126px; height: 188px; border-right: 1px solid rgb(204, 204, 204); border-bottom: 1px solid rgb(204, 204, 204); z-index: 100; display: none;" onmouseover="set_top('gnbsub6', 'over')" onmouseout="set_top('gnbsub6', 'out')"><ul style="background:none;">
+				<li><a href="javascript:;" onclick="movepage_href('4', '9', '', '')"><img src="/essay_ver2/images/top/tabx4_01.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx4_01over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx4_01.jpg?v1.6'" alt="매대광고"></a></li>
+				<li><a href="javascript:;" onclick="movepage_href('4', '10', '', '')"><img src="/essay_ver2/images/top/tabx4_08.jpg?v1.1" onmouseover="this.src='/essay_ver2/images/top/tabx4_08over.jpg?v1.1'" onmouseout="this.src='/essay_ver2/images/top/tabx4_08.jpg?v1.1'" alt="북카드 배포"></a></li>
+				<li><a href="/essay_ver2/promote/promt_press.php"><img src="/essay_ver2/images/top/tabx4_02.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx4_02over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx4_02.jpg?v1.6'" alt="보도자료 배포"></a></li>
+			 	<!-- li><a href="javascript:;" onClick="movepage_href('4', '8', '', '')"><img
+			    	src="/essay_ver2/images/top/tabx4_03.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx4_03over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx4_03.jpg?v1.6'" alt="타킷 메일" /></a></li -->
+			 	<li><a href="/essay_ver2/promote/promt_intro.php"><img src="/essay_ver2/images/top/tabx4_04.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx4_04over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx4_04.jpg?v1.6'" alt="북트레일러"></a></li>
+				<li><a href="javascript:;" onclick="movepage_href('4', '11', '', '')"><img src="/essay_ver2/images/top/tabx4_09.jpg?v1.1" onmouseover="this.src='/essay_ver2/images/top/tabx4_09over.jpg?v1.1'" onmouseout="this.src='/essay_ver2/images/top/tabx4_09.jpg?v1.1'" alt="컬러 증정 봉투"></a></li>
+			    <li><a href="/essay_ver2/promote/promote.php#promote2"><img src="/essay_ver2/images/top/tabx4_06.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx4_06over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx4_06.jpg?v1.6'" alt="도서 홍보물 제작"></a></li>
+			    <li><a href="javascript:;" onclick="movepage_href('4', '7', '', '')"><img src="/essay_ver2/images/top/tabx4_07.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx4_07over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx4_07.jpg?v1.6'" alt="작가 셀프 인터뷰"></a></li>
+			</ul></div><div class="gnb_sub" id="gnbsub7" style="position:absolute;top:35px;left:768px;width:130px;height:212px;border-right:1px solid #cccccc;border-bottom:1px solid #cccccc;display:none;z-index:100;" onmouseover="set_top('gnbsub7', 'over')" onmouseout="set_top('gnbsub7', 'out')"><ul style="background:none;">
+		       	<li><a href="javascript:;" onclick="movepage_href('7', '1', '', '')"><img src="/essay_ver2/images/top/tabx7_01.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx7_01over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx7_01.jpg?v1.6'" alt="전체도서"></a></li>
+		       	<li><a href="javascript:;" onclick="movepage_href('7', '2', '', '')"><img src="/essay_ver2/images/top/tabx7_02.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx7_02over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx7_02.jpg?v1.6'" alt="주간 베스트셀러"></a></li>
+		       	<li><a href="javascript:;" onclick="movepage_href('7', '3', '', '')"><img src="/essay_ver2/images/top/tabx7_03.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx7_03over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx7_03.jpg?v1.6'" alt="월간 베스트셀러"></a></li>
+		       	<li><a href="javascript:;" onclick="movepage_href('7', '4', '', '')"><img src="/essay_ver2/images/top/tabx7_04.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx7_04over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx7_04.jpg?v1.6'" alt="스테디셀러"></a></li>
+		       	<li><a href="javascript:;" onclick="movepage_href('7', '5', '', '')"><img src="/essay_ver2/images/top/tabx7_05.jpg?v1.7" onmouseover="this.src='/essay_ver2/images/top/tabx7_05over.jpg?v1.7'" onmouseout="this.src='/essay_ver2/images/top/tabx7_05.jpg?v1.7'" alt="증쇄도서"></a></li>
+		       	<li><a href="javascript:;" onclick="movepage_href('7', '6', '', '')"><img src="/essay_ver2/images/top/tabx7_06.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx7_06over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx7_06.jpg?v1.6'" alt="전자책"></a></li>
+		       	<li><a href="javascript:;" onclick="movepage_login()"><img src="/essay_ver2/images/top/tabx7_07.jpg?v1.6" onmouseover="this.src='/essay_ver2/images/top/tabx7_07over.jpg?v1.6'" onmouseout="this.src='/essay_ver2/images/top/tabx7_07.jpg?v1.6'" alt="저자구매"></a></li>
+				<li><a href="/essay_ver2/bshop/bookdnldxls.php"><img src="/essay_ver2/images/top/tabx7_08.jpg?v1.1" onmouseover="this.src='/essay_ver2/images/top/tabx7_08over.jpg?v1.1'" onmouseout="this.src='/essay_ver2/images/top/tabx7_08.jpg?v1.1'" alt="도서목록 다운로드"></a></li>
+		    </ul></div></div>
+	   	<!--//gnb_sub-->
+	</div>
+	<!--//wrap-->
+</div>
+</div>
+												                    </td>
+			                </tr>
+			            </tbody></table>
+			      	</td>
+				</tr>
+			</tbody></table>
+		</td></tr>
+	
+</tbody></table>
+<script type="text/javascript">
+var sACSelect = "N";
+
+
+function set_top(sel, val) {
+	var i = 0;
+	if (sel == "gnbsub1") {//서브 메뉴 1
+		clearTimeout(gnbStatus);
+		if (val == "out") {
+			gnbStatus = setTimeout(function() {
+				jQuery('#gnbsub1').fadeOut();
+			},100);
+		}
+	}
+	else if (sel == "gnbsub2") {//서브 메뉴 2
+		clearTimeout(gnbStatus);
+		if (val == "out") {
+			gnbStatus = setTimeout(function() {
+				jQuery('#gnbsub2').fadeOut();
+			},100);
+		}
+	}
+	else if (sel == "gnbsub3") {//서브 메뉴 3
+		clearTimeout(gnbStatus);
+		if (val == "out") {
+			gnbStatus = setTimeout(function() {
+				jQuery('#gnbsub3').fadeOut();
+			},100);
+		}
+	}
+	else if (sel == "gnbsub4") {//서브 메뉴 4
+		clearTimeout(gnbStatus);
+		if (val == "out") {
+			gnbStatus = setTimeout(function() {
+				jQuery('#gnbsub4').fadeOut();
+			},100);
+		}
+	}
+	else if (sel == "gnbsub5") {//서브 메뉴 5
+		clearTimeout(gnbStatus);
+		if (val == "out") {
+			gnbStatus = setTimeout(function() {
+				jQuery('#gnbsub5').fadeOut();
+			},100);
+		}
+	}
+	else if (sel == "gnbsub6") {//서브 메뉴 6
+		clearTimeout(gnbStatus);
+		if (val == "out") {
+			gnbStatus = setTimeout(function() {
+				jQuery('#gnbsub6').fadeOut();
+			},100);
+		}
+	}
+	else if (sel == "gnbsub7") {//서브 메뉴 7
+		clearTimeout(gnbStatus);
+		if (val == "out") {
+			gnbStatus = setTimeout(function() {
+				jQuery('#gnbsub7').fadeOut();
+			},100);
+		}
+	}
+	else if (sel == "searchword_focus") {
+		var hide = jQuery("#topsearchword_menu");
+		var text = jQuery("#topsearchword");
+		text.val('');
+		text.css("color", "#000000");
+	}
+	else if (sel == "searchword_blur") {
+		if (!val) {
+			jQuery("#topsearchword").css("color", "#888888");
+			if (jQuery("#topsearchkey").val() == 'book') {
+				jQuery("#topsearchword").val(jQuery("#topsearchword_book").val());
+			}
+			else {
+				jQuery("#topsearchword").val(jQuery("#topsearchword_menu").val());
+			}
+			jQuery("#id_topsearchresult").html('');
+			jQuery("#id_topsearchresult").hide();
+		}
+		jQuery("#id_skeylist").hide();
+	}
+	else if (sel == "tabidx") {
+		event = val || window.event;
+		var keyID = (event.which) ? event.which : event.keyCode;
+		for (i=0; i<Number(jQuery("#topsearchtrtot").val()); i++) {
+			jQuery("#id_topsearchtr_"+i).css("background", "#ffffff");
+		}
+		var tdx = jQuery("tr:focus").attr("tabindex");
+		if (keyID == 40) {//아래로
+			tdx++;
+			if (tdx > Number(jQuery("#topsearchtrtot").val())) {
+                tdx = Number(jQuery("#topsearchtrtot").val());
+            }
+			jQuery("#id_topsearchtr_"+tdx).focus().css("background", "#f8f8f8");
+		}
+		else if (keyID == 38) {//위로
+			tdx--;
+			if (tdx < 0) {
+                tdx = 0;
+            }
+			jQuery("#id_topsearchtr_"+tdx).focus().css("background", "#f8f8f8");
+		}
+	}
+}
+
+
+function ajax_top(sel, val) {//180314
+	var url 	= "/essay_ver2/index_ajax.php";
+	var param 	= "";
+	var arr 	= new Array();
+	var arr1 	= new Array();
+
+	if (sel == "top_menu") {
+		jQuery.post(url, {"mode":"top_menu", "param":param}, function(data) {
+			arr = data.split("§^§");
+			if (Number(arr[0]) > 0) {
+				jQuery("#id_gnb_sub_content").html(arr[1]);
+				if (val) {
+					jQuery("#gnbsub"+val).show();
+				}
+			}
+			arr  = [];
+		})
+		.done(function() {
+		    //alert( "second success" );
+		})
+		.fail(function() {
+		    //alert( "error" );
+		})
+		.always(function() {
+		    //alert( "finished" );
+		});
+	}
+	else if (sel == "searchword") {//210715
+		var idword = jQuery("#topsearchword");
+		var idkey = jQuery("#topsearchkey");
+		var wordval= "";
+		var html   = "";
+
+		wordval = idword.val();
+		if (wordval.substring(0, 1) == "#" || idkey.val() == "menu") {
+			if (wordval.substring(0, 1) == "#") {
+				wordval = wordval.substring(1);
+			}
+			idword.autocomplete({
+				minLength: 2, //최소 자리수
+				source: function(request, response) {
+					jQuery("#id_top_loading").show();
+					param = "&sword="+encodeURIComponent(wordval);
+					jQuery.post(url, {"mode":"top_search_menu", "param":param}, function(data) {
+						jQuery("#id_top_loading").hide();
+						if (data) {
+							response(JSON.parse(data));
+						}
+						else {
+							response('');
+							//response([{"value":"none","title":"검색 결과가 없습니다."}]); //191018
+						}
+					})
+				},
+				select: function (event, ui) {//선택
+					sACSelect = "Y";
+					if (ui.item.value != "none") {
+						idword.val(ui.item.title.replace(/(<([^>]+)>)/gi, ""));
+					}
+					if (ui.item.url) {
+						set_top('searchword_focus', '');
+						if (ui.item.url.indexOf("_SH_") != -1) {
+							ui.item.url = ui.item.url.replace(/_SH_/g, "/");
+						}
+						if (ui.item.url.indexOf("(") != -1 && ui.item.url.indexOf(")") != -1) {//함수
+							if (ui.item.url.indexOf("{authorbook}") != -1) {//(한글) -> 오류발생 240222
+								alert("저자구매가 가능한 회원이 아닙니다.");
+							}
+							else {
+								eval(ui.item.url);
+							}
+						}
+						else if (ui.item.table == "Naver") {
+							window.open(ui.item.url, "", "");
+						}
+						else {
+							top.location.href = ui.item.url;
+						}
+					}
+					return false;
+				},
+				focus: function(event, ui) {//한글 선택시 목록 사라짐 -> autocomplete이 버젼업이 되면서 발생한 버그
+					return false;
+				},
+				error: function(data) {
+					alert("Error "+data);
+				}
+			})
+			.data("autocomplete")._renderItem = function(ul, item) {//결과 목록을 보여주는 방식
+		    	html = '';
+		    	if (item.title) {
+		    		html += '<span>' + item.title + '</span>';
+		    	}
+		    	html = '<div style="margin:5px 0 3px 10px;">' + html + '</div>';
+		    	return jQuery("<li></li>").data("item.autocomplete", item).append("<a>" + html + "</a>").appendTo(ul);
+			};
+		}
+		else if (wordval.length > 1 && idkey.val() == "book") {
+			param = "&sword="+encodeURIComponent(wordval)+"&stype=top";
+			jQuery("#id_top_loading").show();
+			jQuery.post(url, {"mode":"top_search_book", "param":param}, function(data) {
+				arr = data.split("§^§");
+				jQuery("#id_top_loading").hide();
+				if (Number(arr[0]) > 0) {
+					jQuery("#id_topsearchresult").show();
+					jQuery("#id_topsearchresult").html(arr[1]);
+					jQuery("#topsearchtrtot").val(arr[0]);
+					//jQuery("#id_topsearchtr_0").focus().css("background", "#f8f8f8");
+					jQuery("#id_topsearchtr_0").css("background", "#f8f8f8");
+				}
+				arr  = [];
+			})
+			.done(function() {
+			    //alert( "second success" );
+			})
+			.fail(function() {
+			    //alert( "error" );
+			})
+			.always(function() {
+			    //alert( "finished" );
+			});
+		}
+	}
+	arr  = [];
+	arr1 = [];
+}
+
+
+function change_top(sel, val) {//240123
+	if (sel == "skey") {
+		var idbox = jQuery("#id_skeybox");
+		var idlst = jQuery("#id_skeylist");
+		if (val == "1") {
+			jQuery("#id_skey_0").html(jQuery("#id_skey_2").html());
+			jQuery("#topsearchkey").val('menu');
+			jQuery("#topsearchword").val(jQuery("#topsearchword_menu").val());
+		}
+		else if (val == "2") {
+			jQuery("#id_skey_0").html(jQuery("#id_skey_1").html());
+			jQuery("#topsearchkey").val('book');
+			jQuery("#topsearchword").val(jQuery("#topsearchword_book").val());
+		}
+		if (idlst.css("display") == "none") {
+			idlst.show();
+		}
+		else {
+			idlst.hide();
+		}
+	}
+}
+
+
+function submit_top(sel, obj) {
+	if (sel == "search") {
+		jQuery("#id_topsearchresult").html('');
+		jQuery("#id_topsearchresult").hide();
+
+		ajax_top("searchword", jQuery("#topsearchword").val());
+
+		event = obj || window.event;
+		var keyID = (event.which) ? event.which : event.keyCode;
+		var mytop = document.mytopsearchword;
+		mytop.action = "/essay_ver2/support/searchresult.php";
+		mytop.sword.value = jQuery("#topsearchword").val();
+		if (keyID == 13) {
+			if (sACSelect != "Y") {//선택 없이 엔터
+				mytop.submit();
+				return;
+			}
+		}
+		else if (obj == "click") {
+			mytop.submit();
+			return;
+		}
+	}
+	else if (sel == "basket") {//210719
+		if (obj == "login") {
+			//alert("장바구니는 로그인을 해야 가능합니다.");
+			movepage_login("/index.html");
+			return;
+		}
+		var frm = document.topsearchbshop;
+		frm.prdcode.value		= jQuery("#topsearchcode_"+obj).val();
+		frm.tmp_sellprice.value	= jQuery("#topsearchprice_"+obj).val();
+		frm.buymthd.value		= jQuery("#topsearchbuymthd_"+obj).val();
+		frm.gubunP.value		= jQuery("#topsearchgubunP_"+obj).val();
+		frm.gubunE.value		= jQuery("#topsearchgubunE_"+obj).val();
+		if (frm.prdcode.value && frm.tmp_sellprice.value) {
+			frm.submit();
+		}
+	}
+}
+
+
+// 상단 gnb
+var gnbStatus;
+var sliderTime=10; //슬라이더 시간 조절
+var pause=1;
+
+jQuery(document).ready(function() {
+	jQuery('#gnb1').mouseenter(function() {
+		ajax_top('top_menu', '1');
+		clearTimeout(gnbStatus);
+	});
+	jQuery('#gnb1').mouseleave(function() {
+		gnbStatus=setTimeout(function() {
+			jQuery('#gnbsub1').fadeOut();
+		},100);
+	});
+	jQuery('#gnb2').mouseenter(function() {
+		ajax_top('top_menu', '2');
+		clearTimeout(gnbStatus);
+	});
+	jQuery('#gnb2').mouseleave(function() {
+		gnbStatus=setTimeout(function() {
+			jQuery('#gnbsub2').fadeOut();
+		},100);
+	});
+	jQuery('#gnb3').mouseenter(function() {
+		ajax_top('top_menu', '3');
+		clearTimeout(gnbStatus);
+	});
+	jQuery('#gnb3').mouseleave(function() {
+		gnbStatus=setTimeout(function() {
+			jQuery('#gnbsub3').fadeOut();
+		},100);
+	});
+	jQuery('#gnb4').mouseenter(function() {
+		ajax_top('top_menu', '4');
+		clearTimeout(gnbStatus);
+	});
+	jQuery('#gnb4').mouseleave(function() {
+		gnbStatus=setTimeout(function() {
+			jQuery('#gnbsub4').fadeOut();
+		},100);
+	});
+	jQuery('#gnb5').mouseenter(function() {
+		ajax_top('top_menu', '5');
+		clearTimeout(gnbStatus);
+	});
+	jQuery('#gnb5').mouseleave(function() {
+		gnbStatus=setTimeout(function() {
+			jQuery('#gnbsub5').fadeOut();
+		},100);
+	});
+	jQuery('#gnb6').mouseenter(function() {
+		ajax_top('top_menu', '6');
+		clearTimeout(gnbStatus);
+	});
+	jQuery('#gnb6').mouseleave(function() {
+		gnbStatus=setTimeout(function() {
+			jQuery('#gnbsub6').fadeOut();
+		},100);
+	});
+	jQuery('#gnb7').mouseenter(function() {
+		ajax_top('top_menu', '7');
+		clearTimeout(gnbStatus);
+	});
+	jQuery('#gnb7').mouseleave(function() {
+		gnbStatus=setTimeout(function() {
+			jQuery('#gnbsub7').fadeOut();
+		},100);
+	});
+
+	ajax_top('searchword', '');
+	jQuery("#topsearchword").val(jQuery("#topsearchword_book").val());
+	jQuery("#topsearchword").css("color", "#888888");
+});
+</script>
+<!-- textarea id="testarea" style="margin:150px 0 0 150px;width:700px;height:500px;"></textarea -->
+<form name="topsearchbshop" action="/essay_ver2/bshop/prd_save.php" method="post" style="margin:0;"> <!-- 상단 검색 북스토어 -->
+	<input type="hidden" name="mode" value="insert">
+	<input type="hidden" name="direct" value="basket">
+	<input type="hidden" name="prdcode" value="">
+	<input type="hidden" name="tmp_sellprice" value="">
+	<input type="hidden" name="buymthd" value="">
+	<input type="hidden" name="gubunP" value="">
+	<input type="hidden" name="gubunE" value="">
+	<input type="hidden" name="amount" value="1">
+	<input type="hidden" name="rtnpage" value="/index.html">
+</form>
+<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="margin-top:110px;">
+    <tbody><tr>
+        <td align="center" valign="top" background="/essay_ver2/images/sub_01.gif">
+<!-- top end -->
+<link rel="stylesheet" href="origin_index.css">
+<div style="margin-top:10px;"></div>
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="978">
+  <colgroup>
+    <col width="900">
+    <col width="7">
+    <col width="71">
+  </colgroup>
+  <tbody><tr>
+    <td valign="top" align="left">
+      <div class="booklab-origin-renewal">
+        <main>
+              <section class="hero-renewal hero-slider hero-slide-0" data-hero-slider>
+                <div class="hero-copy">
+                  <span class="label">THE 8,000 STORY</span>
+                  <h1>
+                    <span>북랩, 출간 종수 <strong>8,000종</strong> 돌파!</span>
+                  </h1>
+                  <small class="hero-note">*국립중앙도서관 납본 기준</small>
+                  <div class="hero-report-list" aria-label="투명한 판매자료 공개 안내">
+                    <p><span aria-hidden="true"></span>북랩은 서점 SCM의 판매현황과 자사 출고상황을 매일 집계,<br>저자와 공유하는 도서판매정보시스템을 운영합니다.</p>
+                    <p><span aria-hidden="true"></span>2021년 8월부터 대한출판문화협회의<br>신뢰도 100% 판매자료를 홈페이지에 제공합니다.</p>
+                  </div>
+                  <div class="hero-infographic" aria-label="북랩 출간 성과 요약">
+                    <span><b>8,000종</b><small>출간 종수</small></span>
+                    <span><b>21년</b><small>출판 여정</small></span>
+                    <span><b>독자에게</b><small>전해진 이야기</small></span>
+                  </div>
+                  <p>저자의 꿈을 현실로, 독자의 손에 전해진 8,000권의 이야기로,<br>북랩이 만들어 온 21년의 여정은 계속됩니다!</p>
+                  <div class="hero-actions">
+                    <a class="btn primary" href="https://www.book.co.kr/essay_ver2/publish/advice.php">출간문의</a>
+                    <a class="btn secondary" href="https://www.book.co.kr/essay_ver2/bbs/list.php?code=photo">북랩 Story 보기</a>
+                  </div>
+                </div>
+                <div class="hero-showcase" aria-label="북랩 메인 배너 비주얼">
+                  <div class="showcase-panel">
+                    <div class="showcase-books" aria-hidden="true">
+                      <div class="book-stage">
+                        <img class="hero-photo-visual" src="https://booklab-coral.vercel.app/prototype/booklab-renewal/assets/service/hero-visual-8000.png" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hero-slider-controls" aria-label="메인 배너 슬라이드 선택">
+                  <button type="button" class="is-active" data-hero-slide="0" aria-label="첫 번째 배너"></button>
+                  <button type="button" data-hero-slide="1" aria-label="두 번째 배너"></button>
+                  <button type="button" data-hero-slide="2" aria-label="세 번째 배너"></button>
+                  <button type="button" data-hero-slide="3" aria-label="네 번째 배너"></button>
+                </div>
+              </section>
+        
+              <section class="section author-quick-section" aria-label="저자 업무 바로가기">
+                <div class="author-action-card">
+                  <div class="side-tool-grid" aria-label="업무 조회 메뉴">
+                    <a href="https://www.book.co.kr/essay_ver2/guide/data_send.php"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 15V4"/><path d="m7 9 5-5 5 5"/><path d="M5 15v4h14v-4"/></svg></span><b>원고 전송</b></a>
+                    <a href="#"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7h18v10H3z"/><path d="M3 10h18"/><path d="M7 15h4"/></svg></span><b>신용카드 결제</b></a>
+                    <a href="#"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 2.8 19h18.4z"/><path d="M12 8v5"/><path d="M12 17h.01"/></svg></span><b>결제오류 신고</b></a>
+                    <a href="https://www.book.co.kr/essay_ver2/bbs/view.php?idx=4896&code=booklab_notice"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M8 10h8"/><path d="M8 14h5"/><path d="M17 14h.01"/></svg></span><b>카드 무이자 할부</b></a>
+                    <a href="https://www.book.co.kr/essay_ver2/bshop/prd_list.php"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4h10a2 2 0 0 1 2 2v14H8a2 2 0 0 1-2-2z"/><path d="M8 4v14a2 2 0 0 0 2 2"/><path d="M10 8h5"/></svg></span><b>저자구매</b></a>
+                    <a href="https://www.book.co.kr/essay_ver2/promote/envelope.php"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 12v8H4v-8"/><path d="M2 7h20v5H2z"/><path d="M12 20V7"/><path d="M12 7H8.5A2.5 2.5 0 1 1 12 4.5z"/><path d="M12 7h3.5A2.5 2.5 0 1 0 12 4.5z"/></svg></span><b>컬러 증정봉투</b></a>
+                    <a href="#"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3h10v18H7z"/><path d="M9 7h6"/><path d="M9 11h6"/><path d="M9 15h4"/></svg></span><b>현금영수증 조회</b></a>
+                    <a href="#"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7h11v10H3z"/><path d="M14 10h4l3 3v4h-7z"/><path d="M7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/><path d="M18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg></span><b>배송 조회</b></a>
+                    <a href="https://www.book.co.kr/essay_ver2/support/helpdesk.php"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.3 19.3 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.4 2.6a2 2 0 0 1-.5 1.7L7.7 9.3a16 16 0 0 0 7 7l1.3-1.3a2 2 0 0 1 1.7-.5l2.6.4a2 2 0 0 1 1.7 2Z"/></svg></span><b>작가연락처 문의</b></a>
+                    <a href="https://www.book.co.kr/essay_ver2/bshop/bookdnldxls.php"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h4"/><path d="M9 13h6"/><path d="M12 10v6"/><path d="m9 16 3 3 3-3"/></svg></span><b>도서목록 다운로드</b></a>
+                  </div>
+                </div>
+              </section>
+        
+              <div class="mobile-quick-dock" data-mobile-quick-dock aria-hidden="true">
+                <a href="https://www.book.co.kr/essay_ver2/guide/data_send.php">원고 전송</a>
+                <a href="#">신용카드 결제</a>
+                <a href="#">배송 조회</a>
+                <button type="button" data-mobile-quick-open>더보기</button>
+              </div>
+        
+              <div class="mobile-quick-sheet" data-mobile-quick-sheet aria-hidden="true">
+                <button class="mobile-quick-backdrop" type="button" data-mobile-quick-close aria-label="빠른 메뉴 닫기"></button>
+                <div class="mobile-quick-panel" role="dialog" aria-modal="true" aria-label="빠른 메뉴 전체보기">
+                  <div class="mobile-quick-head">
+                    <b>빠른 메뉴</b>
+                    <button type="button" data-mobile-quick-close>닫기</button>
+                  </div>
+                  <div class="mobile-quick-sheet-grid" data-mobile-quick-grid></div>
+                </div>
+              </div>
+        
+              <section class="worry-band">
+                <div>
+                  <span class="label">PUBLISHING CONCERN</span>
+                  <h2>출판에 대한 고민들, 북랩의 실제 서비스로 바로 해결합니다.</h2>
+                </div>
+                <div class="worry-links">
+                  <a href="https://www.book.co.kr/essay_ver2/publish/service.php">비용이 궁금해요</a>
+                  <a href="https://www.book.co.kr/essay_ver2/guide/print_guide.php">출판 과정이 궁금해요</a>
+                  <a href="https://www.book.co.kr/essay_ver2/mypage/sales_sales_royalty.php">판매와 인세가 궁금해요</a>
+                </div>
+              </section>
+        
+              <section class="section service-section">
+                <div class="section-head">
+                  <div>
+                    <span class="label">SERVICE</span>
+                    <h2>북랩은 서점유통에서 비매품 제작까지 모든 출판 서비스를 제공합니다.</h2>
+                  </div>
+                </div>
+                <div class="service-grid">
+                  <article class="service-card">
+                    <img src="https://images.unsplash.com/photo-1526243741027-444d633d7365?auto=format&fit=crop&w=1000&q=80" alt="출판유통 배너 이미지">
+                    <div>
+                      <b>출판유통</b>
+                      <span>서점에 유통하고자 하는 책을 선택하세요</span>
+                      <div class="service-actions">
+                        <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd01.php">소설</a>
+                        <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd02.php">에세이</a>
+                        <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd03.php">시집</a>
+                        <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd04.php">자기계발</a>
+                        <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd05.php">경제경영</a>
+                        <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd06.php">여행기</a>
+                        <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd07.php">인문사회</a>
+                        <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd08.php">교재수험서</a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="service-card">
+                    <img src="https://booklab-coral.vercel.app/prototype/booklab-renewal/assets/service/service-tools-warm.png" alt="출판도구 모음 배너 이미지">
+                    <div>
+                      <b>출판도구 모음</b>
+                      <span>출판도구 모음입니다</span>
+                      <div class="service-actions">
+                        <a href="#">원고 전송기</a>
+                        <a href="https://www.book.co.kr/essay_ver2/publish/self2nd_step1.php">셀프 견적기</a>
+                        <a href="https://www.book.co.kr/essay_ver2/mypage/profilewrt.php">프로필 생성기</a>
+                        <a href="#">페이지 계산기</a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="service-card">
+                    <img src="https://booklab-coral.vercel.app/prototype/booklab-renewal/assets/service/service-printing-warm.png" alt="인쇄 및 제본 배너 이미지">
+                    <div>
+                      <b>인쇄 및 제본</b>
+                      <span>필요한 수량만큼 주문하세요</span>
+                      <div class="service-actions">
+                        <a href="https://www.book.co.kr/essay_ver2/shop/nonsalepaystp1.php">맞춤견적</a>
+                        <a href="#">1분 견적</a>
+                        <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd10.php">학급문집</a>
+                        <a href="https://www.book.co.kr/essay_ver2/publish/distribmthd11.php">자서전</a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </section>
+        
+              <section class="section split-section">
+                <div class="section-head decorated title-trust">
+                  <div>
+                    <h2>명예의 전당</h2>
+                    <p>세종도서와 진중문고 선정작을 전면에 배치해 북랩의 출판 성과를 먼저 보여줍니다.</p>
+                  </div>
+                  <a class="more" href="https://www.book.co.kr/essay_ver2/bshop/index.php?grp=fame">더보기</a>
+                  <span class="section-script" aria-hidden="true">Hall of Fame</span>
+                </div>
+                <div class="hall-grid">
+                  <article class="feature-book hall-feature">
+                    <img class="feature-bg" src="https://www.book.co.kr/essay_ver2/images/index/halloffame_recomm.jpg?v2.2" alt="">
+                    <div class="feature-text">
+                      <span>2024 세종도서</span>
+                      <h3>뉴스의 비유 왜곡</h3>
+                      <p>매스미디어의 상투적 비유 표현에 대한 철학적 성찰</p>
+                    </div>
+                    <img class="feature-cover" src="https://www.book.co.kr/_FILE/book/cover/2023/2310130002/2310130002_S1.jpg?v1.2" alt="뉴스의 비유 왜곡 표지">
+                  </article>
+                  <div class="book-cards award-books">
+                    <article><span>2024 세종도서</span><figure><img src="https://www.book.co.kr/_FILE/book/cover/2024/2401190001/2401190001_B.png?v1.2" alt="의료산책 1"></figure><b>의료산책 1: 광장으로 나온 의료</b><small>저자 정보</small></article>
+                    <article><span>2024 세종도서</span><figure><img src="https://www.book.co.kr/_FILE/book/cover/2023/2308220002/2308220002_B.png?v1.2" alt="데이터 분석 AI IT 발전에 대한 적응 방안"></figure><b>데이터 분석, AI, IT 발전에 대한 적응 방안</b><small>저자 정보</small></article>
+                    <article><span>2023 세종도서</span><figure><img src="https://www.book.co.kr/_FILE/book/cover/2022/2212260004/2212260004_B.png?v1.2" alt="한성감옥서 연구"></figure><b>1899-1904년 한성감옥서 수감자들의 기독교 입교에 관한 연구</b><small>저자 정보</small></article>
+                    <article><span>2022 국방부 진중문고</span><figure><img src="https://www.book.co.kr/_FILE/book/cover/2018/1803080002/1803080002_B.png?v1.2" alt="웨폰 사이언스"></figure><b>웨폰 사이언스</b><small>저자 정보</small></article>
+                  </div>
+                </div>
+              </section>
+        
+              <section class="section bookstore-section">
+                <div class="section-head decorated title-bookstore">
+                  <div>
+                    <h2>북스토어/신간도서</h2>
+                    <p>단순 책 목록이 아니라 신간과 추천 도서를 묶어 서점형 콘텐츠 블록으로 보여줍니다.</p>
+                  </div>
+                  <a class="more" href="https://www.book.co.kr/essay_ver2/bshop/index.php">북스토어 가기</a>
+                  <span class="section-script" aria-hidden="true">Bookstore</span>
+                </div>
+                <div class="bookstore-grid">
+                  <article class="feature-book store-feature">
+                    <img class="feature-bg" src="https://www.book.co.kr/essay_ver2/images/index/bookstore_recomm.jpg?v2.2" alt="">
+                    <div class="feature-text">
+                      <span>추천 도서</span>
+                      <h3>아키타입 사자성어 경제학</h3>
+                      <p>권의종, 이왕로</p>
+                    </div>
+                    <img class="feature-cover" src="https://www.book.co.kr/_FILE/book/cover/2026/2603110001/2603110001_S1.jpg?v1.1" alt="아키타입 사자성어 경제학 표지">
+                  </article>
+                  <div class="book-cards new-books">
+                    <article><figure><img src="https://www.book.co.kr/_FILE/book/cover/2026/2605180001/2605180001_B.jpg?v1779061282" alt="영광의 길 비천한 삶"></figure><span>신간도서</span><b>영광의 길 비천한 삶</b><small>저자 정보</small></article>
+                    <article><figure><img src="https://www.book.co.kr/_FILE/book/cover/2026/2605130001/2605130001_B.jpg?v1778792145" alt="뉴 디지털 패션 일러스트레이션 북"></figure><span>신간도서</span><b>뉴 디지털 패션 일러스트레이션 북</b><small>저자 정보</small></article>
+                    <article><figure><img src="https://www.book.co.kr/_FILE/book/cover/2026/2605120002/2605120002_B.jpg?v1778702693" alt="백 년의 바람 5권"></figure><span>신간도서</span><b>백 년의 바람 5권</b><small>저자 정보</small></article>
+                    <article><figure><img src="https://www.book.co.kr/_FILE/book/cover/2026/2605120001/2605120001_B.jpg?v1778702693" alt="백 년의 바람 4권"></figure><span>신간도서</span><b>백 년의 바람 4권</b><small>저자 정보</small></article>
+                  </div>
+                </div>
+              </section>
+        
+              <section class="section interview-section">
+                <div class="section-head decorated title-interview">
+                  <div>
+                    <h2>작가셀프 인터뷰</h2>
+                    <p>책 뒤에 있는 저자의 이야기를 보여줘 방문자가 북스토어로 자연스럽게 이어지게 합니다.</p>
+                  </div>
+                  <a class="more" href="https://www.book.co.kr/essay_ver2/promote/interview_list.php">인터뷰 더보기</a>
+                  <span class="section-script" aria-hidden="true">Self Interview</span>
+                </div>
+                <div class="interview-grid">
+                  <article>
+                    <img src="https://www.book.co.kr/_FILE/interview/2026/I26051201/SI26051201.jpg?v1.1" alt="황일성 작가">
+                    <div><span>[황일성]</span><h3>오늘부터 나는 평생현역이다</h3><p>안녕하세요. 4060 중장년 일·활동지원 플랫폼 &lt;소셜학교&gt; 이사장입니다...</p></div>
+                  </article>
+                  <article>
+                    <img src="https://www.book.co.kr/_FILE/interview/2026/I26041701/SI26041701.png?v1.1" alt="최성표 작가">
+                    <div><span>[최성표]</span><h3>나는 어머니의 기도 위에 서 있다</h3><p>전자공학을 전공하고 ROTC 장교로 군 복무를 마친 뒤, LG전자 연구개발실에서 ..</p></div>
+                  </article>
+                  <article>
+                    <img src="https://www.book.co.kr/_FILE/interview/2026/I26041201/SI26041201.png?v1.1" alt="서태수 작가">
+                    <div><span>[서태수]</span><h3>강마을에 묻힌 서사</h3><p>안정(安定)이란 서서히 죽어가는 안락사라고 믿으며, 늘 새로움을 향해 나아가..</p></div>
+                  </article>
+                </div>
+              </section>
+        
+              <section class="section board-tools">
+                <div class="board-card news-card">
+                  <div class="mini-head"><h2>북랩 NEWS</h2><a href="https://www.book.co.kr/essay_ver2/bbs/list.php?code=booklab_news">더보기</a></div>
+                  <ul>
+                    <li><a href="https://www.book.co.kr/essay_ver2/bbs/view.php?idx=4896&code=booklab_notice">2026년 5월 무이자 할부</a><span>26-05-06</span></li>
+                    <li><a href="https://www.book.co.kr/essay_ver2/bbs/view.php?idx=4892&code=booklab_news">2026년 1사분기 인세지급 안내</a><span>26-04-14</span></li>
+                    <li><a href="https://www.book.co.kr/essay_ver2/bbs/view.php?idx=4891&code=booklab_notice">2026년 4월 무이자 할부</a><span>26-04-14</span></li>
+                    <li><a href="https://www.book.co.kr/essay_ver2/bbs/view.php?idx=4868&code=booklab_news">2025년 4사분기 인세지급 안내</a><span>26-01-14</span></li>
+                  </ul>
+                </div>
+                <div class="board-card story">
+                  <div class="mini-head"><h2>북랩 Story</h2><a href="https://www.book.co.kr/essay_ver2/bbs/list.php?code=photo">더보기</a></div>
+                  <div class="story-list">
+                    <a href="https://www.book.co.kr/essay_ver2/bbs/view.php?idx=4853&code=photo"><img src="https://www.book.co.kr/_FILE/bbs_photo/1761616302/S4853.png" alt="북랩 출간 종수 8천 종 돌파"><span>북랩, 출간 종수 8천 종 돌파!</span></a>
+                    <a href="https://www.book.co.kr/essay_ver2/bbs/view.php?idx=4482&code=photo"><img src="https://www.book.co.kr/essay_ver2/data/bbs/photo/S2304111134023_1.jpg" alt="교보문고 진열"><span>교보문고 광화문점 주요 진열대에 오른 북랩 신간들</span></a>
+                  </div>
+                </div>
+                <div class="board-card payment-card">
+                  <div class="mini-head"><h2>결제 및 상담</h2><a href="https://www.book.co.kr/essay_ver2/support/tel_info.php">문의처</a></div>
+                  <div class="pay-primary">
+                    <dl>
+                      <div><dt>서점유통 출판</dt><dd>02-2026-5566</dd></div>
+                      <div><dt>인쇄/제본</dt><dd>02-2026-3334</dd></div>
+                      <div><dt>도서주문</dt><dd>02-3159-9638</dd></div>
+                    </dl>
+                  </div>
+                  <div class="pay-grid">
+                    <a class="card-pay" href="#"><b>신용카드결제</b><span>카드 결제 바로가기</span></a>
+                    <a class="bank-pay" href="https://www.book.co.kr/essay_ver2/support/bankbook.php"><span>무통장입금</span><em>우리은행</em><small>예금주 : (주)북랩</small><b>1005-980-007000</b></a>
+                  </div>
+                </div>
+              </section>
+        
+              <section class="section tool-section">
+                <div class="section-head decorated title-tools">
+                  <div><h2>저자가 바로 쓰는 빠른 메뉴</h2></div>
+                  <span class="section-script" aria-hidden="true">Author Tools</span>
+                </div>
+                <div class="tool-grid">
+                  <a href="#"><span class="tool-icon">UP</span><b>원고전송</b><small>파일을 바로 전달</small></a>
+                  <a href="https://www.book.co.kr/essay_ver2/guide/model.php"><span class="tool-icon">GD</span><b>원고정서 가이드</b><small>작성 형식 확인</small></a>
+                  <a href="https://www.book.co.kr/essay_ver2/mypage/contract_list.php"><span class="tool-icon">CT</span><b>나의 출판계약서</b><small>계약서 조회</small></a>
+                  <a href="https://www.book.co.kr/essay_ver2/mypage/mail_pr_product.php"><span class="tool-icon">PR</span><b>내 책 홍보하기</b><small>홍보 메일 신청</small></a>
+                  <a href="https://www.book.co.kr/ebooks/ecatalog.php?Dir=334"><span class="tool-icon">BK</span><b>출판가이드북</b><small>3분 가이드</small></a>
+                  <a href="http://blog.naver.com/essaybook" target="_blank" rel="noreferrer"><span class="tool-icon">TM</span><b>무료 본문 템플릿</b><small>블로그 자료실</small></a>
+                  <a href="https://www.book.co.kr/essay_ver2/company/intro_bookstore.php"><span class="tool-icon">DT</span><b>도서유통망</b><small>서점 유통 안내</small></a>
+                  <a href="https://www.book.co.kr/essay_ver2/mypage/sales_sales_royalty.php"><span class="tool-icon">RS</span><b>판매량 및 인세</b><small>성과 확인</small></a>
+                </div>
+              </section>
+        
+            </main>
       </div>
-      <nav class="gnb" aria-label="주 메뉴">
-        <a href="#">회사소개</a>
-        <a href="#">출판가이드</a>
-        <a href="#">가격표</a>
-        <a href="#">출판유통</a>
-        <a href="#">인쇄/제본</a>
-        <a href="#">홍보/마케팅</a>
-        <a href="#">북스토어</a>
-      </nav>
-    </header>
+      <script>
+            (() => {
+              const header = document.querySelector(".site-header");
+              const menuButton = document.querySelector(".mobile-menu-toggle");
+              const menu = document.querySelector("#gnb");
+              if (!header || !menuButton || !menu) return;
+      
+              const setOpen = (open) => {
+                header.classList.toggle("is-menu-open", open);
+                menuButton.setAttribute("aria-expanded", String(open));
+              };
+      
+              menuButton.addEventListener("click", () => {
+                setOpen(!header.classList.contains("is-menu-open"));
+              });
+      
+              menu.addEventListener("click", (event) => {
+                const link = event.target.closest("a");
+                if (!link || !window.matchMedia("(max-width: 760px)").matches) return;
+      
+                const item = link.closest(".gnb-item");
+                const isTopLink = link.parentElement === item;
+                const hasSub = item && item.querySelector(".gnb-sub");
+      
+                if (isTopLink && hasSub) {
+                  event.preventDefault();
+                  const willOpen = !item.classList.contains("is-open");
+                  menu.querySelectorAll(".gnb-item.is-open").forEach((openItem) => {
+                    if (openItem !== item) openItem.classList.remove("is-open");
+                  });
+                  item.classList.toggle("is-open", willOpen);
+                  return;
+                }
+      
+                setOpen(false);
+              });
+      
+              window.addEventListener("resize", () => {
+                if (!window.matchMedia("(max-width: 760px)").matches) {
+                  setOpen(false);
+                  menu.querySelectorAll(".gnb-item.is-open").forEach((item) => item.classList.remove("is-open"));
+                }
+              });
+            })();
+      
+            (() => {
+              const section = document.querySelector(".author-quick-section");
+              const card = section?.querySelector(".author-action-card");
+              if (!section || !card) return;
+      
+              let dockPoint = 0;
+      
+              const canDock = () => window.matchMedia("(min-width: 1181px)").matches;
+      
+              const measure = () => {
+                section.style.setProperty("--quick-dock-height", `${card.offsetHeight + 18}px`);
+                const wasDocked = section.classList.contains("is-docked");
+                if (wasDocked) section.classList.remove("is-docked");
+                dockPoint = section.getBoundingClientRect().top + window.scrollY;
+                if (wasDocked) section.classList.add("is-docked");
+              };
+      
+              const update = () => {
+                if (!canDock()) {
+                  section.classList.remove("is-docked");
+                  document.body.classList.remove("has-bottom-quickbar");
+                  return;
+                }
+                const shouldDock = window.scrollY > dockPoint;
+                section.classList.toggle("is-docked", shouldDock);
+                document.body.classList.toggle("has-bottom-quickbar", shouldDock);
+              };
+      
+              measure();
+              update();
+              window.addEventListener("scroll", update, { passive: true });
+              window.addEventListener("resize", () => {
+                measure();
+                update();
+              });
+            })();
+      
+            (() => {
+              const sourceLinks = [...document.querySelectorAll(".author-quick-section .side-tool-grid a")];
+              const dock = document.querySelector("[data-mobile-quick-dock]");
+              const sheet = document.querySelector("[data-mobile-quick-sheet]");
+              const sheetGrid = document.querySelector("[data-mobile-quick-grid]");
+              const openButton = document.querySelector("[data-mobile-quick-open]");
+              const closeButtons = [...document.querySelectorAll("[data-mobile-quick-close]")];
+              if (!sourceLinks.length || !dock || !sheet || !sheetGrid || !openButton) return;
+      
+              const mobileQuery = window.matchMedia("(max-width: 760px)");
+      
+              sourceLinks.forEach((link) => {
+                const clone = link.cloneNode(true);
+                clone.removeAttribute("class");
+                sheetGrid.appendChild(clone);
+              });
+      
+              const setOpen = (open) => {
+                sheet.classList.toggle("is-open", open);
+                sheet.setAttribute("aria-hidden", String(!open));
+                document.body.classList.toggle("has-mobile-quick-sheet", open);
+                openButton.setAttribute("aria-expanded", String(open));
+              };
+      
+              const syncMobileState = () => {
+                const isMobile = mobileQuery.matches;
+                dock.setAttribute("aria-hidden", String(!isMobile));
+                if (!isMobile) setOpen(false);
+              };
+      
+              openButton.setAttribute("aria-expanded", "false");
+              openButton.addEventListener("click", () => {
+                if (mobileQuery.matches) setOpen(true);
+              });
+      
+              closeButtons.forEach((button) => {
+                button.addEventListener("click", () => setOpen(false));
+              });
+      
+              sheetGrid.addEventListener("click", (event) => {
+                if (event.target.closest("a")) setOpen(false);
+              });
+      
+              window.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") setOpen(false);
+              });
+      
+              mobileQuery.addEventListener("change", syncMobileState);
+              syncMobileState();
+            })();
+      
+            (() => {
+              const slider = document.querySelector("[data-hero-slider]");
+              if (!slider) return;
+      
+              const slides = [
+                {
+                  label: "THE 8,000 STORY",
+                  title: ["북랩, 출간 종수 <strong>8,000종</strong> 돌파!"],
+                  note: "*국립중앙도서관 납본 기준",
+                  desc: "저자의 꿈을 현실로, 독자의 손에 전해진 8,000권의 이야기로,<br>북랩이 만들어 온 21년의 여정은 계속됩니다!",
+                  visual: "https://booklab-coral.vercel.app/prototype/booklab-renewal/assets/service/hero-visual-8000.png",
+                  primary: ["출간문의", "https://www.book.co.kr/essay_ver2/publish/advice.php"],
+                  secondary: ["북랩 Story 보기", "https://www.book.co.kr/essay_ver2/bbs/list.php?code=photo"],
+                  stats: [["8,000종", "출간 종수"], ["21년", "출판 여정"], ["THE 8,000TH", "STORY"]]
+                },
+                {
+                  label: "SMART PUBLISHING SYSTEM",
+                  title: ["재고 걱정 없이 저렴한 비용으로,", "<strong>스테디셀러</strong>를 실현하세요!"],
+                  note: "",
+                  desc: "더 팔릴 수 있는 책인데, 재발행 비용 때문에 꿈을 포기하시나요?<br>북랩의 재고 걱정 없는 스마트 출판으로 무한한 가능성을 열어보세요!",
+                  visual: "https://booklab-coral.vercel.app/prototype/booklab-renewal/assets/service/hero-visual-smart-publishing.png",
+                  primary: ["출간문의", "https://www.book.co.kr/essay_ver2/publish/advice.php"],
+                  secondary: ["출판 서비스 보기", "https://www.book.co.kr/essay_ver2/publish/service.php"],
+                  stats: [["COST", "-40%"], ["STOCK", "ZERO"], ["SYSTEM", "SMART"]]
+                },
+                {
+                  label: "100% Author Satisfaction",
+                  title: ["1부부터 인세받는 즐거움,", "<strong>북랩에서 누리세요!</strong>"],
+                  note: "",
+                  desc: "고객님, 혹시 더 내고 덜 받고 계시지 않나요?<br>북랩은 1부도 공제하지 않고 인세를 지급합니다.<br>북랩은 재판 인쇄비용을 청구하지 않습니다.",
+                  visual: "https://booklab-coral.vercel.app/prototype/booklab-renewal/assets/service/hero-visual-royalty.png",
+                  primary: ["출판상담 02-2026-5566", "https://www.book.co.kr/essay_ver2/publish/advice.php"],
+                  secondary: ["자세히 보기", "https://www.book.co.kr/essay_ver2/guide/know.php"],
+                  stats: [["1부부터", "인세 지급"], ["제판비", "청구 없음"], ["02-2026-5566", "출판상담"]]
+                },
+                {
+                  label: "TRANSPARENCY REPORT",
+                  title: ["책 판매부수는 물론", "<strong>출고부수까지 투명하게</strong> 공개!"],
+                  note: "",
+                  desc: "",
+                  visual: "https://booklab-coral.vercel.app/prototype/booklab-renewal/assets/service/hero-visual-sales-data.png",
+                  primary: ["판매·인세 조회", "https://www.book.co.kr/essay_ver2/mypage/sales_sales_royalty.php"],
+                  secondary: ["도서유통망 보기", "https://www.book.co.kr/essay_ver2/company/intro_bookstore.php"],
+                  stats: [["99.9%", "판매자료 연동"], ["100%", "신뢰도"], ["REAL-TIME", "DATA"]]
+                }
+              ];
+      
+              const nodes = {
+                label: slider.querySelector(".hero-copy .label"),
+                title: slider.querySelector(".hero-copy h1"),
+                note: slider.querySelector(".hero-note"),
+                desc: slider.querySelector(".hero-copy > p"),
+                stats: [...slider.querySelectorAll(".hero-infographic span")],
+                primary: slider.querySelector(".hero-actions .primary"),
+                secondary: slider.querySelector(".hero-actions .secondary"),
+                visual: slider.querySelector(".hero-photo-visual"),
+                controls: [...slider.querySelectorAll("[data-hero-slide]")]
+              };
+      
+              let current = 0;
+              let timer;
+              const autoSlideDelay = 10000;
+              const render = (index) => {
+                const slide = slides[index];
+                current = index;
+                slider.classList.add("is-changing");
+      
+                window.setTimeout(() => {
+                  slider.classList.remove("hero-slide-0", "hero-slide-1", "hero-slide-2", "hero-slide-3");
+                  slider.classList.add(`hero-slide-${index}`);
+                  nodes.label.textContent = slide.label;
+                  nodes.title.innerHTML = slide.title.map((line) => `<span>${line}</span>`).join("");
+                  nodes.note.textContent = slide.note;
+                  nodes.note.hidden = !slide.note;
+                  nodes.desc.innerHTML = slide.desc;
+                  nodes.stats.forEach((item, i) => {
+                    const stat = slide.stats[i] || ["", ""];
+                    item.querySelector("b").textContent = stat[0];
+                    item.querySelector("small").textContent = stat[1];
+                  });
+                  nodes.primary.textContent = slide.primary[0];
+                  nodes.primary.href = slide.primary[1];
+                  nodes.secondary.textContent = slide.secondary[0];
+                  nodes.secondary.href = slide.secondary[1];
+                  nodes.visual.src = slide.visual;
+                  nodes.controls.forEach((button, i) => {
+                    button.classList.toggle("is-active", i === index);
+                  });
+                  slider.classList.remove("is-changing");
+                }, 160);
+              };
+      
+              nodes.controls.forEach((button) => {
+                button.addEventListener("click", () => {
+                  window.clearInterval(timer);
+                  render(Number(button.dataset.heroSlide));
+                  startAutoSlide();
+                });
+              });
+      
+              const startAutoSlide = () => {
+                window.clearInterval(timer);
+                timer = window.setInterval(() => {
+                  render((current + 1) % slides.length);
+                }, autoSlideDelay);
+              };
+      
+              startAutoSlide();
+            })();
+          </script>
+    </td>
+    <td></td>
+    <td valign="top">
+                    	<!-- right -->
+<script type="text/javascript">
+var sPartnerURL 		= "/essay_ver2/images/right/partner";
+var iPartnerListCount 	= 8;
+var iPartnerListNo 		= 0;
+function show_right_partner(sel, seq, img) {
+	var i;
+	if (sel == "over" && img) {
+		if (img.indexOf(".jpg") != -1 || img.indexOf(".png") != -1) {
+			document.getElementById('id_right_partner_logo').src = sPartnerURL+"/"+img;
+		}
+		else {
+			jQuery("#id_right_partner").html(img);
+		}
+	}
+	else if (sel == "out") {
+	}
+	else if (sel == "up" || sel == "dn") {
+		if (sel == "up") {
+			iPartnerListNo--;
+			if (iPartnerListNo < 0) {
+				iPartnerListNo = 0;
+				return;
+			}
+			show_right_partner_sub(iPartnerListNo);
+		}
+		else if (sel == "dn") {
+			iPartnerListNo++;
+			if (iPartnerListNo >= iPartnerListCount) {
+				iPartnerListNo = iPartnerListCount - 1
+				return;
+			}
+			show_right_partner_sub(iPartnerListNo);
+		}
+	}
+}
+function show_right_partner_sub(pno) {
+	var id_list_1 = "";
+	var id_list_2 = "";
 
-    <div class="layout">
-      <aside class="left-rail" aria-label="좌측 원본 메뉴">
-        <div class="left-ad">
-          <h2>출판,<br>그 이상의 가치</h2>
-          <div class="tower" aria-hidden="true"></div>
-          <p>서점유통 출판<b>02.2026.5566</b></p>
-          <p>인쇄/제본<b>02.2026.3334</b></p>
-          <p>고객센터<b>02.2026.5777</b></p>
-          <a class="left-red" href="#">출간문의</a>
-        </div>
-        <div class="kakao"><b>TALK</b><br>카톡 상담<br>친구 추가 booklab</div>
-        <div class="award">2024 세종도서<br><span>3종 선정!</span></div>
-      </aside>
+	for (i=0; i<iPartnerListCount; i++) {
+		id_list_1 = eval("document.getElementById('id_list_partner_"+i+"')");
+		id_list_1.style.display = "none";
+	}
+	id_list_2 = eval("document.getElementById('id_list_partner_"+pno+"')");
+	id_list_2.style.display = "";
+}
 
-      <main class="main-area" aria-label="정리된 메인 콘텐츠">
-        <section class="hero">
-          <img src="./ref_img/mainbanner_02.jpg" alt="재고 걱정 없이 저렴한 비용으로 스테디셀러를 실현하세요">
-          <div class="hero-dots" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-        </section>
 
-        <div class="notice-strip"><span>▣</span>북랩은 서점유통에서 비매품 제작까지 모든 출판 서비스를 제공합니다. 원하는 메뉴를 선택하세요!</div>
+//북랩의 파트너출판
+function bpress_right() {
+    var selectKind = window.event.srcElement;
+    var kind = selectKind.options[selectKind.selectedIndex].value;
+	if (kind == '1') {
+		location.href = "essay_content/rankup_module/rankup_direct/direct_pay.html";
+	}
+	else {
+   		window.open(kind);
+   	}
+}
 
-        <section class="service-grid" aria-label="출판 서비스 바로가기">
-          <article class="service-card distribution">
-            <h3>출판유통</h3>
-            <p>서점에 유통하고자 하는 책을 선택하세요.</p>
-            <div class="service-actions">
-              <a href="#">소설</a><a href="#">에세이</a><a href="#">시집</a><a href="#">자기계발</a>
-              <a href="#">경제·경영</a><a href="#">여행기</a><a href="#">인문·사회</a>
-            </div>
-          </article>
-          <article class="service-card tools">
-            <h3>출판도구 모음</h3>
-            <p>원고 전송부터 셀프 견적까지 한 번에 확인하세요.</p>
-            <div class="service-actions">
-              <a href="#">원고 전송기</a><a href="#">셀프 견적기</a><a href="#">프로필 생성기</a><a href="#">페이지 계산기</a>
-            </div>
-          </article>
-          <article class="service-card print">
-            <h3>인쇄 및 제본</h3>
-            <p>필요한 수량만큼 빠르게 주문하세요.</p>
-            <div class="service-actions">
-              <a href="#">맞춤견적</a><a href="#">1분 견적</a><a href="#">학급문집</a><a href="#">자서전</a>
-            </div>
-          </article>
-        </section>
 
-        <section class="content-section">
-          <div class="section-title">
-            <h2>명예의 전당 <span>Hall of Fame</span></h2>
-            <a href="#">MORE</a>
-          </div>
-          <div class="book-row">
-            <article class="feature-book">
-              <div><b>뉴스의 비유 왜곡<br>- 매스미디어의 상투적 비유 표현에 대한 철학적 성찰</b><small>2024 세종도서</small></div>
-              <div class="cover white">뉴스의<br>비유<br>왜곡</div>
-            </article>
-            <article class="book-card"><div class="book-cover" data-title="의료산책 1"></div><h3>의료산책 1: 광장으로 나온 의료</h3></article>
-            <article class="book-card"><div class="book-cover blue" data-title="데이터 분석, AI"></div><h3>데이터 분석, AI, IT 발전에 대한 적용 방안</h3></article>
-            <article class="book-card"><div class="book-cover" data-title="1899-1904"></div><h3>1899-1904년 한성감옥 수감자들의 기록</h3></article>
-            <article class="book-card"><div class="book-cover green" data-title="Weapon Science"></div><h3>웨폰 사이언스</h3></article>
-          </div>
-        </section>
+function win_right() {//도서목록 다운로드 서비스 240119
+	var frm = document.mybookdn;
+	var win;
+	var w = 500;
+	var h = 450;
+	var x = window.screenLeft;
+	var y = window.screenTop;
+	var l = x + ((document.body.offsetWidth - w) / 2);
+	var t = y + ((document.body.offsetHeight - h ) / 2);
 
-        <section class="content-section">
-          <div class="section-title">
-            <h2>북스토어 <span>Bookstore</span></h2>
-            <a href="#">MORE</a>
-          </div>
-          <div class="book-row">
-            <article class="feature-book red">
-              <div><b>아키타입 사적성 경제학</b><small>편집자 추천</small></div>
-              <div class="cover art"></div>
-            </article>
-            <article class="book-card"><div class="book-cover black" data-title="로마서 다시 쓰기"></div><h3>로마서 다시 쓰기</h3></article>
-            <article class="book-card"><div class="book-cover blue" data-title="Start the Eternal War"></div><h3>Start of the Eternal War</h3></article>
-            <article class="book-card"><div class="book-cover black" data-title="THE LAST CHURCH"></div><h3>마지막 교회 THE LAST CHURCH</h3></article>
-            <article class="book-card"><div class="book-cover" data-title="에고가 삼킨 예수"></div><h3>에고가 삼킨 예수</h3></article>
-          </div>
-        </section>
+	win = window.open("/essay_ver2/support/popup/bookdnload.php", "winBookdnload", "left="+l+",top="+t+",screenX="+l+",screenY="+t+",width="+w+",height="+h+",resizable=no,scrollbars=no,status=yes");
+	frm.target = "winBookdnload";
+	frm.action = gRootUrl+"/support/popup/bookdnload.php";
+	frm.submit();
+	win.focus();
+}
+</script>
+<script type="text/javascript">
+//<![CDATA[
+function initMoving(target, position, topLimit, btmLimit) {
+	if (!target)
+		return false;
 
-        <section class="content-section">
-          <div class="section-title">
-            <h2>작가 인터뷰 <span>Self Interview</span></h2>
-            <a href="#">MORE</a>
-          </div>
-          <div class="interview-grid">
-            <article class="interview-card">
-              <div class="portrait"></div>
-              <div><h3>[황일성] 오늘부터 나는 평생현역이다</h3><p>안녕하세요. 4060 중장년을 위한 독자 인터뷰를 정리했습니다.</p></div>
-            </article>
-            <article class="interview-card">
-              <div class="portrait two"></div>
-              <div><h3>[최성표] 나의 어머니의 기도 위에 서 있다</h3><p>진지한 문장으로 삶의 기록과 출간 이야기를 전합니다.</p></div>
-            </article>
-            <article class="interview-card">
-              <div class="portrait three"></div>
-              <div><h3>[서태수] 강마을에 묻힌 서사</h3><p>인생과 자연을 담은 작품 세계를 소개합니다.</p></div>
-            </article>
-          </div>
-        </section>
+	var obj = target;
+	var initTop = position;
+	var bottomLimit = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight) - btmLimit - obj.offsetHeight;
+	var top = initTop;
 
-        <section class="bottom-grid" aria-label="뉴스와 상담">
-          <div class="mini-panel">
-            <h3>북랩 <span>News</span></h3>
-            <ul class="news-list">
-              <li><span>2026년 5월 무이자 할부</span><time>26-05-06</time></li>
-              <li><span>2026년 1사분기 인세지급 안내</span><time>26-04-14</time></li>
-              <li><span>2026년 4월 무이자 할부</span><time>26-04-14</time></li>
-              <li><span>2026년 3월 무이자 할부</span><time>26-03-10</time></li>
-            </ul>
-          </div>
-          <div class="mini-panel">
-            <h3>북랩 <span>Story</span></h3>
-            <div class="consult-mini"><div class="book-cover blue" data-title="Story"></div><span>북랩, 출간 종수 8천 종 돌파!</span></div>
-          </div>
-          <div class="mini-panel">
-            <div class="consult-mini"><strong>서점유통 출판<br>인쇄/제본<br>도서주문</strong><span>02-2026-5566<br>02-2026-3334<br>02-3159-9638</span></div>
-            <div class="pay-box">신용카드 결제<br>무통장입금 우리은행 1005-980-007000</div>
-          </div>
-        </section>
+	//obj.style.position = 'absolute';
+	obj.style.position = 'relative';
 
-        <nav class="footer-tools" aria-label="하단 빠른 메뉴">
-          <a href="#">원고전송</a><a href="#">원고작성 가이드</a><a href="#">나의 출판계약서</a><a href="#">내 책 홍보하기</a>
-          <a href="#">출판가이드북</a><a href="#">북랩 블로그</a><a href="#">도서유통망</a><a href="#">도서판매량 및 인세</a>
-        </nav>
+	if (typeof(window.pageYOffset) == 'number') {	//WebKit
+		var getTop = function() {
+			return window.pageYOffset;
+		}
+	} else if (typeof(document.documentElement.scrollTop) == 'number') {
+		var getTop = function() {
+			return Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+		}
+	} else {
+		var getTop = function() {
+			return 0;
+		}
+	}
 
-        <footer class="footer-info">
-          <nav class="footer-nav">
-            <a href="#">회사소개</a><a href="#">오시는 길</a><a href="#">회원가입</a><a href="#">개인정보취급방침</a><a href="#">인재채용</a><a href="#">관리자페이지</a><a href="#">고객센터</a>
-          </nav>
-          <div class="footer-logo">북랩 <small>Book Lab</small></div>
-          <p>(주)북랩  |  대표이사: 손병국  |  대표전화: 02-2026-5777  |  메일: book@book.co.kr<br>
-          서울특별시 금천구 가산디지털1로 168, 우림라이온스밸리  |  사업자등록번호: 128-81-98572</p>
-        </footer>
-      </main>
+	if (self.innerHeight) {	//WebKit
+		var getHeight = function() {
+			return self.innerHeight;
+		}
+	} else if(document.documentElement.clientHeight) {
+		var getHeight = function() {
+			return document.documentElement.clientHeight;
+		}
+	} else {
+		var getHeight = function() {
+			return 500;
+		}
+	}
 
-      <aside class="right-rail" aria-label="우측 원본 빠른 메뉴">
-        <a class="quick-link" href="#"><i>⇧</i>원고 전송</a>
-        <a class="quick-link" href="#"><i>▣</i>신용카드 결제</a>
-        <a class="quick-link" href="#"><i>×</i>결제오류 신고</a>
-        <a class="quick-link" href="#"><i>▤</i>카드 무이자 할부</a>
-        <a class="quick-link hot" href="#"><i>冊</i>저자구매</a>
-        <a class="quick-link hot" href="#"><i>▭</i>컬러 중철봉투</a>
-        <a class="quick-link" href="#"><i>₩</i>현금영수증 조회</a>
-        <a class="quick-link" href="#"><i>▦</i>배송 조회</a>
-        <a class="quick-link" href="#"><i>☎</i>작가연락처 문의</a>
-        <a class="quick-link" href="#"><i>▥</i>도서목록 다운로드</a>
-        <div class="quick-banner">서점매절<small>영업을 하는지 콕 확인하세요!</small></div>
-        <div class="quick-banner">3분<small>만에 아는 북랩</small></div>
-      </aside>
-    </div>
-  </div>
-</body>
-</html>
+	function move() {
+		if (initTop > 0) {
+			pos = getTop() + initTop;
+		} else {
+			pos = getTop() + getHeight() + initTop;
+		}
+
+		if (pos > bottomLimit)
+			pos = bottomLimit;
+		if (pos < topLimit)
+			pos = topLimit;
+
+		interval = top - pos;
+		top = top - interval / 3;
+		obj.style.top = top + 'px';
+
+		window.setTimeout(function () {
+			move();
+		}, 25);
+	}
+
+	function addEvent(obj, type, fn) {
+		if (obj.addEventListener) {
+			obj.addEventListener(type, fn, false);
+		} else if (obj.attachEvent) {
+			obj['e' + type + fn] = fn;
+			obj[type + fn] = function() {
+				obj['e' + type + fn](window.event);
+			}
+			obj.attachEvent('on' + type, obj[type + fn]);
+		}
+	}
+
+	addEvent(window, 'load', function () {
+		move();
+	});
+}
+//]]>
+</script>
+					<!-- div id="divMenu" style="width:71px; height:143px; position:relative; left:0px; top:0px; z-index:1;" -->
+					<!-- div id="divMenu" style="position:fixed;width:71px;height:143px;;top:120px;z-index:1;" --> <!-- 스크롤에 따라 화면 상단 120px 간격으로 고정 -->
+					<div id="divMenu" style="position:relative;width:71px;height:143px;top:0px;z-index:1;"> <!-- 스크롤에 상관없이 상단 고정 -->
+                        <table border="0" cellpadding="0" cellspacing="0" width="71">
+                            <tbody><tr>
+                                <td align="left" valign="top">
+									<div style="position:absolute;top:0;left:0px;z-index:9999;width:110px;">
+										<!--<div style="margin:0 0 0 10px;">
+										<a href="http://www.book.co.kr/ebooks/ecatalog.php?Dir=215" target="_blank"><img src="/essay_ver2/new/img/150723.gif" alt="북랩 편집디자인 매뉴얼 2015"/></a>
+										</div>-->
+
+										<!-- img src="/essay_ver2/images/right/right_tel_0708.jpg" width="110" height="291" usemap="#map_right_tel" style="margin:0 0 0 0;" alt="상담전화" / -->
+										
+										<img src="/essay_ver2/images/right/right_body3rd_lnk7.jpg?v5.1" width="110" height="665" usemap="#map_right_body3rd" style="margin:0 0 0 0;" alt="그 외">
+										<map name="map_right_body3rd" id="map_right_body3rd">
+			<area shape="rect" coords="5,5,105,59" href="javascript:;" onclick="popup_doctrans_write()" alt="원고 전송">
+		  	<area shape="rect" coords="5,64,105,121" href="javascript:;" onclick="popup_pay_credit()" alt="신용카드 결제">
+		  	<area shape="rect" coords="5,126,105,186" href="javascript:;" onclick="popup_credit_error()" alt="결제오류신고">
+		  	<area shape="rect" coords="5,191,105,250" href="javascript:;" onclick="location_href('/essay_ver2/bbs/view.php?code=booklab_notice&amp;idx=4896')" alt="카드 무이자 할부">
+		  	<area shape="rect" coords="5,255,105,317" href="javascript:;" onclick="movepage_login('/essay_ver2/bshop/prd_list.php')" alt="저자구매">
+		  	<area shape="rect" coords="5,322,105,388" href="javascript:;" onclick="movepage_href('4', '11', '', '')" alt="컬러 증정봉투">
+			<area shape="rect" coords="5,391,105,454" href="javascript:;" onclick="movepage_login('/essay_ver2/mypage/pay_list.php?cbill=Y')" alt="현금영수증 조회">
+			<area shape="rect" coords="5,460,105,525" href="javascript:;" onclick="location_href('/essay_ver2/order/find_deliver.php')" alt="배송 조회">
+			<area shape="rect" coords="5,530,105,590" href="javascript:;" onclick="location_href('/essay_ver2/support/coop_contact.php')" alt="작가연락처 문의">
+			<area shape="rect" coords="5,600,105,660" href="javascript:;" onclick="location_href('/essay_ver2/bshop/bookdnldxls.php')" alt="도서목록 다운로드">
+		 </map>
+										<a href="javascript:;" onclick="location_href('/essay_ver2/bbs/view.php?idx=2968&amp;code=photo')" alt="서점매절"><img src="/essay_ver2/images/right/right_allgo.jpg" width="110" height="151" style="margin:10px 0 0 0;" alt="서점매절"></a>
+
+										<a href="javascript:;" onclick="popup_ecatalog('/ebooks/ecatalog.php?Dir=334', 'fixed');"><img src="/essay_ver2/images/right/threeminuteguide.png?v2.1" style="margin:10px 0 0 0;" alt="3분에 아는 북랩"></a>
+
+										<!-- div style="margin:10px 0 0 0;">
+											<a href="/essay_ver2/publish/advice.php"><img src="/essay_ver2/images/index/quick_02.jpg" alt="스마트 출판기업 북랩-상담전화:02-2026-5566,상담문자:010-4220-1100"/></a>
+										</div>
+										<div style="margin:10px 0 0 0;">
+											<a href="#" onclick="javascript:window.open('https://talk.naver.com/wcbpo7?ref='+encodeURIComponent(location.href), 'talktalk', 'width=471, height=640');return false;"><img
+												src="/essay_ver2/images/right/naver_talk.png" alt="네이버 톡톡" /></a>
+										</div>
+										<div style="margin:10px 0 0 0;">
+											<img src="/essay_ver2/images/right/quick_counsel.png" alt="스마트 출판기업 북랩-상담전화:02-2026-5566,상담문자:010-4220-1100" usemap="#Map_right_banner_2" style="border:1px solid #EBEBEB;" />
+											<map name="Map_right_banner_2" id="Map_right_banner_2">
+											    <area shape="rect" coords="1, 1, 107, 175" href="javascript:;" onClick="location_href('/essay_ver2/publish/advice.php')" alt="출간문의" />
+											    <area shape="rect" coords="1, 177, 107, 252" href="javascript:;" onclick="window.open('https://talk.naver.com/wcbpo7?ref='+encodeURIComponent(location.href), 'talktalk', 'width=471, height=640');return false;" alt="네이버 톡톡" />
+											    <area shape="rect" coords="1, 252, 107, 354" href="javascript:;" onClick="location_href('/essay_ver2/publish/advice.php')" alt="출간문의" />
+											</map>
+										</div -->
+										<!-- div style="margin:10px 0 0 0;border:1px solid #EBEBEB;">
+											<a href="javascript:;" onClick="location_href('/essay_ver2/publish/advice.php')" title="출간문의" /><img src="/essay_ver2/images/right/banner_tel.jpg" width="108" height="177" alt="상담전화" /></a>
+											<a href="javascript:;" onClick="location_href('/essay_ver2/publish/advice.php')" title="카톡상담" /><img src="/essay_ver2/images/right/banner_katalk.jpg" width="108" height="100" alt="카톡상담ID" style="border-top:1px solid #EBEBEB;" /></a>
+											<script src='http://web.chat4support.com/weboperator/Operator/banner.aspx?sid=29272'></script> <채팅>
+										</div -->
+										<!-- div style="margin:10px 0 0 0;">
+											<a href="javascript:;" onClick="window.open('https://talk.naver.com/wcbpo7?ref='+encodeURIComponent(location.href), 'talktalk', 'width=471,height=640');return false;" title="네이버톡톡" /><img src="/essay_ver2/images/right/banner_naver.jpg" alt="네이버톡톡" /></a>
+										</div>
+										<div style="margin:10px 0 0 0;">
+											<a href="/essay_ver2/bbs/list.php?code=faq"><img src="/essay_ver2/images/index/quick_01.jpg" alt="" /></a>
+											<a href="/essay_ver2/publish/bbs_faq_1.php" title="초판은 몇 부를 발행하나요?"><img src="/essay_ver2/images/index/quick_01.jpg" alt="" /></a>
+											<a href="/essay_ver2/bbs/view.php?idx=2968&code=photo" title="서점매절"><img src="/essay_ver2/images/banner/right_allgo.jpg" width="110" height="132" alt="" /></a>
+										</div>
+										<div style="margin:10px 0 0 0;">
+																					</div>
+										<div style="margin:10px 0 0 0;">
+											<img src="/essay_ver2/new/img/140930_brand.gif" alt="북랩브랜드" usemap="#link"/>
+											<map name="link">
+												<area shape="rect" coords="6,38,89,74" href="/essay_ver2/bshop/prd_list.php?book_press=북랩" target="_blank" alt="북랩">
+												<area shape="rect" coords="6,86,89,122" href="/essay_ver2/bshop/prd_list.php?book_press=에세이퍼블리싱" target="_blank" alt="에세이퍼블리싱">
+												<area shape="rect" coords="6,135,89,171" href="/essay_ver2/bshop/prd_list.php?book_press=해피소드" target="_blank" alt="해피소드">
+											</map>
+										</div>
+										<div style="margin:10px 0 0 0;">
+											<a href="/essay_ver2/support/coop_contact.php"><img src="/essay_ver2/images/right/banner_contact.gif" width="110" height="60" alt="작가 연락처 문의하기" /></a>
+										</div -->
+
+										<!-- a href="http://webhard.co.kr" target="_blank"><img src="/essay_ver2/images/right/webhard2nd.jpg" width="110" height="160" style="margin:10px 0 0 0;" alt="웹하드" /></a -->
+										<!-- a href="https://www.paypal.com/kr/home" target="_blank"><img src="/essay_ver2/images/right/paypal.jpg" width="110" height="91" style="margin:10px 0 0 0;" alt="외부결제" /></a 250825 -->
+
+										<!-- div style="margin:10px 0 0 0;text-align:center;">
+											<div style="width:108px;height:35px;padding:5px 0 0 0;background:#f1f1f1;line-height:15px;border-top:1px solid #cccccc;border-right:1px solid #cccccc;border-left:1px solid #cccccc;">
+												<span style="font-size:14px;font-weight:bold;letter-spacing:-1px;font-family:'돋음';">파트너 출판사</span><br />
+												<span style="letter-spacing:-1px;font-family:'돋음';">(1인 출판사)</span>
+											</div>
+										</div>
+										<div style="padding:10px 0 0 0;border:1px solid #E9E9E9;">
+																					</div -->
+									</div>
+								</td>
+							</tr>
+						</tbody></table>
+					</div>
+<form name="mybookdn" method="post" action="" style="margin:0;">
+	<input type="hidden" name="dntime" value="1779791853">
+	<input type="hidden" name="rtnpage" value="/index.html">
+</form>
+
+<!-- //right -->
+					</td>
+  </tr></tbody>
+</table>
+
+<iframe src="" id="iframe_exe" name="iframe_exe" width="0" height="0" style="display:none;"></iframe>
+
+<!-- bottom 2025.08.25 start -->
+<style type="text/css">
+img{border:0}
+.ft_info{width:900px;border-top:1px solid #ccc;}
+.ft_info ul{list-style:none;display:inline-block;margin:15px 0 0 15px;}
+.ft_info li{float:left;letter-spacing:-1px}
+.ft_info li a:hover{color:#75746d}
+.ft_info .bar{color:#ccc;font-size:11px;margin:0 15px}
+</style>
+<script type="text/javascript">
+if (typeof location_href == 'function') {
+}
+else {
+	function location_href(page)
+	{
+		if (page) {//페이지 지정
+			location.href = page;
+		}
+	}
+}
+</script>
+			<table align="center" border="0" cellpadding="0" cellspacing="0" width="978">
+                <tbody><tr>
+                    <td height="81" valign="top">
+		            <div class="ft_info">
+						<ul>
+							<li><a href="javascript:;" onclick="location_href('/essay_ver2/company/company.php')">회사소개</a></li>
+							<li><span class="bar">l</span></li>
+							<li><a href="javascript:;" onclick="location_href('/essay_ver2/company/map.php')">오시는 길</a></li>
+							<li><span class="bar">l</span></li>
+							<li><a href="javascript:;" onclick="location_href('/essay_ver2/member/join_agree.php')">회원가입</a></li>
+							<li><span class="bar">l</span></li>
+							<li><a href="javascript:;" onclick="location_href('/essay_ver2/bottom/clause.php')">회원약관</a></li>
+							<li><span class="bar">l</span></li>
+							<li><a href="javascript:;" onclick="location_href('/essay_ver2/bottom/privacy.php')">개인정보취급방침</a></li>
+							<li><span class="bar">l</span></li>
+							<li><a href="javascript:;" onclick="movepage_href('1', '8', '', '');">인재채용</a></li>							<li><span class="bar">l</span></li>
+							<li><a href="javascript:;" onclick="location_href('/essay_ver2/bottom/pubethics.php')">출판계약 윤리강령</a></li>
+							<li><span class="bar">l</span></li>
+							<li><a href="http://www.book.co.kr/essay_ver2/admin/index.php" target="_blank">관리자페이지</a></li>
+							<li><span class="bar">l</span></li>
+							<li><a href="javascript:;" onclick="location_href('/essay_ver2/support/helpdesk.php')">고객센터</a></li>
+							<li><span class="bar">l</span></li>
+							<li><a href="http://blog.naver.com/essaybook" target="_blank">블로그</a></li>
+													</ul>
+						<div style="position:relative;margin:15px 0;text-align:left;">
+							<!-- mg src="/essay_ver2/images/bottom/booklab_address.jpg" width="627" height="102" alt="사업장 주소" / -->
+
+							<div style="position:absolute;top:0px;left:0px;width:175px;height:102px;">
+								<img src="/essay_ver2/images/bottom/bottom_logo_121_31.png?v1.1" width="121" height="31" style="margin:30px 0 0 40px;">
+							</div>
+							<div style="position:absolute;top:0px;left:175px;width:20px;height:102px;">
+								<div style="margin:12px 0 0 10px;width:1px;height:70px;border-right:1px dotted #575757;"></div>
+							</div>
+							<div style="position:absolute;top:0px;left:195px;width:490px;height:112px;font-family:'Nanum Gothic';padding:0 0 0 10px;line-height:17px;font-size:11px;color:#575757;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;">
+								<p>(주)북랩<span style="margin:0 10px;">|</span>대표이사: 손형국<span style="margin:0 10px;">|</span>대표전화: 02-2026-5777<span style="margin:0 10px;">|</span>메일: book@book.co.kr</p>
+								<p>사업자등록번호: 128-81-98572<span style="margin:0 5px;">
+									<a href="javascript:;" onclick="window.open('http://www.ftc.go.kr/bizCommPop.do?wrkr_no=1288198572', 'winFtc', 'width=800,height=800,scrollbars=yes');return false;" style="text-decoration:none;"><span style="border:1px solid #cccccc;background:#f1f1f1;color:#000000;padding:1px 5px;">사업자번호조회</span></a></span></p>
+								<p>주소: 서울특별시 금천구 가산디지털1로 168(가산동, 우림라이온스밸리)<br> <strong>본사 및 POD센터</strong> B동 B113~115호, <strong>편집부</strong> B동 B111호</p>
+								<p>통신판매업신고: 2011-서울금천-0755<span style="margin:0 5px;">|</span>개인정보관리자: 선일영<span style="margin:0 5px;">|</span>호스팅제공자: (주)스마일서브</p>
+								<!-- p>본 사이트의 콘텐츠는 저작권법의 보호를 받는 바 복사, 배포 등을 금합니다.</p -->
+							</div>
+							<div style="position:absolute;top:90px;left:30px;">
+								<select name="bottom_familysite" class="userSelect" style="width:150px;" onchange="top.location.href=this.value;return false;">
+									<option style="color:#888888;" value="">::북랩 미디어 채널::</option><option value="http://blog.naver.com/essaybook">&nbsp;&nbsp;블로그</option><option value="http://www.youtube.com/channel/UCqnKtPk4pjvqvnrQeeT8X9w">&nbsp;&nbsp;유튜브 								</option></select>
+							</div>
+							<div style="position:absolute;top:90px;left:200px"><img src="/essay_ver2/new/img/footer_img_hn.gif" border="0" alt="클릭하시면 이니시스 결제시스템의 유효성을 확인하실 수 있습니다." style="cursor:pointer" onclick="window.open('https://mark.inicis.com/mark/popup_v1.php?no=58726&amp;st=1407481726','mark','scrollbars=no,resizable=no,width=565,height=683')"></div>
+							<div style="position:absolute;top:0px;left:687px;">
+								<a href="/essay_ver2/company/map.php" target="_blank" title="북랩 오시는 길"><img src="/essay_ver2/images/top/bottom_map.jpg?v2.1" width="273" height="102"></a>
+							</div>
+						</div>
+					</div>
+                    </td>
+                </tr>
+            </tbody></table>
+        </td>
+    </tr>
+</tbody></table>
+
+<form name="mytopsearchword" id="mytopsearchword" method="get"> <!-- 상단 검색 -->
+	<input type="hidden" name="mode" value="topsearch">
+	<input type="hidden" name="sword" value="">
+</form>
+
+<map name="map_store_titimg">
+    <area shape="rect" coords="421,7,551,29" href="javascript:;" onclick="location_href('/essay_ver2/member/my_wish.php')" alt="나의 주문리스트 보기">
+    <area shape="rect" coords="561,7,680,29" href="javascript:;" onclick="location_href('/essay_ver2/bshop/prd_basket.php')" alt="나의 장바구니 보기">
+</map>
+
+</body></html>
