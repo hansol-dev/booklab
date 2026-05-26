@@ -4193,6 +4193,7 @@ body.has-mobile-quick-sheet {
   .hero-renewal {
     display: grid;
     grid-template-columns: 1fr;
+    width: 100%;
     min-height: clamp(440px, 118vw, 580px);
     height: auto;
     margin-inline: 0;
@@ -4237,9 +4238,10 @@ body.has-mobile-quick-sheet {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-width: 0;
     min-height: clamp(440px, 118vw, 580px);
     width: 100%;
-    padding: 40px 22px 126px;
+    padding: 40px 20px 126px;
     color: var(--white);
     text-align: left;
   }
@@ -4281,14 +4283,19 @@ body.has-mobile-quick-sheet {
     max-width: 100%;
     margin: 14px 0 18px;
     color: var(--white);
-    font-size: clamp(32px, 9.2vw, 43px);
+    font-size: clamp(30px, 8.6vw, 40px);
     line-height: 1.18;
     letter-spacing: -0.045em;
     text-shadow: 0 10px 24px rgba(0, 0, 0, 0.34);
+    overflow-wrap: anywhere;
   }
 
   .hero-slide-0 .hero-copy h1 {
     font-family: Georgia, "Times New Roman", "Pretendard Variable", serif;
+  }
+
+  .hero-slide-0 .hero-copy h1 strong {
+    display: block;
   }
 
   .hero-copy h1 strong {
