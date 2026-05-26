@@ -4289,9 +4289,9 @@ body.has-mobile-quick-sheet {
     line-height: 1.18;
     letter-spacing: -0.045em;
     text-shadow: 0 10px 24px rgba(0, 0, 0, 0.34);
-    word-break: break-all;
-    overflow-wrap: anywhere;
-    line-break: anywhere;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    line-break: strict;
   }
 
   .hero-slide-0 .hero-copy h1 {
@@ -4301,9 +4301,14 @@ body.has-mobile-quick-sheet {
   .hero-copy h1 span,
   .hero-copy h1 strong {
     max-width: 100%;
-    word-break: break-all;
-    overflow-wrap: anywhere;
-    line-break: anywhere;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    line-break: strict;
+  }
+
+  .hero-copy h1 .no-break-mark {
+    display: inline-block;
+    white-space: nowrap;
   }
 
   .hero-slide-0 .hero-copy h1 strong {

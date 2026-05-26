@@ -643,7 +643,7 @@
         let current = 0;
         let timer;
         const autoSlideDelay = 10000;
-        const formatTitleLine = (line) => line.replace(/([!?])/g, "&#8288;$1");
+        const formatTitleLine = (line) => line.replace(/([^<>\s])([!?])/g, '<span class="no-break-mark">$1$2</span>');
 
         const render = (index) => {
           const slide = slides[index];
