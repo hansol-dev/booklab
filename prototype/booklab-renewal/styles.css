@@ -4298,6 +4298,17 @@ body.has-mobile-quick-sheet {
     font-family: Georgia, "Times New Roman", "Pretendard Variable", serif;
   }
 
+  .hero-slide-1 .hero-copy h1 {
+    width: 100%;
+    font-size: clamp(20px, 5.5vw, 24px);
+    line-height: 1.24;
+    letter-spacing: -0.05em;
+  }
+
+  .hero-slide-1 .hero-copy h1 span {
+    white-space: nowrap;
+  }
+
   .hero-copy h1 span,
   .hero-copy h1 strong {
     max-width: 100%;
@@ -4639,6 +4650,20 @@ body.has-mobile-quick-sheet {
     font-size: clamp(27px, 7.8vw, 31px);
     line-height: 1.12;
     overflow-wrap: anywhere;
+  }
+
+  .hero-slide-1 .hero-copy h1 {
+    width: 100%;
+    font-size: clamp(20px, 5.5vw, 24px);
+    line-height: 1.24;
+    letter-spacing: -0.05em;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    line-break: strict;
+  }
+
+  .hero-slide-1 .hero-copy h1 span {
+    white-space: nowrap;
   }
 
   .hero-slide-0 .hero-copy h1 strong {
