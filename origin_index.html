@@ -1,0 +1,1003 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>북랩 원본형 메인 정리 시안</title>
+  <style>
+    @font-face {
+      font-family: "Pretendard Variable";
+      src: url("./prototype/booklab-renewal/assets/fonts/PretendardVariable.woff2") format("woff2-variations");
+      font-weight: 45 920;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --red: #d82830;
+      --red-dark: #be1f29;
+      --navy: #0f2140;
+      --blue: #17416e;
+      --ink: #1f2937;
+      --text: #4b5563;
+      --muted: #8a94a6;
+      --line: #e8ebf0;
+      --soft: #f7f8fb;
+      --white: #ffffff;
+      --yellow-outline: #e6dd00;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-width: 1160px;
+      background: #ffffff;
+      color: var(--text);
+      font-family: "Pretendard Variable", "Malgun Gothic", Dotum, sans-serif;
+      font-size: 14px;
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+      word-break: keep-all;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page {
+      width: 1160px;
+      margin: 0 auto;
+    }
+
+    /* Red reference area: original-style header and navigation */
+    .origin-header {
+      width: 980px;
+      height: 110px;
+      margin: 0 auto;
+      background: #fff;
+      border-top: 2px solid var(--red);
+    }
+
+    .head-main {
+      display: grid;
+      grid-template-columns: 170px 1fr 258px;
+      align-items: center;
+      gap: 18px;
+      height: 70px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--red);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .logo-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: 3px solid var(--red);
+      border-radius: 50%;
+      font-size: 21px;
+    }
+
+    .logo strong {
+      display: block;
+      font-size: 30px;
+      letter-spacing: -0.08em;
+    }
+
+    .logo span {
+      display: block;
+      margin-top: 2px;
+      color: #9a1119;
+      font-size: 13px;
+      letter-spacing: 0;
+    }
+
+    .search {
+      display: grid;
+      grid-template-columns: 80px 1fr 54px;
+      height: 42px;
+      border: 1px solid #d6d9df;
+      background: #fff;
+    }
+
+    .search select,
+    .search input,
+    .search button {
+      border: 0;
+      font: inherit;
+    }
+
+    .search select {
+      padding-left: 15px;
+      background: #f1f2f4;
+      color: #333;
+      font-weight: 700;
+    }
+
+    .search input {
+      min-width: 0;
+      padding: 0 14px;
+      color: #7b8390;
+    }
+
+    .search button {
+      background: var(--red);
+      color: #fff;
+      font-size: 0;
+      cursor: pointer;
+    }
+
+    .search button::before {
+      content: "⌕";
+      font-size: 30px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .head-side {
+      text-align: right;
+    }
+
+    .contract {
+      color: #5a2020;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .contract b {
+      color: #2b1b1b;
+      font-size: 22px;
+      letter-spacing: -0.04em;
+    }
+
+    .member {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 5px;
+      color: #6c7280;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .member a + a::before {
+      content: "|";
+      margin-right: 8px;
+      color: #d0d3d8;
+    }
+
+    .gnb {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      height: 40px;
+      margin-left: 170px;
+      background: var(--red);
+    }
+
+    .gnb a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      border-right: 1px solid rgba(255, 255, 255, 0.22);
+      font-weight: 900;
+    }
+
+    .gnb a:last-child {
+      background: var(--blue);
+      border-right: 0;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 120px 740px 90px;
+      gap: 8px;
+      width: 966px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    /* Red reference area: original-style sidebars */
+    .left-rail,
+    .right-rail {
+      background: #fff;
+      border: 1px solid var(--red);
+    }
+
+    .left-rail {
+      padding: 9px;
+    }
+
+    .left-ad {
+      padding: 10px 6px;
+      border-top: 4px solid var(--red);
+      text-align: center;
+    }
+
+    .left-ad h2 {
+      margin: 0 0 10px;
+      color: #222660;
+      font-size: 19px;
+      line-height: 1.25;
+    }
+
+    .left-ad .tower {
+      height: 150px;
+      margin: 0 auto 10px;
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.25), transparent 50%),
+        linear-gradient(180deg, #d7d7d7, #f5f5f5);
+      border: 1px solid #ddd;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .left-ad .tower::after {
+      content: "북랩";
+      position: absolute;
+      left: 35px;
+      top: 36px;
+      width: 44px;
+      height: 78px;
+      padding-top: 22px;
+      background: var(--red);
+      color: #fff;
+      font-weight: 900;
+      writing-mode: vertical-rl;
+    }
+
+    .left-ad p {
+      margin: 8px 0;
+      color: #6d7280;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .left-ad b {
+      display: block;
+      color: #595f69;
+      font-size: 16px;
+      letter-spacing: -0.04em;
+    }
+
+    .left-red {
+      display: block;
+      margin: 10px 8px 0;
+      padding: 8px 0;
+      border: 1px solid #ffd6d6;
+      color: var(--red);
+      font-weight: 900;
+    }
+
+    .kakao,
+    .award {
+      margin-top: 10px;
+      padding: 10px 7px;
+      border: 1px solid #e2e2e2;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .kakao b {
+      color: #f0b400;
+      font-size: 17px;
+    }
+
+    .award {
+      background: #151515;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .award span {
+      color: #ffd85a;
+    }
+
+    .right-rail {
+      display: grid;
+      border-bottom: 0;
+    }
+
+    .quick-link {
+      display: grid;
+      place-items: center;
+      gap: 4px;
+      min-height: 60px;
+      padding: 8px 4px;
+      border-bottom: 1px solid #e5e5e5;
+      color: #6b7280;
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .quick-link i {
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 22px;
+      border: 2px solid #777;
+      border-radius: 3px;
+      color: #777;
+      font-style: normal;
+      font-size: 13px;
+    }
+
+    .quick-link.hot {
+      color: var(--red);
+    }
+
+    .quick-banner {
+      padding: 10px 5px;
+      border-bottom: 1px solid #e5e5e5;
+      color: #eb4a22;
+      font-size: 13px;
+      font-weight: 900;
+      text-align: center;
+      line-height: 1.25;
+    }
+
+    .quick-banner small {
+      display: block;
+      margin-top: 6px;
+      color: #555;
+      font-size: 11px;
+    }
+
+    /* Yellow reference area: redesigned main content */
+    .main-area {
+      border-left: 2px solid var(--yellow-outline);
+      border-right: 2px solid var(--yellow-outline);
+      background: #fff;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      height: 254px;
+      background: #fff7f8;
+      border: 1px solid #f0d9dc;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-dots {
+      position: absolute;
+      left: 50%;
+      bottom: 16px;
+      display: flex;
+      gap: 9px;
+      transform: translateX(-50%);
+    }
+
+    .hero-dots span {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #d6d8dd;
+    }
+
+    .hero-dots span:nth-child(2) {
+      background: var(--red);
+    }
+
+    .notice-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 36px;
+      padding: 0 14px;
+      background: #0f213d;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .notice-strip span {
+      display: grid;
+      place-items: center;
+      width: 19px;
+      height: 19px;
+      border: 1px solid #15c2cc;
+      color: #15c2cc;
+      font-size: 13px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 14px 0 20px;
+    }
+
+    .service-card {
+      min-height: 174px;
+      padding: 22px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      background: #333;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.18));
+      z-index: 0;
+    }
+
+    .service-card.distribution {
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        url("./prototype/booklab-renewal/assets/service/service-distribution.png") center / cover;
+    }
+
+    .service-card.tools {
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.18)),
+        url("./prototype/booklab-renewal/assets/service/service-tools-warm.png") center / cover;
+    }
+
+    .service-card.print {
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.18)),
+        url("./prototype/booklab-renewal/assets/service/service-printing-warm.png") center / cover;
+    }
+
+    .service-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-card h3 {
+      margin: 0;
+      font-size: 25px;
+      line-height: 1.15;
+    }
+
+    .service-card p {
+      margin: 9px 0 18px;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .service-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .service-actions a {
+      min-width: 62px;
+      padding: 7px 9px;
+      background: rgba(17, 17, 17, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      border-radius: 3px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .content-section {
+      padding: 0 0 22px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 0 12px;
+      padding-top: 2px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-title h2 {
+      margin: 0;
+      color: #505967;
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .section-title h2 span {
+      color: var(--red);
+      font-weight: 900;
+    }
+
+    .section-title a {
+      color: #9ca3af;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .book-row {
+      display: grid;
+      grid-template-columns: 228px repeat(4, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .feature-book {
+      display: grid;
+      grid-template-columns: 1fr 104px;
+      min-height: 210px;
+      padding: 18px 14px;
+      background: #14265d;
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .feature-book.red {
+      background: #7f0d1b;
+    }
+
+    .feature-book::after {
+      content: "Book Lab";
+      position: absolute;
+      left: 8px;
+      bottom: -18px;
+      color: rgba(255, 255, 255, 0.08);
+      font-size: 50px;
+      font-weight: 900;
+    }
+
+    .feature-book b {
+      display: block;
+      margin-bottom: 15px;
+      font-size: 20px;
+      line-height: 1.28;
+    }
+
+    .feature-book small {
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .cover {
+      width: 96px;
+      height: 140px;
+      background: #fff;
+      box-shadow: 0 14px 22px rgba(0, 0, 0, 0.28);
+    }
+
+    .cover.white {
+      display: grid;
+      place-items: center;
+      padding: 12px;
+      color: #111;
+      font-size: 21px;
+      font-weight: 900;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .cover.art {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.18)),
+        linear-gradient(135deg, #ffe4e9, #6c1f29);
+    }
+
+    .book-card {
+      min-width: 0;
+    }
+
+    .book-cover {
+      height: 148px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #eff5ff, #b9d9e4);
+      box-shadow: 8px 12px 18px rgba(15, 23, 42, 0.16);
+      position: relative;
+    }
+
+    .book-cover::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 10px;
+      background: rgba(0, 0, 0, 0.18);
+    }
+
+    .book-cover::after {
+      content: attr(data-title);
+      position: absolute;
+      inset: 18px 14px;
+      color: #163251;
+      font-size: 17px;
+      font-weight: 900;
+      line-height: 1.24;
+    }
+
+    .book-cover.blue {
+      background: linear-gradient(135deg, #143c9d, #f2c934);
+    }
+
+    .book-cover.blue::after,
+    .book-cover.black::after {
+      color: #fff;
+    }
+
+    .book-cover.black {
+      background: linear-gradient(135deg, #111, #3e3934);
+    }
+
+    .book-cover.green {
+      background: linear-gradient(135deg, #0b201a, #6f8d49);
+    }
+
+    .book-card h3 {
+      margin: 0;
+      color: #111;
+      font-size: 14px;
+      font-weight: 900;
+      line-height: 1.28;
+    }
+
+    .interview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--line);
+      border-left: 0;
+    }
+
+    .interview-card {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 12px;
+      padding: 13px;
+      border-left: 1px solid var(--line);
+      min-height: 122px;
+    }
+
+    .portrait {
+      background: linear-gradient(145deg, #d9c8b2, #6d5b4e);
+    }
+
+    .portrait.two {
+      background: linear-gradient(145deg, #d7dbe5, #5a5b6b);
+    }
+
+    .portrait.three {
+      background: linear-gradient(145deg, #efe1c8, #6c8a68);
+    }
+
+    .interview-card h3 {
+      margin: 0 0 7px;
+      color: #202632;
+      font-size: 14px;
+      font-weight: 900;
+      line-height: 1.28;
+    }
+
+    .interview-card p {
+      margin: 0;
+      color: #7a8494;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 230px;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .mini-panel {
+      min-height: 122px;
+      padding: 15px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .mini-panel h3 {
+      margin: 0 0 10px;
+      color: #4b5563;
+      font-size: 17px;
+    }
+
+    .mini-panel h3 span {
+      color: var(--red);
+    }
+
+    .news-list {
+      display: grid;
+      gap: 5px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #6b7280;
+      font-size: 12px;
+    }
+
+    .news-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .consult-mini {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 10px;
+      align-items: center;
+      color: var(--red);
+      font-weight: 900;
+    }
+
+    .pay-box {
+      margin-top: 10px;
+      padding: 12px;
+      background: #f7f8fb;
+      border: 1px solid var(--line);
+      color: #111;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .footer-tools {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 16px;
+      background: #333;
+      border-top: 1px solid #474747;
+    }
+
+    .footer-tools a {
+      display: grid;
+      place-items: center;
+      min-height: 58px;
+      border-right: 1px solid #4b4b4b;
+      color: #d7d7d7;
+      font-weight: 900;
+    }
+
+    .footer-tools a:first-child {
+      color: #f5df22;
+    }
+
+    .footer-info {
+      padding: 16px 26px 22px;
+      border-bottom: 2px solid var(--yellow-outline);
+      color: #7a828e;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .footer-info .footer-logo {
+      color: var(--red);
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-bottom: 14px;
+      color: #8c94a0;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="origin-header" aria-label="북랩 원본형 헤더">
+      <div class="head-main">
+        <a class="logo" href="https://www.book.co.kr/">
+          <span class="logo-mark">↗</span>
+          <span><strong>북랩</strong><span>Book Lab</span></span>
+        </a>
+        <form class="search">
+          <select aria-label="검색 범위">
+            <option>도서</option>
+            <option>저자</option>
+          </select>
+          <input type="search" placeholder="도서 제목 또는 저자 이름을 입력하세요.">
+          <button type="submit">검색</button>
+        </form>
+        <div class="head-side">
+          <div class="contract">출판계약상담 <b>02-2026-5566</b></div>
+          <nav class="member" aria-label="회원 메뉴">
+            <a href="#">로그인</a>
+            <a href="#">회원가입</a>
+            <a href="#">MY북랩</a>
+            <a href="#">보도자료</a>
+          </nav>
+        </div>
+      </div>
+      <nav class="gnb" aria-label="주 메뉴">
+        <a href="#">회사소개</a>
+        <a href="#">출판가이드</a>
+        <a href="#">가격표</a>
+        <a href="#">출판유통</a>
+        <a href="#">인쇄/제본</a>
+        <a href="#">홍보/마케팅</a>
+        <a href="#">북스토어</a>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="left-rail" aria-label="좌측 원본 메뉴">
+        <div class="left-ad">
+          <h2>출판,<br>그 이상의 가치</h2>
+          <div class="tower" aria-hidden="true"></div>
+          <p>서점유통 출판<b>02.2026.5566</b></p>
+          <p>인쇄/제본<b>02.2026.3334</b></p>
+          <p>고객센터<b>02.2026.5777</b></p>
+          <a class="left-red" href="#">출간문의</a>
+        </div>
+        <div class="kakao"><b>TALK</b><br>카톡 상담<br>친구 추가 booklab</div>
+        <div class="award">2024 세종도서<br><span>3종 선정!</span></div>
+      </aside>
+
+      <main class="main-area" aria-label="정리된 메인 콘텐츠">
+        <section class="hero">
+          <img src="./ref_img/mainbanner_02.jpg" alt="재고 걱정 없이 저렴한 비용으로 스테디셀러를 실현하세요">
+          <div class="hero-dots" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        </section>
+
+        <div class="notice-strip"><span>▣</span>북랩은 서점유통에서 비매품 제작까지 모든 출판 서비스를 제공합니다. 원하는 메뉴를 선택하세요!</div>
+
+        <section class="service-grid" aria-label="출판 서비스 바로가기">
+          <article class="service-card distribution">
+            <h3>출판유통</h3>
+            <p>서점에 유통하고자 하는 책을 선택하세요.</p>
+            <div class="service-actions">
+              <a href="#">소설</a><a href="#">에세이</a><a href="#">시집</a><a href="#">자기계발</a>
+              <a href="#">경제·경영</a><a href="#">여행기</a><a href="#">인문·사회</a>
+            </div>
+          </article>
+          <article class="service-card tools">
+            <h3>출판도구 모음</h3>
+            <p>원고 전송부터 셀프 견적까지 한 번에 확인하세요.</p>
+            <div class="service-actions">
+              <a href="#">원고 전송기</a><a href="#">셀프 견적기</a><a href="#">프로필 생성기</a><a href="#">페이지 계산기</a>
+            </div>
+          </article>
+          <article class="service-card print">
+            <h3>인쇄 및 제본</h3>
+            <p>필요한 수량만큼 빠르게 주문하세요.</p>
+            <div class="service-actions">
+              <a href="#">맞춤견적</a><a href="#">1분 견적</a><a href="#">학급문집</a><a href="#">자서전</a>
+            </div>
+          </article>
+        </section>
+
+        <section class="content-section">
+          <div class="section-title">
+            <h2>명예의 전당 <span>Hall of Fame</span></h2>
+            <a href="#">MORE</a>
+          </div>
+          <div class="book-row">
+            <article class="feature-book">
+              <div><b>뉴스의 비유 왜곡<br>- 매스미디어의 상투적 비유 표현에 대한 철학적 성찰</b><small>2024 세종도서</small></div>
+              <div class="cover white">뉴스의<br>비유<br>왜곡</div>
+            </article>
+            <article class="book-card"><div class="book-cover" data-title="의료산책 1"></div><h3>의료산책 1: 광장으로 나온 의료</h3></article>
+            <article class="book-card"><div class="book-cover blue" data-title="데이터 분석, AI"></div><h3>데이터 분석, AI, IT 발전에 대한 적용 방안</h3></article>
+            <article class="book-card"><div class="book-cover" data-title="1899-1904"></div><h3>1899-1904년 한성감옥 수감자들의 기록</h3></article>
+            <article class="book-card"><div class="book-cover green" data-title="Weapon Science"></div><h3>웨폰 사이언스</h3></article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <div class="section-title">
+            <h2>북스토어 <span>Bookstore</span></h2>
+            <a href="#">MORE</a>
+          </div>
+          <div class="book-row">
+            <article class="feature-book red">
+              <div><b>아키타입 사적성 경제학</b><small>편집자 추천</small></div>
+              <div class="cover art"></div>
+            </article>
+            <article class="book-card"><div class="book-cover black" data-title="로마서 다시 쓰기"></div><h3>로마서 다시 쓰기</h3></article>
+            <article class="book-card"><div class="book-cover blue" data-title="Start the Eternal War"></div><h3>Start of the Eternal War</h3></article>
+            <article class="book-card"><div class="book-cover black" data-title="THE LAST CHURCH"></div><h3>마지막 교회 THE LAST CHURCH</h3></article>
+            <article class="book-card"><div class="book-cover" data-title="에고가 삼킨 예수"></div><h3>에고가 삼킨 예수</h3></article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <div class="section-title">
+            <h2>작가 인터뷰 <span>Self Interview</span></h2>
+            <a href="#">MORE</a>
+          </div>
+          <div class="interview-grid">
+            <article class="interview-card">
+              <div class="portrait"></div>
+              <div><h3>[황일성] 오늘부터 나는 평생현역이다</h3><p>안녕하세요. 4060 중장년을 위한 독자 인터뷰를 정리했습니다.</p></div>
+            </article>
+            <article class="interview-card">
+              <div class="portrait two"></div>
+              <div><h3>[최성표] 나의 어머니의 기도 위에 서 있다</h3><p>진지한 문장으로 삶의 기록과 출간 이야기를 전합니다.</p></div>
+            </article>
+            <article class="interview-card">
+              <div class="portrait three"></div>
+              <div><h3>[서태수] 강마을에 묻힌 서사</h3><p>인생과 자연을 담은 작품 세계를 소개합니다.</p></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="bottom-grid" aria-label="뉴스와 상담">
+          <div class="mini-panel">
+            <h3>북랩 <span>News</span></h3>
+            <ul class="news-list">
+              <li><span>2026년 5월 무이자 할부</span><time>26-05-06</time></li>
+              <li><span>2026년 1사분기 인세지급 안내</span><time>26-04-14</time></li>
+              <li><span>2026년 4월 무이자 할부</span><time>26-04-14</time></li>
+              <li><span>2026년 3월 무이자 할부</span><time>26-03-10</time></li>
+            </ul>
+          </div>
+          <div class="mini-panel">
+            <h3>북랩 <span>Story</span></h3>
+            <div class="consult-mini"><div class="book-cover blue" data-title="Story"></div><span>북랩, 출간 종수 8천 종 돌파!</span></div>
+          </div>
+          <div class="mini-panel">
+            <div class="consult-mini"><strong>서점유통 출판<br>인쇄/제본<br>도서주문</strong><span>02-2026-5566<br>02-2026-3334<br>02-3159-9638</span></div>
+            <div class="pay-box">신용카드 결제<br>무통장입금 우리은행 1005-980-007000</div>
+          </div>
+        </section>
+
+        <nav class="footer-tools" aria-label="하단 빠른 메뉴">
+          <a href="#">원고전송</a><a href="#">원고작성 가이드</a><a href="#">나의 출판계약서</a><a href="#">내 책 홍보하기</a>
+          <a href="#">출판가이드북</a><a href="#">북랩 블로그</a><a href="#">도서유통망</a><a href="#">도서판매량 및 인세</a>
+        </nav>
+
+        <footer class="footer-info">
+          <nav class="footer-nav">
+            <a href="#">회사소개</a><a href="#">오시는 길</a><a href="#">회원가입</a><a href="#">개인정보취급방침</a><a href="#">인재채용</a><a href="#">관리자페이지</a><a href="#">고객센터</a>
+          </nav>
+          <div class="footer-logo">북랩 <small>Book Lab</small></div>
+          <p>(주)북랩  |  대표이사: 손병국  |  대표전화: 02-2026-5777  |  메일: book@book.co.kr<br>
+          서울특별시 금천구 가산디지털1로 168, 우림라이온스밸리  |  사업자등록번호: 128-81-98572</p>
+        </footer>
+      </main>
+
+      <aside class="right-rail" aria-label="우측 원본 빠른 메뉴">
+        <a class="quick-link" href="#"><i>⇧</i>원고 전송</a>
+        <a class="quick-link" href="#"><i>▣</i>신용카드 결제</a>
+        <a class="quick-link" href="#"><i>×</i>결제오류 신고</a>
+        <a class="quick-link" href="#"><i>▤</i>카드 무이자 할부</a>
+        <a class="quick-link hot" href="#"><i>冊</i>저자구매</a>
+        <a class="quick-link hot" href="#"><i>▭</i>컬러 중철봉투</a>
+        <a class="quick-link" href="#"><i>₩</i>현금영수증 조회</a>
+        <a class="quick-link" href="#"><i>▦</i>배송 조회</a>
+        <a class="quick-link" href="#"><i>☎</i>작가연락처 문의</a>
+        <a class="quick-link" href="#"><i>▥</i>도서목록 다운로드</a>
+        <div class="quick-banner">서점매절<small>영업을 하는지 콕 확인하세요!</small></div>
+        <div class="quick-banner">3분<small>만에 아는 북랩</small></div>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>
