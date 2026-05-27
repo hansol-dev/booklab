@@ -500,6 +500,17 @@ body.has-bottom-quickbar {
   white-space: normal !important;
 }
 
+.booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-report-list p:first-child {
+  grid-column: 1 / -1 !important;
+  justify-self: center !important;
+  max-width: 720px !important;
+  padding-right: 34px !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+}
+
 .booklab-origin-renewal .service-card:first-child .service-actions a {
   padding: 0 8px !important;
 }
