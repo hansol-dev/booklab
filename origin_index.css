@@ -487,28 +487,50 @@ body.has-bottom-quickbar {
 
 .booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-report-list {
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  max-width: 760px !important;
+  max-width: 740px !important;
   gap: 10px !important;
+  margin-bottom: 18px !important;
 }
 
 .booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-report-list p {
+  display: grid !important;
+  grid-template-columns: 30px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 12px !important;
   min-width: 0 !important;
-  padding: 14px 14px 14px 50px !important;
+  min-height: 68px !important;
+  padding: 14px 18px !important;
   font-size: 13px !important;
-  line-height: 1.45 !important;
+  line-height: 1.5 !important;
   text-align: left !important;
   white-space: normal !important;
 }
 
 .booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-report-list p:first-child {
-  grid-column: 1 / -1 !important;
-  justify-self: center !important;
-  max-width: 720px !important;
-  padding-right: 34px !important;
-  font-size: 14px !important;
+  grid-column: auto !important;
+  justify-self: stretch !important;
+  max-width: none !important;
+  padding-right: 18px !important;
+  font-size: 13px !important;
   line-height: 1.5 !important;
   word-break: keep-all !important;
   overflow-wrap: normal !important;
+}
+
+.booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-copy {
+  padding-top: 64px !important;
+  padding-bottom: 86px !important;
+}
+
+.booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-copy h1 {
+  max-width: 720px !important;
+  margin-bottom: 16px !important;
+  font-size: 36px !important;
+  letter-spacing: 0 !important;
+}
+
+.booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-actions {
+  margin-top: 0 !important;
 }
 
 .booklab-origin-renewal .service-card:first-child .service-actions a {
@@ -646,4 +668,33 @@ body.has-bottom-quickbar {
 .booklab-origin-renewal .hero-renewal.hero-slide-2 .hero-copy h1 span,
 .booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-copy h1 span {
   display: block !important;
+}
+
+.booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-report-list {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  width: 740px !important;
+  max-width: calc(100% - 96px) !important;
+  margin: 0 auto 16px !important;
+}
+
+.booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-report-list > p,
+.booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-report-list > p:first-child {
+  grid-column: auto !important;
+  justify-self: stretch !important;
+  width: auto !important;
+  max-width: none !important;
+  min-height: 66px !important;
+  padding: 13px 16px !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+  white-space: normal !important;
+}
+
+.booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-actions {
+  margin-bottom: 28px !important;
+}
+
+.booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-slider-controls {
+  bottom: 18px !important;
 }
