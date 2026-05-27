@@ -335,6 +335,7 @@ body.has-bottom-quickbar {
 .booklab-origin-renewal .book-cards b {
   font-size: 13px !important;
   line-height: 1.32 !important;
+  min-height: 36px !important;
 }
 
 .booklab-origin-renewal .payment-card {
@@ -476,6 +477,36 @@ body.has-bottom-quickbar {
 .booklab-origin-renewal .hero-renewal.hero-slide-2 .hero-copy h1 span,
 .booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-copy h1 span {
   display: block !important;
+}
+
+.booklab-origin-renewal .hero-renewal.hero-slide-2 .hero-copy {
+  padding-top: 52px !important;
+  padding-bottom: 72px !important;
+  justify-content: center !important;
+}
+
+.booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-report-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  max-width: 760px !important;
+  gap: 10px !important;
+}
+
+.booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-report-list p {
+  min-width: 0 !important;
+  padding: 14px 14px 14px 50px !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  text-align: left !important;
+  white-space: normal !important;
+}
+
+.booklab-origin-renewal .service-card:first-child .service-actions a {
+  padding: 0 8px !important;
+}
+
+.booklab-origin-renewal .service-card:first-child .service-actions a::after {
+  content: none !important;
+  display: none !important;
 }
 
 .booklab-origin-renewal .hero-renewal.hero-slide-1 .hero-copy h1 strong,
