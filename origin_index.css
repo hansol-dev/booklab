@@ -190,6 +190,86 @@ select {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+/* origin_index.html requested layout refinements */
+.booklab-origin-renewal .author-quick-section,
+.booklab-origin-renewal .mobile-quick-dock,
+.booklab-origin-renewal .mobile-quick-sheet,
+.booklab-origin-renewal .author-quick-section.is-docked .author-action-card {
+  display: none !important;
+}
+
+body.has-bottom-quickbar {
+  padding-bottom: 0 !important;
+}
+
+.booklab-origin-renewal .worry-band {
+  width: 100% !important;
+  max-width: 900px !important;
+  margin: 14px 0 0 !important;
+  padding: 14px 18px !important;
+  gap: 12px !important;
+  flex-wrap: nowrap !important;
+}
+
+.booklab-origin-renewal .worry-band h2 {
+  font-size: 18px !important;
+  line-height: 1.25 !important;
+  white-space: nowrap !important;
+}
+
+.booklab-origin-renewal .worry-links {
+  flex: 0 0 auto !important;
+  display: flex !important;
+  gap: 6px !important;
+  flex-wrap: nowrap !important;
+}
+
+.booklab-origin-renewal .worry-links a {
+  min-height: 30px !important;
+  padding: 0 9px !important;
+  font-size: 11px !important;
+  white-space: nowrap !important;
+}
+
+.booklab-origin-renewal .service-card:first-child .service-actions {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+.booklab-origin-renewal .service-card:first-child .service-actions a {
+  min-height: 32px !important;
+  padding: 0 5px !important;
+  font-size: 11px !important;
+}
+
+.booklab-origin-renewal .interview-grid h3 {
+  display: -webkit-box !important;
+  min-height: 42px !important;
+  max-height: 42px !important;
+  overflow: hidden !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+  line-height: 1.35 !important;
+}
+
+.booklab-origin-renewal .story-list {
+  gap: 7px !important;
+}
+
+.booklab-origin-renewal .story-list a {
+  min-height: 55px !important;
+}
+
+.booklab-origin-renewal .story-list img {
+  width: 68px !important;
+  height: 48px !important;
+  object-fit: cover !important;
+}
+
+.booklab-origin-renewal .tool-section {
+  margin-bottom: 44px !important;
+  padding-bottom: 12px !important;
+}
+
 /* origin_index.html 900px section grid correction */
 .booklab-origin-renewal .service-grid,
 .booklab-origin-renewal .board-tools {
@@ -392,6 +472,18 @@ select {
   overflow-wrap: normal !important;
 }
 
+.booklab-origin-renewal .hero-renewal.hero-slide-1 .hero-copy h1 span,
+.booklab-origin-renewal .hero-renewal.hero-slide-2 .hero-copy h1 span,
+.booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-copy h1 span {
+  display: block !important;
+}
+
+.booklab-origin-renewal .hero-renewal.hero-slide-1 .hero-copy h1 strong,
+.booklab-origin-renewal .hero-renewal.hero-slide-2 .hero-copy h1 strong,
+.booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-copy h1 strong {
+  display: inline !important;
+}
+
 .booklab-origin-renewal .hero-renewal.hero-slide-0 .hero-copy h1 strong,
 .booklab-origin-renewal .hero-renewal.hero-slide-1 .hero-copy h1 strong,
 .booklab-origin-renewal .hero-renewal.hero-slide-2 .hero-copy h1 strong,
@@ -495,4 +587,21 @@ select {
 .booklab-origin-renewal .hero-renewal.hero-slide-3 {
   background-size: cover !important;
   background-position: center center !important;
+}
+
+/* origin_index.html final overrides */
+.booklab-origin-renewal .author-quick-section,
+.booklab-origin-renewal .mobile-quick-dock,
+.booklab-origin-renewal .mobile-quick-sheet {
+  display: none !important;
+}
+
+.booklab-origin-renewal .service-card:first-child .service-actions {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+.booklab-origin-renewal .hero-renewal.hero-slide-1 .hero-copy h1 span,
+.booklab-origin-renewal .hero-renewal.hero-slide-2 .hero-copy h1 span,
+.booklab-origin-renewal .hero-renewal.hero-slide-3 .hero-copy h1 span {
+  display: block !important;
 }
