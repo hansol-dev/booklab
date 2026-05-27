@@ -257,6 +257,61 @@ select {
   line-height: 1.32 !important;
 }
 
+.booklab-origin-renewal .payment-card {
+  min-width: 0 !important;
+}
+
+.booklab-origin-renewal .payment-card .pay-primary {
+  padding: 12px !important;
+}
+
+.booklab-origin-renewal .payment-card .pay-primary dl {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 6px !important;
+  margin: 0 !important;
+}
+
+.booklab-origin-renewal .payment-card .pay-primary div {
+  display: grid !important;
+  grid-template-columns: 78px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+}
+
+.booklab-origin-renewal .payment-card .pay-primary dt,
+.booklab-origin-renewal .payment-card .pay-primary dd {
+  min-width: 0 !important;
+  white-space: nowrap !important;
+}
+
+.booklab-origin-renewal .payment-card .pay-primary dt {
+  font-size: 11px !important;
+}
+
+.booklab-origin-renewal .payment-card .pay-primary dd {
+  font-size: 12px !important;
+  letter-spacing: 0 !important;
+  text-align: right !important;
+}
+
+.booklab-origin-renewal .payment-card .pay-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 8px !important;
+}
+
+.booklab-origin-renewal .payment-card .card-pay,
+.booklab-origin-renewal .payment-card .bank-pay {
+  min-height: 74px !important;
+}
+
+.booklab-origin-renewal .payment-card .bank-pay b {
+  font-size: 22px !important;
+  line-height: 1.05 !important;
+}
+
 .booklab-origin-renewal .section-script {
   display: block !important;
   font-family: "Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive !important;
@@ -357,6 +412,10 @@ select {
   font-size: 12px !important;
   font-weight: 800 !important;
   line-height: 1.2 !important;
+}
+
+.booklab-origin-renewal .hero-renewal .hero-note[hidden] {
+  display: none !important;
 }
 
 .booklab-origin-renewal .hero-renewal .hero-copy > p,
